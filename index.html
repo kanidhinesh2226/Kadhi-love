@@ -5,225 +5,200 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kadhi 💜 Love</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-
 body{
-  font-family:'Poppins',sans-serif;
-  background:radial-gradient(circle at top,#3b0057,#120016);
+  font-family:Poppins,sans-serif;
+  background:radial-gradient(circle at top,#3b005f,#12001f);
   color:#fff;
-  overflow:hidden;
-}
-
-/* FIREWORK CANVAS */
-canvas{
-  position:fixed;
-  inset:0;
-  z-index:1;
-}
-
-/* MAIN CONTAINER */
-.container{
-  position:relative;
-  z-index:5;
+  overflow-x:hidden;
   min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:20px;
 }
+canvas{position:fixed;inset:0;z-index:0}
 
-h1{
+/* HERO */
+.hero{
+  position:relative;z-index:2;
+  text-align:center;
+  padding:80px 20px 40px;
+}
+.hero h1{
   font-family:'Great Vibes',cursive;
-  font-size:56px;
+  font-size:48px;
   text-shadow:0 0 30px hotpink;
 }
-
-.sub{
-  margin-top:10px;
-  font-size:18px;
-  color:#ffd6f0;
-}
-
-/* BUTTON */
+.hero p{margin-top:15px;font-size:18px}
 .btn{
-  margin-top:25px;
-  padding:14px 36px;
-  border:none;
-  border-radius:40px;
+  margin-top:30px;
+  padding:14px 40px;
   font-size:18px;
-  background:linear-gradient(45deg,#ff5fa2,#ff9bd5);
-  color:#fff;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(45deg,#ff69b4,#ffc1dc);
   cursor:pointer;
-  box-shadow:0 0 25px rgba(255,120,200,.8);
+  box-shadow:0 0 20px rgba(255,105,180,.8);
 }
 
-/* SLIDER */
-.slider{
-  width:100%;
-  overflow:hidden;
-  margin-top:40px;
-  display:none;
+/* HEARTS */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  animation:float 6s linear infinite;
+  font-size:22px;
+}
+@keyframes float{
+  0%{transform:translateY(0);opacity:1}
+  100%{transform:translateY(-120vh);opacity:0}
 }
 
-.slides{
+/* GALLERY */
+.gallery{
+  position:relative;z-index:2;
   display:flex;
-  animation:slide 35s linear infinite;
+  gap:20px;
+  overflow-x:auto;
+  padding:40px 20px;
 }
-
-@keyframes slide{
-  from{transform:translateX(0);}
-  to{transform:translateX(-50%);}
-}
-
 .card{
-  min-width:220px;
-  margin:0 16px;
-  background:rgba(255,255,255,.15);
+  min-width:230px;
+  background:rgba(255,255,255,.12);
   border-radius:20px;
   padding:14px;
-  box-shadow:0 0 25px rgba(255,100,200,.4);
+  box-shadow:0 0 25px rgba(255,105,180,.45);
 }
-
 .card img{
   width:100%;
   border-radius:16px;
 }
-
-.caption{
+.card p{
   margin-top:12px;
   font-family:'Great Vibes',cursive;
   font-size:20px;
-  color:#ffb6e8;
-  line-height:1.5;
+  text-align:center;
+  color:#ffd9f2;
 }
 
-@media(max-width:600px){
-  h1{font-size:40px;}
-  .card{min-width:180px;}
+/* WISH */
+.wish{
+  position:relative;z-index:2;
+  text-align:center;
+  padding:40px 20px 90px;
+  font-size:20px;
+  line-height:1.7;
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="fx"></canvas>
+<canvas id="fireworks"></canvas>
 
-<div class="container">
-  <h1>Welcome Dhinesh Kumar 💜</h1>
-  <p class="sub">A little New Year surprise just for you ✨</p>
+<div class="hero">
+  <h1>Welcome Dinesh Kumar 💜</h1>
+  <p>A little New Year surprise just for you ✨</p>
+  <button class="btn" onclick="openLove()">Open 💖</button>
+</div>
 
-  <button class="btn" onclick="openSurprise()">Open 💜</button>
+<div class="gallery" id="gallery" style="display:none">
 
-  <div class="slider" id="slider">
-    <div class="slides">
-
-      <!-- FIRST IMAGE – LONG TEXT -->
-      <div class="card">
-        <img src="img1.jpg">
-        <div class="caption">
-          In your smile, I found my peace ✨<br>
-          In your eyes, I found my home 💜<br>
-          No matter how loud the world becomes,<br>
-          my heart feels calm when I see you ❤️<br>
-          You are not just a part of my life,<br>
-          you are the reason my life feels complete 💫
-        </div>
-      </div>
-
-      <!-- MIDDLE IMAGE – SHORT -->
-      <div class="card">
-        <img src="img2.jpg">
-        <div class="caption">
-          You + Me = My favourite forever 💕
-        </div>
-      </div>
-
-      <!-- MIDDLE IMAGE – SHORT -->
-      <div class="card">
-        <img src="img3.jpg">
-        <div class="caption">
-          Every moment with you feels magical ✨
-        </div>
-      </div>
-
-      <!-- MIDDLE IMAGE – SHORT -->
-      <div class="card">
-        <img src="img4.jpg">
-        <div class="caption">
-          My safe place, my heart ❤️
-        </div>
-      </div>
-
-      <!-- LAST IMAGE – LONG TEXT -->
-      <div class="card">
-        <img src="img5.jpg">
-        <div class="caption">
-          If life gives me a thousand paths,<br>
-          I will still choose the one that leads to you 💖<br><br>
-          No matter how the world changes,<br>
-          my heart will always find its way back to you 💫<br><br>
-          This is not just a New Year wish,<br>
-          this is my promise — always with you ❤️
-        </div>
-      </div>
-
-      <!-- repeat for smooth loop -->
-      <div class="card">
-        <img src="img1.jpg">
-        <div class="caption">
-          In your smile, I found my peace 💜
-        </div>
-      </div>
-
-    </div>
+  <!-- 1st IMAGE – LONG TEXT -->
+  <div class="card">
+    <img src="img1.jpg">
+    <p>
+      In your smile, I found my peace ✨<br>
+      In your eyes, I found my home 💜<br>
+      No matter how loud the world becomes,<br>
+      my heart feels calm when I see you ❤️
+    </p>
   </div>
+
+  <!-- 2nd IMAGE – SHORT -->
+  <div class="card">
+    <img src="img2.jpg">
+    <p>You + Me = Forever 💕</p>
+  </div>
+
+  <!-- 3rd IMAGE – SHORT -->
+  <div class="card">
+    <img src="img3.jpg">
+    <p>Every picture with you is my peace ✨</p>
+  </div>
+
+  <!-- 4th IMAGE – SHORT -->
+  <div class="card">
+    <img src="img4.jpg">
+    <p>No matter where life takes us ❤️</p>
+  </div>
+
+  <!-- 5th IMAGE – LONG TEXT -->
+  <div class="card">
+    <img src="img5.jpg">
+    <p>
+      If life gives me a thousand paths,<br>
+      I’ll always choose the one that leads to you 💜<br>
+      This is not just a New Year wish,<br>
+      this is my promise — always with you ❤️
+    </p>
+  </div>
+
+</div>
+
+<div class="wish" id="wish" style="display:none">
+  🎆 Happy New Year 2026 🎆<br><br>
+  My Love Yennanga 💜<br>
+  Forever Us ✨
 </div>
 
 <script>
+function openLove(){
+  document.getElementById("gallery").style.display="flex";
+  document.getElementById("wish").style.display="block";
+  startHearts();
+}
+
+/* HEARTS */
+function startHearts(){
+  setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="💜";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  },300);
+}
+
 /* FIREWORKS */
-const c=document.getElementById("fx");
+const c=document.getElementById("fireworks");
 const ctx=c.getContext("2d");
-c.width=innerWidth;
-c.height=innerHeight;
+function resize(){c.width=innerWidth;c.height=innerHeight}
+resize();addEventListener("resize",resize);
 
 let particles=[];
-function boom(){
-  for(let i=0;i<40;i++){
+function boom(x,y){
+  for(let i=0;i<60;i++){
     particles.push({
-      x:Math.random()*c.width,
-      y:Math.random()*c.height,
-      vx:(Math.random()-.5)*6,
-      vy:(Math.random()-.5)*6,
-      life:100,
-      color:`hsl(${Math.random()*360},100%,70%)`
+      x,y,
+      vx:(Math.random()-0.5)*6,
+      vy:(Math.random()-0.5)*6,
+      life:80
     });
   }
 }
-setInterval(boom,1200);
-
-function draw(){
+function animate(){
   ctx.clearRect(0,0,c.width,c.height);
   particles.forEach((p,i)=>{
-    ctx.fillStyle=p.color;
+    p.x+=p.vx;p.y+=p.vy;p.life--;
+    ctx.fillStyle="hsl("+Math.random()*360+",100%,70%)";
     ctx.fillRect(p.x,p.y,3,3);
-    p.x+=p.vx;
-    p.y+=p.vy;
-    p.life--;
     if(p.life<=0)particles.splice(i,1);
   });
-  requestAnimationFrame(draw);
+  requestAnimationFrame(animate);
 }
-draw();
-
-/* BUTTON ACTION */
-function openSurprise(){
-  document.getElementById("slider").style.display="block";
-}
+setInterval(()=>boom(Math.random()*c.width,Math.random()*c.height/2),1200);
+animate();
 </script>
 
 </body>
