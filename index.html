@@ -12,128 +12,219 @@
 
 body{
   font-family:'Poppins',sans-serif;
-  min-height:100vh;
-  background:linear-gradient(135deg,#1a002b,#3b004f,#1a002b);
+  background:radial-gradient(circle at top,#3b0057,#120016);
   color:#fff;
-  overflow-x:hidden;
+  overflow:hidden;
 }
 
-/* STAR BACKGROUND */
-body::before{
-  content:"";
+/* FIREWORK CANVAS */
+canvas{
   position:fixed;
   inset:0;
-  background:
-    radial-gradient(#fff 1px, transparent 1px);
-  background-size:40px 40px;
-  opacity:.15;
-  z-index:-1;
+  z-index:1;
 }
 
-/* HERO */
-.hero{
+/* MAIN CONTAINER */
+.container{
+  position:relative;
+  z-index:5;
   min-height:100vh;
   display:flex;
   flex-direction:column;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   text-align:center;
   padding:20px;
 }
 
-.hero h1{
+h1{
   font-family:'Great Vibes',cursive;
   font-size:56px;
-  color:#ffb3e6;
-  text-shadow:0 0 25px hotpink;
+  text-shadow:0 0 30px hotpink;
 }
 
-.hero p{
+.sub{
   margin-top:10px;
   font-size:18px;
-  opacity:.9;
+  color:#ffd6f0;
 }
 
-.hero button{
+/* BUTTON */
+.btn{
   margin-top:25px;
-  padding:14px 40px;
+  padding:14px 36px;
   border:none;
-  border-radius:30px;
+  border-radius:40px;
   font-size:18px;
-  cursor:pointer;
   background:linear-gradient(45deg,#ff5fa2,#ff9bd5);
-  color:#2b002f;
-  box-shadow:0 0 25px rgba(255,105,180,.6);
+  color:#fff;
+  cursor:pointer;
+  box-shadow:0 0 25px rgba(255,120,200,.8);
 }
 
-/* GALLERY */
-.gallery{
-  padding:50px 20px;
+/* SLIDER */
+.slider{
+  width:100%;
+  overflow:hidden;
+  margin-top:40px;
+  display:none;
+}
+
+.slides{
   display:flex;
-  gap:20px;
-  overflow-x:auto;
+  animation:slide 35s linear infinite;
+}
+
+@keyframes slide{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
 }
 
 .card{
   min-width:220px;
-  background:rgba(255,255,255,.1);
+  margin:0 16px;
+  background:rgba(255,255,255,.15);
   border-radius:20px;
-  padding:15px;
-  text-align:center;
-  box-shadow:0 0 30px rgba(255,0,150,.3);
+  padding:14px;
+  box-shadow:0 0 25px rgba(255,100,200,.4);
 }
 
 .card img{
   width:100%;
-  border-radius:15px;
+  border-radius:16px;
 }
 
 .caption{
-  margin-top:10px;
+  margin-top:12px;
   font-family:'Great Vibes',cursive;
   font-size:20px;
-  color:#ffb3e6;
+  color:#ffb6e8;
+  line-height:1.5;
 }
 
-/* FOOTER */
-.footer{
-  padding:40px 20px;
-  text-align:center;
-  font-size:16px;
-  opacity:.85;
+@media(max-width:600px){
+  h1{font-size:40px;}
+  .card{min-width:180px;}
 }
 </style>
 </head>
 
 <body>
 
-<section class="hero">
+<canvas id="fx"></canvas>
+
+<div class="container">
   <h1>Welcome Dhinesh Kumar 💜</h1>
-  <p>A little love greeting for the New Year</p>
-  <button>Open 💜</button>
-</section>
+  <p class="sub">A little New Year surprise just for you ✨</p>
 
-<section class="gallery">
-  <div class="card">
-    <img src="img1.jpg">
-    <div class="caption">In your smile, I found my peace ✨</div>
+  <button class="btn" onclick="openSurprise()">Open 💜</button>
+
+  <div class="slider" id="slider">
+    <div class="slides">
+
+      <!-- FIRST IMAGE – LONG TEXT -->
+      <div class="card">
+        <img src="img1.jpg">
+        <div class="caption">
+          In your smile, I found my peace ✨<br>
+          In your eyes, I found my home 💜<br>
+          No matter how loud the world becomes,<br>
+          my heart feels calm when I see you ❤️<br>
+          You are not just a part of my life,<br>
+          you are the reason my life feels complete 💫
+        </div>
+      </div>
+
+      <!-- MIDDLE IMAGE – SHORT -->
+      <div class="card">
+        <img src="img2.jpg">
+        <div class="caption">
+          You + Me = My favourite forever 💕
+        </div>
+      </div>
+
+      <!-- MIDDLE IMAGE – SHORT -->
+      <div class="card">
+        <img src="img3.jpg">
+        <div class="caption">
+          Every moment with you feels magical ✨
+        </div>
+      </div>
+
+      <!-- MIDDLE IMAGE – SHORT -->
+      <div class="card">
+        <img src="img4.jpg">
+        <div class="caption">
+          My safe place, my heart ❤️
+        </div>
+      </div>
+
+      <!-- LAST IMAGE – LONG TEXT -->
+      <div class="card">
+        <img src="img5.jpg">
+        <div class="caption">
+          If life gives me a thousand paths,<br>
+          I will still choose the one that leads to you 💖<br><br>
+          No matter how the world changes,<br>
+          my heart will always find its way back to you 💫<br><br>
+          This is not just a New Year wish,<br>
+          this is my promise — always with you ❤️
+        </div>
+      </div>
+
+      <!-- repeat for smooth loop -->
+      <div class="card">
+        <img src="img1.jpg">
+        <div class="caption">
+          In your smile, I found my peace 💜
+        </div>
+      </div>
+
+    </div>
   </div>
-
-  <div class="card">
-    <img src="img2.jpg">
-    <div class="caption">Every picture with you is my calm 💜</div>
-  </div>
-
-  <div class="card">
-    <img src="img3.jpg">
-    <div class="caption">My Love Yennanga ❤️</div>
-  </div>
-</section>
-
-<div class="footer">
-  Happy New Year 2026 ✨ <br>
-  Forever us 💜
 </div>
+
+<script>
+/* FIREWORKS */
+const c=document.getElementById("fx");
+const ctx=c.getContext("2d");
+c.width=innerWidth;
+c.height=innerHeight;
+
+let particles=[];
+function boom(){
+  for(let i=0;i<40;i++){
+    particles.push({
+      x:Math.random()*c.width,
+      y:Math.random()*c.height,
+      vx:(Math.random()-.5)*6,
+      vy:(Math.random()-.5)*6,
+      life:100,
+      color:`hsl(${Math.random()*360},100%,70%)`
+    });
+  }
+}
+setInterval(boom,1200);
+
+function draw(){
+  ctx.clearRect(0,0,c.width,c.height);
+  particles.forEach((p,i)=>{
+    ctx.fillStyle=p.color;
+    ctx.fillRect(p.x,p.y,3,3);
+    p.x+=p.vx;
+    p.y+=p.vy;
+    p.life--;
+    if(p.life<=0)particles.splice(i,1);
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+
+/* BUTTON ACTION */
+function openSurprise(){
+  document.getElementById("slider").style.display="block";
+}
+</script>
 
 </body>
 </html>
