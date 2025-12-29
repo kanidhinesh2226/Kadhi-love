@@ -1,73 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kadhi💜Love</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kadhi 💜 Love</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
 
-body{
-  font-family:'Poppins',sans-serif;
-  height:100vh;
-  overflow:hidden;
-  background:linear-gradient(-45deg,#1a002b,#3a0f6b,#ff4d6d,#1a002b);
-  background-size:400% 400%;
-  animation:bgMove 12s ease infinite;
-  color:white;
-}
+    body{
+      font-family:'Poppins',sans-serif;
+      min-height:100vh;
+      background:linear-gradient(-45deg,#0a0015,#1a002b,#30004a,#12001e);
+      background-size:400% 400%;
+      animation:bgMove 12s ease infinite;
+      color:white;
+      overflow-x:hidden;
+    }
 
-@keyframes bgMove{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
+    @keyframes bgMove{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
 
-/* FLOATING HEARTS */
-.heart{
-  position:fixed;
-  bottom:-10vh;
-  font-size:20px;
-  animation:floatUp linear infinite;
-  opacity:0.4;
-}
-@keyframes floatUp{
-  to{transform:translateY(-120vh);}
-}
+    /* fireworks dots */
+    .spark{
+      position:fixed;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 20% 30%,#ff7eb3 1px,transparent 1px),
+        radial-gradient(circle at 80% 20%,#7afcff 1px,transparent 1px),
+        radial-gradient(circle at 40% 80%,#ffd86f 1px,transparent 1px);
+      background-size:200px 200px;
+      animation:sparkMove 20s linear infinite;
+    }
 
-/* FRONT PAGE */
-.front{
-  position:absolute; inset:0;
-  display:flex; flex-direction:column;
-  justify-content:center; align-items:center;
-  text-align:center; padding:20px;
-}
+    @keyframes sparkMove{
+      from{background-position:0 0}
+      to{background-position:600px 600px}
+    }
 
-.front h1{
-  font-family:'Great Vibes',cursive;
-  font-size:46px;
-  text-shadow:0 0 25px hotpink;
-}
+    .container{
+      position:relative;
+      z-index:1;
+      padding:30px 15px 60px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:40px;
+    }
 
-.front p{margin:15px 0; opacity:0.9;}
+    h1{
+      font-family:'Great Vibes',cursive;
+      font-size:44px;
+      text-align:center;
+      text-shadow:0 0 15px rgba(255,105,180,0.8);
+    }
 
-button{
-  padding:14px 34px;
-  border:none; border-radius:30px;
-  background:linear-gradient(45deg,#ff5fa2,#ffc3d9);
-  color:#000; font-weight:600;
-  box-shadow:0 0 20px hotpink;
-}
+    .sub{
+      text-align:center;
+      font-size:15px;
+      opacity:0.9;
+      max-width:320px;
+    }
 
-/* MAIN PAGE */
-.main{
-  display:none;
-  position:absolute; inset:0;
-  text-align:center;
-  padding-top:30px;
+    /* card */
+    .card{
+      background:rgba(255,255,255,0.08);
+      border-radius:22px;
+      padding:20px;
+      width:90%;
+      max-width:320px;
+      box-shadow:0 0 25px rgba(255,105,180,0.35);
+      text-align:center;
+    }
+
+    .card img{
+      width:100%;
+      border-radius:16px;
+      margin-bottom:15px;
+    }
+
+    .small img{
+      max-height:220px;
+      object-fit:cover;
+    }
+
+    .text{
+      font-size:14px;
+      line-height:1.6;
+      opacity:0.95;
+    }
+
+    .highlight{
+      font-family:'Great Vibes',cursive;
+      font-size:28px;
+      margin:10px 0;
+      text-shadow:0 0 10px pink;
+    }
+
+    footer{
+      text-align:center;
+      margin-top:20px;
+      font-size:13px;
+      opacity:0.8;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="spark"></div>
+
+<div class="container">
+
+  <!-- TITLE -->
+  <h1>Welcome Dinesh Kumar 💜</h1>
+  <p class="sub">It’s a little New Year surprise ✨</p>
+
+  <!-- FIRST SMALL PHOTO -->
+  <div class="card small">
+    <img src="img1.jpg" alt="love">
+    <p class="text">
+      You walked into my life quietly,<br>
+      but you became my loudest happiness.<br>
+      Every smile of yours feels like home,<br>
+      every moment with you feels like a blessing.<br><br>
+      This New Year, I don’t wish for anything else —<br>
+      because having you is already everything 💜✨
+    </p>
+  </div>
+
+  <!-- MIDDLE PHOTO 1 -->
+  <div class="card">
+    <img src="img2.jpg" alt="us">
+    <div class="highlight">You + Me</div>
+    <p class="text">My favourite forever 💜</p>
+  </div>
+
+  <!-- MIDDLE PHOTO 2 -->
+  <div class="card">
+    <img src="img3.jpg" alt="love">
+    <p class="text">Another year, still choosing you ❤️</p>
+  </div>
+
+  <!-- MIDDLE PHOTO 3 -->
+  <div class="card">
+    <img src="img4.jpg" alt="memories">
+    <p class="text">In your smile, I found my peace ✨</p>
+  </div>
+
+  <!-- LAST SMALL PHOTO -->
+  <div class="card small">
+    <img src="img5.jpg" alt="forever">
+    <p class="text">
+      If life gives me a thousand paths,<br>
+      I will still choose the one that leads to you.<br>
+      No matter how the world changes,<br>
+      my heart will always find its way back to you.<br><br>
+      This is not just a New Year wish,<br>
+      this is my promise — always with you ❤️♾️
+    </p>
+  </div>
+
+  <footer>
+    Happy New Year 💜 <br>
+    Forever us ✨
+  </footer>
+
+</div>
+
+</body>
+</html>
 }
 
 .title{
