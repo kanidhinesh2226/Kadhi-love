@@ -5,267 +5,224 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy New Year My Love ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*{margin:0;padding:0;box-sizing:border-box;}
+
 body{
   font-family:Poppins,sans-serif;
-  background:radial-gradient(circle at top,#2b0040,#090010);
+  background:radial-gradient(circle at top,#2b0040,#0b0014);
+  color:#fff;
   overflow:hidden;
-  color:white;
 }
 
-/* BACKGROUND FALLING EFFECTS */
-.fall{
-  position:fixed;
-  top:-10%;
-  animation:fall linear infinite;
-  opacity:.8;
-}
-@keyframes fall{
-  to{transform:translateY(120vh) rotate(360deg)}
-}
-
-/* FIREWORKS */
-canvas{
+/* SOFT ROMANTIC GLOW */
+body::before{
+  content:"";
   position:fixed;
   inset:0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,105,180,0.28), transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(255,215,0,0.20), transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(255,0,80,0.20), transparent 45%);
   z-index:0;
 }
 
-/* CONTENT */
-.container{
+/* FIREWORK CANVAS */
+canvas{
+  position:fixed;
+  inset:0;
+  z-index:1;
+}
+
+/* FALLING EMOJIS */
+.fall{
+  position:fixed;
+  top:-10%;
+  font-size:22px;
+  animation:fall linear infinite;
+  z-index:2;
+}
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* SLIDER */
+.slider{
   position:relative;
-  z-index:5;
+  z-index:3;
   height:100vh;
   display:flex;
-  flex-direction:column;
   align-items:center;
   justify-content:center;
-  text-align:center;
-  padding:20px;
-}
-
-h1{
-  font-family:Great Vibes,cursive;
-  font-size:44px;
-  text-shadow:0 0 25px hotpink;
-}
-.sub{
-  margin-top:10px;
-  font-size:18px;
-  opacity:.9;
-}
-
-button{
-  margin-top:20px;
-  padding:14px 36px;
-  border:none;
-  border-radius:40px;
-  background:linear-gradient(45deg,#ff5fa2,#ff9bd2);
-  color:#fff;
-  font-size:18px;
-  cursor:pointer;
-  box-shadow:0 0 25px hotpink;
-}
-
-/* SLIDES */
-.slider{
-  display:none;
-  position:relative;
-  width:100%;
-  height:100vh;
-  z-index:5;
-  overflow:hidden;
 }
 
 .slide{
-  position:absolute;
-  inset:0;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  opacity:0;
-  transition:opacity 1.2s ease;
+  display:none;
+  text-align:center;
+  max-width:320px;
+  animation:fade 1s ease;
+  position:relative;
+  z-index:4;
+}
+@keyframes fade{
+  from{opacity:0;transform:scale(0.96);}
+  to{opacity:1;}
 }
 
-.slide.active{opacity:1}
-
-.photo{
-  width:240px;
-  border-radius:20px;
-  overflow:hidden;
-  box-shadow:0 0 35px rgba(255,105,180,.6);
+/* DASHBOARD */
+.top{
+  font-family:'Great Vibes',cursive;
+  font-size:38px;
+  margin-bottom:12px;
+  text-shadow:0 0 25px gold;
+  position:relative;
+  z-index:5;
 }
-.photo img{width:100%;display:block}
-
-.dashboard{
-  margin-top:15px;
-  font-family:Great Vibes,cursive;
-  font-size:26px;
-  color:#ffb7dc;
+.bottom{
+  margin-top:14px;
+  font-size:15px;
+  color:#ffd6ff;
+  position:relative;
+  z-index:5;
 }
 
-.text{
+/* CARD */
+.card{
+  background:rgba(255,255,255,0.14);
+  padding:16px;
+  border-radius:24px;
+  box-shadow:0 0 35px rgba(255,100,200,0.65);
+}
+.card img{
+  width:100%;
+  border-radius:18px;
+}
+
+/* TEXT */
+.big{
+  font-family:'Great Vibes',cursive;
+  font-size:22px;
+  margin-top:12px;
+  line-height:1.55;
+}
+.small{
+  font-size:14px;
   margin-top:10px;
-  font-size:16px;
-  max-width:300px;
-  line-height:1.6;
 }
 
-/* HEART POP TEXT */
-.heart-pop{
-  position:fixed;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-family:Great Vibes,cursive;
-  font-size:46px;
-  color:#ff5fa2;
-  text-shadow:0 0 25px hotpink;
-  animation:pop 3s ease forwards;
-  z-index:20;
-}
-@keyframes pop{
-  0%{transform:scale(.3);opacity:0}
-  50%{transform:scale(1.2);opacity:1}
-  100%{transform:scale(1);opacity:0}
-}
-
-/* MOBILE */
 @media(max-width:600px){
-  h1{font-size:36px}
-  .photo{width:200px}
+  .top{font-size:32px;}
 }
 </style>
 </head>
+
 <body>
 
-<canvas id="fireworks"></canvas>
+<canvas id="fire"></canvas>
 
-<div class="container" id="intro">
-  <h1>Happy New Year My Love ❤️</h1>
-  <div class="sub">A little surprise just for you ✨</div>
-  <button onclick="startShow()">Open 💖</button>
-</div>
-
-<div class="slider" id="slider">
+<div class="slider">
 
   <!-- SLIDE 1 -->
-  <div class="slide active">
-    <div class="photo"><img src="img1.jpg"></div>
-    <div class="dashboard">Happy New Year My Love ❤️</div>
-    <div class="text">
-      In your smile, I found my peace ✨<br>
-      In your eyes, I found my home 💜<br>
-      No matter how loud the world becomes,<br>
-      my heart feels calm when I see you ❤️<br>
-      You are not just part of my life,<br>
-      you are my forever 🌙
+  <div class="slide">
+    <div class="top">Happy New Year My Love ❤️</div>
+    <div class="card">
+      <img src="img1.jpg">
+      <div class="big">
+        In your smile, I found my peace ✨<br>
+        In your eyes, I found my forever 💜<br>
+        When the world feels loud,<br>
+        your presence calms my heart ❤️<br>
+        You are not just someone I love,<br>
+        you are the place my heart belongs to 💫
+      </div>
     </div>
+    <div class="bottom">Forever starts with you ✨</div>
   </div>
 
   <!-- SLIDE 2 -->
   <div class="slide">
-    <div class="photo"><img src="img2.jpg"></div>
-    <div class="dashboard">My Favourite Moment 💕</div>
-    <div class="text">
-      You + Me = My favourite forever 💞
+    <div class="top">Happy New Year My Love ❤️</div>
+    <div class="card">
+      <img src="img2.jpg">
+      <div class="small">You + Me = My favourite love story 💕</div>
     </div>
+    <div class="bottom">Every moment with you is special ✨</div>
   </div>
 
   <!-- SLIDE 3 -->
   <div class="slide">
-    <div class="photo"><img src="img3.jpg"></div>
-    <div class="dashboard">Every Memory ✨</div>
-    <div class="text">
-      Every picture with you<br>
-      feels like home 💖
+    <div class="top">Happy New Year My Love ❤️</div>
+    <div class="card">
+      <img src="img3.jpg">
+      <div class="small">Every picture with you feels like home 💜</div>
     </div>
+    <div class="bottom">With you, life feels complete 💫</div>
   </div>
 
   <!-- SLIDE 4 -->
   <div class="slide">
-    <div class="photo"><img src="img4.jpg"></div>
-    <div class="dashboard">Together Always 🤍</div>
-    <div class="text">
-      No matter the path,<br>
-      I choose you 💕
+    <div class="top">Happy New Year My Love ❤️</div>
+    <div class="card">
+      <img src="img4.jpg">
+      <div class="small">My heart chooses you, every single day ❤️</div>
     </div>
+    <div class="bottom">Always you, only you ✨</div>
   </div>
 
   <!-- SLIDE 5 -->
   <div class="slide">
-    <div class="photo"><img src="img5.jpg"></div>
-    <div class="dashboard">Forever Us ❤️</div>
-    <div class="text">
-      If life gives me a thousand paths,<br>
-      I’ll still choose the one that leads to you 💫<br>
-      This is not just a New Year wish,<br>
-      this is my promise 💖<br>
-      I love you, today & always ❤️
+    <div class="top">Happy New Year My Love ❤️</div>
+    <div class="card">
+      <img src="img5.jpg">
+      <div class="big">
+        If life gives me a thousand paths,<br>
+        I will still choose the one that leads to you 💜<br>
+        No matter how the world changes,<br>
+        my heart will always find you ❤️<br>
+        This New Year and every year after,<br>
+        I choose you — always ✨
+      </div>
     </div>
+    <div class="bottom">Forever us ❤️</div>
   </div>
 
 </div>
 
 <script>
-/* START */
-function startShow(){
-  document.getElementById("intro").style.display="none";
-  document.getElementById("slider").style.display="block";
-  heartPop("Happy New Year ❤️");
-  startSlider();
-}
-
-/* SLIDER */
+/* SLIDESHOW */
 let slides=document.querySelectorAll(".slide");
-let index=0;
-function startSlider(){
-  setInterval(()=>{
-    slides[index].classList.remove("active");
-    index=(index+1)%slides.length;
-    slides[index].classList.add("active");
-  },5000);
-}
-
-/* HEART POP */
-function heartPop(text){
-  let d=document.createElement("div");
-  d.className="heart-pop";
-  d.innerHTML=text+"<br>I Love You 💖";
-  document.body.appendChild(d);
-  setTimeout(()=>d.remove(),3000);
-}
+let i=0;
+slides[0].style.display="block";
+setInterval(()=>{
+  slides[i].style.display="none";
+  i=(i+1)%slides.length;
+  slides[i].style.display="block";
+},5000);
 
 /* FALLING EMOJIS */
-const emojis=["💖","⭐","🎁"];
-for(let i=0;i<40;i++){
-  let s=document.createElement("div");
-  s.className="fall";
-  s.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
-  s.style.left=Math.random()*100+"vw";
-  s.style.fontSize=14+Math.random()*20+"px";
-  s.style.animationDuration=5+Math.random()*5+"s";
-  document.body.appendChild(s);
-}
+const emojis=["❤️","💜","🎁","✨"];
+setInterval(()=>{
+  let e=document.createElement("div");
+  e.className="fall";
+  e.innerText=emojis[Math.floor(Math.random()*emojis.length)];
+  e.style.left=Math.random()*100+"vw";
+  e.style.animationDuration=3+Math.random()*3+"s";
+  document.body.appendChild(e);
+  setTimeout(()=>e.remove(),6000);
+},300);
 
 /* FIREWORKS */
-const c=document.getElementById("fireworks");
-const ctx=c.getContext("2d");
-function resize(){c.width=innerWidth;c.height=innerHeight}
-resize();window.onresize=resize;
-
-let particles=[];
-function fire(){
-  let x=Math.random()*c.width;
-  let y=Math.random()*c.height/2;
-  for(let i=0;i<80;i++){
-    particles.push({
-      x,y,
+const c=document.getElementById("fire");
+const x=c.getContext("2d");
+c.width=innerWidth;c.height=innerHeight;
+let p=[];
+function boom(){
+  for(let i=0;i<90;i++){
+    p.push({
+      x:Math.random()*c.width,
+      y:Math.random()*c.height/2,
       dx:(Math.random()-0.5)*6,
       dy:(Math.random()-0.5)*6,
       life:60,
@@ -273,19 +230,20 @@ function fire(){
     });
   }
 }
-setInterval(fire,1200);
-
-function animate(){
-  ctx.clearRect(0,0,c.width,c.height);
-  particles.forEach((p,i)=>{
-    p.x+=p.dx;p.y+=p.dy;p.life--;
-    ctx.fillStyle=p.color;
-    ctx.fillRect(p.x,p.y,2,2);
-    if(p.life<=0)particles.splice(i,1);
+function draw(){
+  x.clearRect(0,0,c.width,c.height);
+  p.forEach((o,i)=>{
+    x.fillStyle=o.color;
+    x.beginPath();
+    x.arc(o.x,o.y,2,0,Math.PI*2);
+    x.fill();
+    o.x+=o.dx;o.y+=o.dy;o.life--;
+    if(o.life<=0)p.splice(i,1);
   });
-  requestAnimationFrame(animate);
+  requestAnimationFrame(draw);
 }
-animate();
+setInterval(boom,1200);
+draw();
 </script>
 
 </body>
