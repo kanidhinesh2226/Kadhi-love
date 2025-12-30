@@ -1,54 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Welcome My Love ❤️</title>
+<title>Happy New Year ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
 body{
-  font-family:Poppins,sans-serif;
+  margin:0;
   height:100vh;
-  background:radial-gradient(circle at top,#2b0040,#0b0014);
+  overflow:hidden;
+  background:radial-gradient(circle,#4b0082,#0b0014);
   display:flex;
   align-items:center;
   justify-content:center;
-  color:#fff;
-  text-align:center;
+  flex-direction:column;
+  color:white;
+  font-family:Poppins;
 }
-.container h1{
+
+h1{
   font-family:'Great Vibes',cursive;
-  font-size:46px;
+  font-size:48px;
   text-shadow:0 0 25px hotpink;
 }
-.container p{
-  margin:20px 0;
-  font-size:18px;
-  color:#ffd6ff;
-}
+
+p{margin:10px 0 20px;color:#ffd6ff}
+
 button{
-  padding:14px 40px;
+  padding:14px 36px;
   border:none;
-  border-radius:40px;
+  border-radius:30px;
+  background:linear-gradient(45deg,hotpink,violet);
+  color:white;
   font-size:18px;
   cursor:pointer;
-  background:linear-gradient(45deg,#ff6ec7,#ff9ad5);
-  color:#fff;
-  box-shadow:0 0 25px rgba(255,105,180,.7);
+  box-shadow:0 0 25px hotpink;
+}
+
+.fall{
+  position:fixed;
+  top:-10%;
+  font-size:22px;
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg);}
+}
+
+canvas{
+  position:fixed;
+  inset:0;
+  z-index:-1;
 }
 </style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Happy New Year My Love ❤️</h1>
-    <p>I made something special just for you ✨</p>
-    <button onclick="location.href='page2.html'">
-      Open My Heart 💖
-    </button>
-  </div>
+
+<h1>Happy New Year My Love ❤️</h1>
+<p>A little surprise just for you ✨</p>
+<button onclick="go()">Open My Heart 💖</button>
+
+<canvas id="fire"></canvas>
+
+<script>
+function go(){
+  window.location.href="page2.html";
+}
+
+/* floating emojis */
+const emojis=["❤️","🎁","✨","💜","⭐"];
+setInterval(()=>{
+  let e=document.createElement("div");
+  e.className="fall";
+  e.innerText=emojis[Math.floor(Math.random()*emojis.length)];
+  e.style.left=Math.random()*100+"vw";
+  e.style.animationDuration=3+Math.random()*3+"s";
+  document.body.appendChild(e);
+  setTimeout(()=>e.remove(),6000);
+},300);
+
+/* fireworks */
+const c=document.getElementById("fire");
+const x=c.getContext("2d");
+c.width=innerWidth;c.height=innerHeight;
+let p=[];
+function boom(){
+  for(let i=0;i<70;i++){
+    p.push({
+      x:Math.random()*c.width,
+      y:Math.random()*c.height/2,
+      dx:(Math.random()-0.5)*6,
+      dy:(Math.random()-0.5)*6,
+      life:60,
+      color:Math.random()>0.5?"yellow":"red"
+    });
+  }
+}
+function draw(){
+  x.clearRect(0,0,c.width,c.height);
+  p.forEach((a,i)=>{
+    x.fillStyle=a.color;
+    x.fillRect(a.x,a.y,3,3);
+    a.x+=a.dx;a.y+=a.dy;a.life--;
+    if(a.life<=0)p.splice(i,1);
+  });
+  requestAnimationFrame(draw);
+}
+setInterval(boom,2000);
+draw();
+</script>
+
 </body>
 </html>
