@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>Happy New Year</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
 <style>
 body {
   margin: 0;
@@ -13,22 +15,26 @@ body {
   overflow-x: hidden;
 }
 
-/* 💕 Falling Hearts */
-.hearts {
+/* Top heading */
+header {
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
+  text-align: center;
+  padding: 15px;
+  font-size: 26px;
+  background: rgba(0,0,0,0.6);
+  z-index: 5;
 }
 
-.hearts span {
-  position: absolute;
-  color: red;
+/* ❤️ Falling hearts */
+.heart {
+  position: fixed;
+  top: -10px;
+  color: rgba(255, 100, 150, 0.7);
+  font-size: 18px;
   animation: fall linear infinite;
-  opacity: 0.6;
+  z-index: 1;
 }
 
 @keyframes fall {
@@ -36,24 +42,12 @@ body {
   to { transform: translateY(110vh); }
 }
 
-/* Header */
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  text-align: center;
-  padding: 15px;
-  font-size: 24px;
-  background: rgba(0,0,0,0.6);
-  z-index: 5;
-}
-
 /* Slideshow */
 .slideshow {
   margin-top: 100px;
   text-align: center;
-  z-index: 2;
   position: relative;
+  z-index: 2;
 }
 
 .slide {
@@ -65,19 +59,23 @@ header {
   width: 80%;
   max-width: 350px;
   border-radius: 20px;
-  box-shadow: 0 0 25px rgba(255,0,100,0.4);
+  box-shadow: 0 0 25px rgba(255,0,120,0.4);
 }
 
+/* 🌸 Photos keela text – CALLIGRAPHY + SOFT PINK ONLY */
 .caption {
   margin-top: 15px;
-  font-size: 16px;
-  color: #ffd6e8;
   padding: 0 20px;
+  font-family: 'Great Vibes', cursive;
+  font-size: 26px;
+  color: #f6b3c6;   /* soft pink */
+  line-height: 1.4;
 }
 
-.long {
-  font-size: 15px;
+.caption.long {
+  font-size: 24px;
   line-height: 1.6;
+  color: #f3a9c0;   /* deeper soft pink */
 }
 
 @keyframes fade {
@@ -85,11 +83,11 @@ header {
   to { opacity: 1; transform: scale(1); }
 }
 
-/* Scroll paragraph */
+/* Scroll paragraph – NORMAL COLOR */
 .scroll-text {
   margin: 80px 20px;
   font-size: 15px;
-  line-height: 1.8;
+  line-height: 1.9;
   color: #f5f5f5;
   animation: fadeUp 2s ease;
 }
@@ -98,18 +96,39 @@ header {
   from { opacity: 0; transform: translateY(40px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* Signature */
+.signature {
+  display: block;
+  margin-top: 25px;
+  font-family: 'Great Vibes', cursive;
+  font-size: 30px;
+  color: #f6a9c6;
+  text-align: right;
+}
 </style>
 </head>
 
 <body>
 
-<header>Happy New Year 💜</header>
-
-<!-- 💕 Hearts -->
-<div class="hearts"></div>
+<header>Happy New Year 💜🎇</header>
 
 <!-- 🎵 Music -->
 <audio id="music"></audio>
+
+<!-- ❤️ Hearts generator -->
+<script>
+for (let i = 0; i < 25; i++) {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (12 + Math.random() * 20) + "px";
+  heart.style.animationDuration = (10 + Math.random() * 15) + "s";
+  heart.style.animationDelay = Math.random() * 5 + "s";
+  document.body.appendChild(heart);
+}
+</script>
 
 <div class="slideshow">
 
@@ -155,23 +174,11 @@ header {
 </div>
 
 <div class="scroll-text">
-Love came into my life without any announcement, slowly becoming a part of my everyday thoughts, changing the way I looked at myself and the way I faced my struggles, because before this, I believed love had to be loud and perfect, but now I understand that real love is quiet, patient, and deeply grounding. There were times when life felt uncertain and heavy, when I questioned my worth and worried about my future, and during those moments love did not promise instant happiness, but it gave me the strength to continue even when I felt exhausted. I learned that love is not about constant joy, but about understanding, about choosing each other even on difficult days, and about staying when things feel unclear. With love, I no longer feel the need to hide my fears or pretend to be strong all the time, because acceptance feels more powerful than perfection. It taught me that growth takes time and that becoming better is a slow and honest journey, not something that happens overnight. Love exists in small moments, in quiet conversations, in shared silence, and in the comfort of knowing that someone truly sees you. It does not remove problems from life, but it changes how we face them, making challenges feel less lonely and more manageable. Even when the future feels uncertain, love gives me the courage to imagine it with hope, not because everything is planned, but because togetherness makes uncertainty easier to handle.
-I Love you by Kannnukuniyal 
+Love slowly became a part of my life without asking for permission, settling into my thoughts, my silence, and my everyday moments, teaching me that real feelings do not rush or demand attention, they simply stay and grow with time. With love, I learned that happiness is not always loud, sometimes it is found in comfort, in understanding, and in the quiet assurance that someone truly cares. Even on days when life feels uncertain or heavy, love becomes a gentle reminder that I am not alone in this journey. It does not promise perfection, but it offers patience, honesty, and a sense of belonging that feels rare and real. As time moves forward and moments turn into memories, I find myself grateful for a love that feels calm, deep, and meaningful, a love that chooses connection over noise and sincerity over show. No matter where life leads or how the days change, this feeling remains close to my heart, reminding me that some bonds are not defined by time, but by the emotions that stay long after the moment has passed.
+<span class="signature">— by kannnukuniyal 💜</span>
 </div>
 
 <script>
-/* 💕 Generate Hearts */
-const heartsContainer = document.querySelector(".hearts");
-for (let i = 0; i < 30; i++) {
-  const heart = document.createElement("span");
-  heart.innerHTML = "❤️";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (12 + Math.random() * 24) + "px";
-  heart.style.animationDuration = (10 + Math.random() * 20) + "s";
-  heart.style.animationDelay = Math.random() * 5 + "s";
-  heartsContainer.appendChild(heart);
-}
-
 /* 🖼️ Slideshow */
 let slides = document.querySelectorAll(".slide");
 let index = 0;
@@ -184,7 +191,7 @@ function showSlides() {
 setInterval(showSlides, 6000);
 showSlides();
 
-/* 🎵 Music autoplay fix */
+/* 🎵 Music autoplay (browser-safe) */
 const songs = ["song1.mp3", "song2.mp3", "song3.mp3"];
 let songIndex = 0;
 const music = document.getElementById("music");
