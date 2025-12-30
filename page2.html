@@ -97,6 +97,22 @@ canvas{position:fixed;inset:0;z-index:1}
   font-size:14px;
   margin-top:10px;
 }
+
+/* MUSIC */
+.music{
+  margin-top:18px;
+  background:rgba(255,255,255,.12);
+  padding:12px;
+  border-radius:16px;
+}
+.music p{
+  font-size:14px;
+  color:#ffd6ff;
+  margin-bottom:6px;
+}
+audio{
+  width:100%;
+}
 </style>
 </head>
 
@@ -167,20 +183,13 @@ canvas{position:fixed;inset:0;z-index:1}
     </div>
     <div class="bottom">Forever us ❤️</div>
 
-    <!-- SPOTIFY MUSIC -->
-    <div style="margin-top:18px;">
-      <iframe
-        style="border-radius:12px"
-        src="https://open.spotify.com/embed/track/6Z8R6UsFuGXGtiIxiD8ISb"
-        width="100%"
-        height="152"
-        frameborder="0"
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        loading="lazy">
-      </iframe>
-      <div style="margin-top:8px;font-size:14px;color:#ffd6ff;">
-        A song that reminds me of you 💜
-      </div>
+    <!-- LOCAL MUSIC -->
+    <div class="music">
+      <p>A song from my heart 🎶</p>
+      <audio controls>
+        <source src="song.mp3" type="audio/mpeg">
+        Your browser does not support audio.
+      </audio>
     </div>
   </div>
 
@@ -243,5 +252,4 @@ draw();
 </script>
 
 </body>
-      </html>
-      
+</html>
