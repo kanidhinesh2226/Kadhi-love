@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy New Year My Love ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:Poppins,sans-serif;
+  background:radial-gradient(circle,#2b0040,#0b0014);
+  overflow:hidden;
+  color:#fff;
+}
+
+/* SOFT GLOW */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,105,180,0.3), transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(255,215,0,0.25), transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(255,0,80,0.25), transparent 45%);
+}
+
+/* FIREWORKS */
+canvas{position:fixed;inset:0;z-index:1}
+
+/* FALLING EMOJIS */
+.fall{
+  position:fixed;
+  top:-10%;
+  font-size:22px;
+  animation:fall linear infinite;
+  z-index:2;
+}
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* SLIDER */
+.slider{
+  position:relative;
+  z-index:3;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.slide{
+  display:none;
+  text-align:center;
+  max-width:330px;
+  animation:fade 1s ease;
+}
+@keyframes fade{
+  from{opacity:0;transform:scale(.95);}
+  to{opacity:1;}
+}
+
+/* DASHBOARD */
+.top{
+  font-family:'Great Vibes',cursive;
+  font-size:38px;
+  text-shadow:0 0 25px gold;
+}
+.bottom{
+  margin-top:14px;
+  font-size:15px;
+  color:#ffd6ff;
+}
+
+/* CARD */
+.card{
+  background:rgba(255,255,255,.14);
+  padding:16px;
+  border-radius:24px;
+  box-shadow:0 0 35px rgba(255,100,200,.65);
+}
+.card img{
+  width:100%;
+  border-radius:18px;
+}
+
+/* TEXT */
+.big{
+  font-family:'Great Vibes',cursive;
+  font-size:22px;
+  line-height:1.55;
+  margin-top:12px;
+}
+.small{
+  font-size:14px;
+  margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="fire"></canvas>
+
+<div class="slider">
+
+  <!-- SLIDE 1 -->
+  <div class="slide">
+    <div class="top">Happy New Year My Love ❤️</div>
+    <div class="card">
+      <img src="img1.jpg">
+      <div class="big">
+        In your smile, I found my peace ✨<br>
+        In your eyes, I found my forever 💜<br>
+        When the world feels loud,<br>
+        your presence calms my heart ❤️<br>
+        You are not just someone I love,<br>
+        you are my home 💫
+      </div>
+    </div>
+    <div class="bottom">Forever starts with you ✨</div>
+  </div>
+
+  <!-- SLIDE 2 -->
+  <div class="slide">
+    <div class="top">Happy New Year My Love ❤️</div>
+    <div class="card">
+      <img src="img2.jpg">
+      <div class="small">You + Me = My favourite love story 💕</div>
+    </div>
+    <div class="bottom">Every moment with you is magic ✨</div>
+  </div>
+
+  <!-- SLIDE 3 -->
+  <div class="slide">
+    <div class="top">Happy New Year My Love ❤️</div>
+    <div class="card">
+      <img src="img3.jpg">
+      <div class="small">Every picture with you feels like home 💜</div>
+    </div>
+    <div class="bottom">With you, life feels complete 💫</div>
+  </div>
+
+  <!-- SLIDE 4 -->
+  <div class="slide">
+    <div class="top">Happy New Year My Love ❤️</div>
+    <div class="card">
+      <img src="img4.jpg">
+      <div class="small">My heart chooses you every single day ❤️</div>
+    </div>
+    <div class="bottom">Always you, only you ✨</div>
+  </div>
+
+  <!-- SLIDE 5 -->
+  <div class="slide">
+    <div class="top">Happy New Year My Love ❤️</div>
+    <div class="card">
+      <img src="img5.jpg">
+      <div class="big">
+        If life gives me a thousand paths,<br>
+        I will still choose the one that leads to you 💜<br>
+        This New Year and every year after,<br>
+        I choose you — always ❤️
+      </div>
+    </div>
+    <div class="bottom">Forever us ❤️</div>
+
+    <!-- SPOTIFY MUSIC -->
+    <div style="margin-top:18px;">
+      <iframe
+        style="border-radius:12px"
+        src="https://open.spotify.com/embed/track/6Z8R6UsFuGXGtiIxiD8ISb"
+        width="100%"
+        height="152"
+        frameborder="0"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy">
+      </iframe>
+      <div style="margin-top:8px;font-size:14px;color:#ffd6ff;">
+        A song that reminds me of you 💜
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* SLIDES */
+let slides=document.querySelectorAll(".slide");
+let i=0;
+slides[0].style.display="block";
+setInterval(()=>{
+  slides[i].style.display="none";
+  i=(i+1)%slides.length;
+  slides[i].style.display="block";
+},5000);
+
+/* FALLING EMOJIS */
+const emojis=["❤️","💜","🎁","✨","⭐"];
+setInterval(()=>{
+  let e=document.createElement("div");
+  e.className="fall";
+  e.innerText=emojis[Math.floor(Math.random()*emojis.length)];
+  e.style.left=Math.random()*100+"vw";
+  e.style.animationDuration=3+Math.random()*3+"s";
+  document.body.appendChild(e);
+  setTimeout(()=>e.remove(),6000);
+},300);
+
+/* FIREWORKS */
+const c=document.getElementById("fire");
+const x=c.getContext("2d");
+c.width=innerWidth;c.height=innerHeight;
+let p=[];
+function boom(){
+  for(let i=0;i<90;i++){
+    p.push({
+      x:Math.random()*c.width,
+      y:Math.random()*c.height/2,
+      dx:(Math.random()-0.5)*6,
+      dy:(Math.random()-0.5)*6,
+      life:60,
+      color:Math.random()>0.5?"yellow":"red"
+    });
+  }
+}
+function draw(){
+  x.clearRect(0,0,c.width,c.height);
+  p.forEach((o,i)=>{
+    x.fillStyle=o.color;
+    x.beginPath();
+    x.arc(o.x,o.y,2,0,Math.PI*2);
+    x.fill();
+    o.x+=o.dx;o.y+=o.dy;o.life--;
+    if(o.life<=0)p.splice(i,1);
+  });
+  requestAnimationFrame(draw);
+}
+setInterval(boom,1200);
+draw();
+</script>
+
+</body>
+      </html>
+      
