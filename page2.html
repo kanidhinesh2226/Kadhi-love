@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,10 +10,10 @@
 <style>
 body{
   margin:0;
-  background:#0b0014;
+  background:radial-gradient(circle,#3b0066,#0b0014);
   color:white;
-  overflow:hidden;
   font-family:Poppins;
+  overflow:hidden;
 }
 
 canvas{position:fixed;inset:0;z-index:1}
@@ -56,18 +56,10 @@ canvas{position:fixed;inset:0;z-index:1}
   font-family:'Great Vibes',cursive;
   font-size:22px;
   margin-top:10px;
+  line-height:1.5;
 }
 
-.song{
-  background:
-    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
-    url("song-bg.jpg") center/cover;
-  padding:20px;
-  border-radius:28px;
-  box-shadow:0 0 40px rgba(255,100,200,.6);
-}
-
-audio{width:100%}
+audio{display:none;} /* hidden player */
 </style>
 </head>
 
@@ -75,34 +67,16 @@ audio{width:100%}
 
 <canvas id="fire"></canvas>
 
-<div class="slider">
+<!-- AUDIO PLAYLIST -->
+<audio id="player"></audio>
 
-<div class="slide">
-  <div class="top">For You 💜</div>
-  <div class="song">
-    <audio controls autoplay>
-      <source src="song1.mp3">
-    </audio>
-  </div>
-</div>
+<div class="slider">
 
 <div class="slide">
   <div class="top">Happy New Year ❤️</div>
   <div class="card">
     <img src="img1.jpg">
-    <div class="long">
-      In your smile, I found my peace ✨<br>
-      In your eyes, I found my home 💜<br>
-      I choose you — always ❤️
-    </div>
-  </div>
-</div>
-
-<div class="slide">
-  <div class="song">
-    <audio controls>
-      <source src="song2.mp3">
-    </audio>
+    <div class="long">In your smile, I found my peace ✨</div>
   </div>
 </div>
 
@@ -114,19 +88,25 @@ audio{width:100%}
 </div>
 
 <div class="slide">
-  <div class="song">
-    <audio controls>
-      <source src="song3.mp3">
-    </audio>
+  <div class="card">
+    <img src="img3.jpg">
+    <div class="long">Every memory with you is magic ✨</div>
   </div>
 </div>
 
 <div class="slide">
   <div class="card">
-    <img src="img3.jpg">
+    <img src="img4.jpg">
+    <div class="long">Every year, I choose you ❤️</div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="card">
+    <img src="img5.jpg">
     <div class="long">
-      Every year, every dream,<br>
-      my heart chooses you 🌹
+      This New Year and every year after,<br>
+      my heart belongs to you 💜
     </div>
   </div>
 </div>
@@ -134,17 +114,30 @@ audio{width:100%}
 </div>
 
 <script>
+/* IMAGE SLIDES */
 let slides=document.querySelectorAll(".slide");
 let i=0;
 slides[0].style.display="block";
-
 setInterval(()=>{
   slides[i].style.display="none";
   i=(i+1)%slides.length;
   slides[i].style.display="block";
-},6500);
+},6000);
 
-/* fireworks */
+/* AUTOPLAY SONGS ONE BY ONE */
+const songs=["song1.mp3","song2.mp3","song3.mp3"];
+let s=0;
+const player=document.getElementById("player");
+player.src=songs[s];
+player.play();
+
+player.onended=()=>{
+  s=(s+1)%songs.length;
+  player.src=songs[s];
+  player.play();
+};
+
+/* FIREWORKS */
 const c=document.getElementById("fire");
 const x=c.getContext("2d");
 c.width=innerWidth;c.height=innerHeight;
