@@ -2,170 +2,164 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Love ❤️</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins&display=swap" rel="stylesheet">
-
+<title>Happy New Year</title>
 <style>
-body{
-  margin:0;
-  background:radial-gradient(circle,#3b0066,#0b0014);
-  color:white;
-  font-family:Poppins;
-  overflow:hidden;
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: black url("assets/hearts.png") repeat;
+  background-size: cover;
+  animation: heartsMove 40s linear infinite;
+  color: white;
+  overflow-x: hidden;
 }
 
-canvas{position:fixed;inset:0;z-index:1}
-
-.slider{
-  position:relative;
-  z-index:3;
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+@keyframes heartsMove {
+  from { background-position: 0 0; }
+  to { background-position: 0 1000px; }
 }
 
-.slide{
-  display:none;
-  max-width:360px;
-  text-align:center;
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  padding: 15px;
+  font-size: 24px;
+  background: rgba(0,0,0,0.4);
+  z-index: 10;
 }
 
-.top{
-  font-family:'Great Vibes',cursive;
-  font-size:36px;
-  margin-bottom:10px;
-  text-shadow:0 0 25px hotpink;
+.slideshow {
+  margin-top: 100px;
+  text-align: center;
 }
 
-.card{
-  background:rgba(255,255,255,.15);
-  padding:14px;
-  border-radius:26px;
-  box-shadow:0 0 40px rgba(255,100,200,.6);
+.slide {
+  display: none;
+  animation: fade 2s ease;
 }
 
-.card img{
-  width:100%;
-  border-radius:20px;
+.slide img {
+  width: 80%;
+  max-width: 350px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255,0,100,0.4);
 }
 
-.long{
-  font-family:'Great Vibes',cursive;
-  font-size:22px;
-  margin-top:10px;
-  line-height:1.5;
+.caption {
+  margin-top: 15px;
+  font-size: 16px;
+  color: #ffd6e8;
+  padding: 0 20px;
 }
 
-audio{display:none;} /* hidden player */
+.long {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.scroll-text {
+  margin: 80px 20px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #f5f5f5;
+  animation: fadeUp 3s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 </style>
 </head>
 
 <body>
 
-<canvas id="fire"></canvas>
+<header>Happy New Year 💜🎇</header>
 
-<!-- AUDIO PLAYLIST -->
-<audio id="player"></audio>
+<!-- 🎵 Audio -->
+<audio id="music" autoplay></audio>
 
-<div class="slider">
+<div class="slideshow">
 
-<div class="slide">
-  <div class="top">Happy New Year ❤️</div>
-  <div class="card">
-    <img src="img1.jpg">
-    <div class="long">In your smile, I found my peace ✨</div>
-  </div>
-</div>
-
-<div class="slide">
-  <div class="card">
-    <img src="img2.jpg">
-    <div class="long">You + Me = Forever 💞</div>
-  </div>
-</div>
-
-<div class="slide">
-  <div class="card">
-    <img src="img3.jpg">
-    <div class="long">Every memory with you is magic ✨</div>
-  </div>
-</div>
-
-<div class="slide">
-  <div class="card">
-    <img src="img4.jpg">
-    <div class="long">Every year, I choose you ❤️</div>
-  </div>
-</div>
-
-<div class="slide">
-  <div class="card">
-    <img src="img5.jpg">
-    <div class="long">
-      This New Year and every year after,<br>
-      my heart belongs to you 💜
+  <div class="slide">
+    <img src="assets/pic1.jpg">
+    <div class="caption long">
+      Every beginning feels softer when it starts with you.<br>
+      This year didn’t arrive alone, it came carrying your name.<br>
+      Some people enter our lives quietly,<br>
+      yet change everything without trying.<br>
+      In this moment, in this picture,<br>
+      I already know you are my favorite chapter.
     </div>
   </div>
+
+  <div class="slide">
+    <img src="assets/pic2.jpg">
+    <div class="caption">In this noisy world, you are my calm.</div>
+  </div>
+
+  <div class="slide">
+    <img src="assets/pic3.jpg">
+    <div class="caption">Moments pass, feelings stay — especially with you.</div>
+  </div>
+
+  <div class="slide">
+    <img src="assets/pic4.jpg">
+    <div class="caption">I didn’t plan this love, it just happened naturally.</div>
+  </div>
+
+  <div class="slide">
+    <img src="assets/pic5.jpg">
+    <div class="caption long">
+      Another year will pass, just like all the others.<br>
+      But my feelings for you will stay untouched by time.<br>
+      Through distance, silence, and chaos,<br>
+      my heart still finds its way back to you.<br>
+      If every year asks me what I want,<br>
+      my answer will always be you.
+    </div>
+  </div>
+
 </div>
 
+<div class="scroll-text">
+Love came into my life without any announcement, slowly becoming a part of my everyday thoughts, changing the way I looked at myself and the way I faced my struggles, because before this, I believed love had to be loud and perfect, but now I understand that real love is quiet, patient, and deeply grounding. There were times when life felt uncertain and heavy, when I questioned my worth and worried about my future, and during those moments love did not promise instant happiness, but it gave me the strength to continue even when I felt exhausted. I learned that love is not about constant joy, but about understanding, about choosing each other even on difficult days, and about staying when things feel unclear. With love, I no longer feel the need to hide my fears or pretend to be strong all the time, because acceptance feels more powerful than perfection. It taught me that growth takes time and that becoming better is a slow and honest journey, not something that happens overnight. Love exists in small moments, in quiet conversations, in shared silence, and in the comfort of knowing that someone truly sees you. It does not remove problems from life, but it changes how we face them, making challenges feel less lonely and more manageable. Even when the future feels uncertain, love gives me the courage to imagine it with hope, not because everything is planned, but because togetherness makes uncertainty easier to handle.
 </div>
 
 <script>
-/* IMAGE SLIDES */
-let slides=document.querySelectorAll(".slide");
-let i=0;
-slides[0].style.display="block";
-setInterval(()=>{
-  slides[i].style.display="none";
-  i=(i+1)%slides.length;
-  slides[i].style.display="block";
-},6000);
+let slides = document.querySelectorAll(".slide");
+let index = 0;
 
-/* AUTOPLAY SONGS ONE BY ONE */
-const songs=["song1.mp3","song2.mp3","song3.mp3"];
-let s=0;
-const player=document.getElementById("player");
-player.src=songs[s];
-player.play();
+function showSlides() {
+  slides.forEach(s => s.style.display = "none");
+  slides[index].style.display = "block";
+  index = (index + 1) % slides.length;
+}
+setInterval(showSlides, 6000);
+showSlides();
 
-player.onended=()=>{
-  s=(s+1)%songs.length;
-  player.src=songs[s];
-  player.play();
+// 🎵 Songs
+const songs = [
+  "assets/song1.mp3",
+  "assets/song2.mp3",
+  "assets/song3.mp3"
+];
+let songIndex = 0;
+const music = document.getElementById("music");
+music.src = songs[songIndex];
+music.play();
+music.onended = () => {
+  songIndex = (songIndex + 1) % songs.length;
+  music.src = songs[songIndex];
+  music.play();
 };
-
-/* FIREWORKS */
-const c=document.getElementById("fire");
-const x=c.getContext("2d");
-c.width=innerWidth;c.height=innerHeight;
-let p=[];
-function boom(){
-  for(let i=0;i<60;i++){
-    p.push({
-      x:Math.random()*c.width,
-      y:Math.random()*c.height/2,
-      dx:(Math.random()-0.5)*6,
-      dy:(Math.random()-0.5)*6,
-      life:60,
-      color:Math.random()>0.5?"yellow":"red"
-    });
-  }
-}
-function draw(){
-  x.clearRect(0,0,c.width,c.height);
-  p.forEach((a,i)=>{
-    x.fillStyle=a.color;
-    x.fillRect(a.x,a.y,3,3);
-    a.x+=a.dx;a.y+=a.dy;a.life--;
-    if(a.life<=0)p.splice(i,1);
-  });
-  requestAnimationFrame(draw);
-}
-setInterval(boom,2000);
-draw();
 </script>
 
 </body>
