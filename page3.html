@@ -9,278 +9,147 @@
 <style>
 body{
   margin:0;
-  background:black;
+  background:linear-gradient(180deg,#000014,#1a0022);
   color:white;
   font-family:'Poppins',sans-serif;
   text-align:center;
 }
 
-/* ---------- SCRATCH ---------- */
-#scratchSection{padding:40px 20px;}
-h2{
-  font-family:'Yesenia Script',cursive;
-  font-size:38px;
+/* SCRATCH GRID */
+#scratchArea{
+  padding:30px;
 }
-
-/* Ticket wrapper */
-#ticketWrapper{
-  position:relative;
-  width:320px;
-  height:180px;
-  margin:30px auto;
-  border-radius:20px;
-  overflow:hidden;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+  max-width:320px;
+  margin:auto;
 }
-
-/* Golden ticket */
-#ticket{
-  width:100%;height:100%;
-  background:linear-gradient(135deg,#d4af37,#ffd700,#b8860b);
-  background-size:200% 200%;
-  border-radius:20px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  color:#3b2b00;
-  animation:goldShine 3s linear infinite,sparkle 2.5s ease-in-out infinite;
-}
-#ticket h1{
-  font-family:'Yesenia Script',cursive;
-  font-size:36px;margin:0;
-}
-#ticket p{font-size:14px;letter-spacing:2px;}
-
-@keyframes goldShine{
-  0%{background-position:0% 50%;}
-  100%{background-position:200% 50%;}
-}
-@keyframes sparkle{
-  0%{box-shadow:0 0 20px rgba(255,215,0,.6);}
-  50%{box-shadow:0 0 45px rgba(255,255,255,.9);}
-  100%{box-shadow:0 0 20px rgba(255,215,0,.6);}
-}
-
-canvas{position:absolute;top:0;left:0;}
-
-/* USE ME */
-#useBtn{
-  display:none;
-  margin-top:25px;
-  padding:12px 32px;
-  border-radius:30px;
-  border:none;
-  background:#3b2b00;
-  color:gold;
+.card{
+  background:#aaa;
+  height:60px;
+  border-radius:8px;
   cursor:pointer;
 }
-
-/* Sparkle particles */
-.sparkle{
-  position:absolute;
-  width:6px;height:6px;
-  background:gold;
-  border-radius:50%;
-  animation:fly 1.5s linear forwards;
-}
-@keyframes fly{
-  from{opacity:1;transform:translateY(0) scale(1);}
-  to{opacity:0;transform:translateY(-80px) scale(0);}
+.card.done{
+  background:#222;
 }
 
-/* ---------- FINAL EXPERIENCE ---------- */
-#finalArea{display:none;padding:40px 20px;}
+/* GOLDEN TICKET */
+#ticket{
+  display:none;
+  margin:30px auto;
+  padding:25px;
+  width:300px;
+  background:linear-gradient(135deg,#d4af37,#ffd700,#b8860b);
+  border-radius:18px;
+  color:#3b2b00;
+  font-family:'Yesenia Script',cursive;
+  font-size:28px;
+  box-shadow:0 0 30px gold;
+}
+
+/* FINAL AREA */
+#final{
+  display:none;
+  padding:30px;
+}
 #photo{
   width:80%;
-  max-width:340px;
-  border-radius:20px;
-  box-shadow:0 0 30px rgba(255,0,150,.4);
-  transition:opacity 1.2s ease-in-out;
+  max-width:320px;
+  border-radius:16px;
 }
 #caption{
-  display:none;
-  margin-top:20px;
   font-family:'Yesenia Script',cursive;
-  font-size:26px;
+  font-size:24px;
   color:#f6b3c6;
+  margin-top:15px;
 }
-
-/* Ending text */
-.endText{
+.end{
   margin-top:40px;
   font-family:'Yesenia Script',cursive;
   font-size:26px;
-  opacity:0;
-  animation:fadeInUp 2s ease forwards;
-  animation-delay:1s;
-}
-@keyframes fadeInUp{
-  from{opacity:0;transform:translateY(30px);}
-  to{opacity:1;transform:translateY(0);}
-}
-
-/* QR section */
-.qr{
-  margin-top:30px;
-}
-.qr img{
-  width:160px;
-  border-radius:12px;
-}
-.qr p{
-  font-size:14px;
-  opacity:.7;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🔊 Sounds -->
-<audio id="scratchSound" src="scratch.mp3"></audio>
-<audio id="dingSound" src="ding.mp3"></audio>
-
-<!-- 🎟️ SCRATCH -->
-<div id="scratchSection">
-  <h2>Scratch to Reveal 💜</h2>
-
-  <div id="ticketWrapper">
-    <div id="ticket">
-      <h1>ENDLESS LOVE</h1>
-      <p>GOLDEN TICKET</p>
-    </div>
-    <canvas id="scratchCanvas"></canvas>
-  </div>
-
-  <button id="useBtn">USE ME 💛</button>
+<div id="scratchArea">
+  <h2>Scratch all to reveal 💜</h2>
+  <div class="grid" id="grid"></div>
 </div>
 
-<!-- 💖 FINAL -->
-<div id="finalArea">
-  <audio id="music" src="song3.mp3" loop></audio>
+<div id="ticket">
+  ENDLESS LOVE 💛<br>
+  GOLDEN TICKET<br><br>
+  <button onclick="useMe()">USE ME</button>
+</div>
 
+<div id="final">
+  <audio id="music" src="song3.mp3" loop></audio>
   <img id="photo" src="img1.jpg">
   <div id="caption"></div>
 
-  <div class="endText">
+  <div class="end">
+    Another year begins with quiet promises.<br>
+    If love is meant to feel safe,<br>
+    then you are where my heart belongs.<br><br>
     Happy New Year 💜<br>
-    Endless Love, This Year and Always<br><br>
+    Endless love, this year and always.<br><br>
     — by kannnukuniyal
-  </div>
-
-  <!-- 📱 QR CODE -->
-  <div class="qr">
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=YOUR_GITHUB_PAGES_URL">
-    <p>Scan to relive this moment 💜</p>
   </div>
 </div>
 
 <script>
-/* ---------- SCRATCH LOGIC ---------- */
-const canvas=document.getElementById("scratchCanvas");
-const ctx=canvas.getContext("2d");
-const wrap=document.getElementById("ticketWrapper");
-canvas.width=wrap.offsetWidth;
-canvas.height=wrap.offsetHeight;
+const grid=document.getElementById("grid");
+let count=0;
 
-ctx.fillStyle="#b5b5b5";
-ctx.fillRect(0,0,canvas.width,canvas.height);
-ctx.globalCompositeOperation="destination-out";
-
-let scratching=false,started=false;
-const scratchSound=document.getElementById("scratchSound");
-const ding=document.getElementById("dingSound");
-
-function pos(e){
-  const r=canvas.getBoundingClientRect();
-  return e.touches?
-  {x:e.touches[0].clientX-r.left,y:e.touches[0].clientY-r.top}:
-  {x:e.clientX-r.left,y:e.clientY-r.top};
+for(let i=0;i<10;i++){
+  const c=document.createElement("div");
+  c.className="card";
+  c.onclick=()=>{
+    if(!c.classList.contains("done")){
+      c.classList.add("done");
+      count++;
+      if(count===10){
+        document.getElementById("ticket").style.display="block";
+      }
+    }
+  };
+  grid.appendChild(c);
 }
-
-function scratch(e){
-  if(!scratching) return;
-  if(!started){
-    started=true;
-    scratchSound.volume=.25;
-    scratchSound.play().catch(()=>{});
-    if(navigator.vibrate) navigator.vibrate(40);
-  }
-  const p=pos(e);
-  ctx.beginPath();
-  ctx.arc(p.x,p.y,18,0,Math.PI*2);
-  ctx.fill();
-  check();
-}
-
-canvas.onmousedown=()=>scratching=true;
-canvas.onmouseup=()=>scratching=false;
-canvas.onmousemove=scratch;
-canvas.ontouchstart=()=>scratching=true;
-canvas.ontouchend=()=>scratching=false;
-canvas.ontouchmove=scratch;
-
-function check(){
-  const d=ctx.getImageData(0,0,canvas.width,canvas.height).data;
-  let c=0;
-  for(let i=3;i<d.length;i+=4) if(d[i]===0) c++;
-  if(c/(canvas.width*canvas.height)*100>80){
-    canvas.style.display="none";
-    document.getElementById("useBtn").style.display="inline-block";
-    ding.play().catch(()=>{});
-    sparkles();
-  }
-}
-
-function sparkles(){
-  for(let i=0;i<20;i++){
-    const s=document.createElement("div");
-    s.className="sparkle";
-    s.style.left="50%";
-    s.style.top="50%";
-    s.style.transform=`translate(${Math.random()*100-50}px,${Math.random()*50}px)`;
-    document.body.appendChild(s);
-    setTimeout(()=>s.remove(),1500);
-  }
-}
-
-/* ---------- FINAL EXPERIENCE ---------- */
-document.getElementById("useBtn").onclick=()=>{
-  document.getElementById("scratchSection").style.display="none";
-  document.getElementById("finalArea").style.display="block";
-  const m=document.getElementById("music");
-  m.volume=.35;
-  m.play().catch(()=>{});
-  startPhotos();
-};
 
 const photos=[
-  {src:"img1.jpg",text:"You are my calm in every chaos."},
-  {src:"img2.jpg",text:"With you, time feels gentle."},
-  {src:"img3.jpg",text:"Love feels safe here."},
-  {src:"img4.jpg",text:"You are my always."},
-  {src:"img5.jpg",text:"This year, and forever."}
+  {src:"img1.jpg",txt:"You are my calm."},
+  {src:"img2.jpg",txt:"Love feels safe here."},
+  {src:"img3.jpg",txt:"With you, always."},
+  {src:"img4.jpg",txt:"Time slows down."},
+  {src:"img5.jpg",txt:"Forever starts now."}
 ];
-let i=0,intv;
-const img=document.getElementById("photo");
-const cap=document.getElementById("caption");
+let i=0,interval;
 
-function startPhotos(){
-  intv=setInterval(()=>{
-    img.style.opacity=0;
-    setTimeout(()=>{
-      img.src=photos[i].src;
-      img.style.opacity=1;
-      cap.style.display="none";
-      i=(i+1)%photos.length;
-    },600);
-  },4000);
+function useMe(){
+  document.getElementById("scratchArea").style.display="none";
+  document.getElementById("ticket").style.display="none";
+  document.getElementById("final").style.display="block";
+  const m=document.getElementById("music");
+  m.volume=0.35;
+  m.play();
+  interval=setInterval(nextPic,4000);
 }
 
-img.onclick=()=>{
-  clearInterval(intv);
-  cap.innerText=photos[i===0?photos.length-1:i-1].text;
-  cap.style.display="block";
+function nextPic(){
+  const img=document.getElementById("photo");
+  const cap=document.getElementById("caption");
+  img.src=photos[i].src;
+  cap.innerText=photos[i].txt;
+  i=(i+1)%photos.length;
+}
+
+document.getElementById("photo").onclick=()=>{
+  clearInterval(interval);
 };
 </script>
 
