@@ -2,218 +2,147 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Kadhi 💜 love</title>
+<title>New Year Wishes</title>
 
 <!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Yesenia+Script&family=Great+Vibes&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Yesenia+Script&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: black;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #000000, #0b0014);
   color: white;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow-x: hidden;
 }
 
-/* ✅ HEADER – YESSY FONT */
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  text-align: center;
-  padding: 18px;
-  font-size: 36px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  font-family: 'Yesenia Script', cursive;
-  background: rgba(0,0,0,0.6);
-  z-index: 5;
-}
-
-/* ❤️ Falling hearts */
-.heart {
-  position: fixed;
-  top: -10px;
-  color: rgba(255, 100, 150, 0.7);
-  font-size: 18px;
-  animation: fall linear infinite;
-  z-index: 1;
-}
-
-@keyframes fall {
-  from { transform: translateY(-10vh); }
-  to { transform: translateY(110vh); }
-}
-
-/* Slideshow */
-.slideshow {
-  margin-top: 130px;
-  text-align: center;
-  position: relative;
-  z-index: 2;
-}
-
-.slide {
-  display: none;
-  animation: fade 2s ease;
-}
-
-.slide img {
-  width: 80%;
-  max-width: 350px;
+/* Greeting card */
+.card {
+  max-width: 700px;
+  padding: 50px 30px 60px;
+  background: rgba(255,255,255,0.05);
   border-radius: 20px;
-  box-shadow: 0 0 25px rgba(255,0,120,0.4);
+  box-shadow: 0 0 40px rgba(255, 0, 120, 0.2);
+  text-align: center;
 }
 
-/* 🌸 Photos keela text – SOFT PINK (UNCHANGED) */
-.caption {
-  margin-top: 15px;
-  padding: 0 20px;
-  font-family: 'Great Vibes', cursive;
-  font-size: 26px;
-  color: #f6b3c6;
-  line-height: 1.4;
-}
-
-.caption.long {
-  font-size: 24px;
-  line-height: 1.6;
-  color: #f3a9c0;
-}
-
-@keyframes fade {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-/* ✅ Scroll paragraph – YESSY FONT */
-.scroll-text {
-  margin: 80px 20px;
-  font-size: 20px;
-  line-height: 1.9;
-  color: #f5f5f5;
+/* Heading */
+.card h1 {
   font-family: 'Yesenia Script', cursive;
-  animation: fadeUp 2s ease;
+  font-size: 56px;
+  margin-bottom: 10px;
 }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+.card h2 {
+  font-size: 16px;
+  font-weight: 300;
+  color: #ccc;
+  margin-bottom: 40px;
 }
 
-/* ✍️ Signature – CALLIGRAPHY */
-.signature {
-  display: block;
-  margin-top: 25px;
-  font-family: 'Great Vibes', cursive;
-  font-size: 30px;
-  color: #f6a9c6;
-  text-align: right;
+/* Main paragraph */
+.card p {
+  font-family: 'Yesenia Script', cursive;
+  font-size: 22px;
+  line-height: 2;
+  color: #f5f5f5;
+}
+
+/* Continue section */
+.continue-area {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Circle button */
+.circle-btn {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Progress ring */
+.progress-ring {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid transparent;
+  border-top: 4px solid #ff5fa2;
+  animation: none;
+}
+
+/* Heart */
+.heart {
+  font-size: 32px;
+  color: #ff5fa2;
+  animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* Circle fill animation */
+@keyframes fillCircle {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 </style>
 </head>
 
 <body>
 
-<header>Happy New Year 💜🎇</header>
+<div class="card">
+  <h1>New Year Wishes 💜</h1>
+  <h2>Just something from my heart to yours</h2>
 
-<audio id="music"></audio>
+  <p>
+    A new year begins quietly, without asking us what we are ready for,
+    yet it arrives carrying hope, change, and unseen possibilities.
+    As time turns another page, I find myself grateful for the moments
+    that shaped me, the lessons that humbled me, and the love that
+    taught me how to stay soft in a hard world. This year is not about
+    perfection or promises made in haste, but about choosing patience,
+    understanding, and growth even on days that feel uncertain.
+    May this new year bring peace to restless hearts, courage to silent
+    dreams, and warmth to every soul that seeks comfort. Some feelings
+    are not meant to be spoken loudly; they are meant to be felt deeply,
+    carried gently, and lived sincerely. As this year unfolds, I hope
+    it holds space for kindness, for healing, and for love that feels
+    calm, steady, and real.
+  </p>
 
-<!-- ❤️ Hearts -->
-<script>
-for (let i = 0; i < 25; i++) {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "❤";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (12 + Math.random() * 20) + "px";
-  heart.style.animationDuration = (10 + Math.random() * 15) + "s";
-  heart.style.animationDelay = Math.random() * 5 + "s";
-  document.body.appendChild(heart);
-}
-</script>
-
-<div class="slideshow">
-
-  <div class="slide">
-    <img src="img1.jpg">
-    <div class="caption long">
-      Every beginning feels softer when it starts with you.<br>
-      This year didn’t arrive alone, it came carrying your name.<br>
-      Some people enter our lives quietly,<br>
-      yet change everything without trying.<br>
-      In this moment, in this picture,<br>
-      I already know you are my favorite chapter.
+  <div class="continue-area">
+    <div class="circle-btn" onclick="goNext()">
+      <div class="progress-ring" id="ring"></div>
+      <div class="heart">❤️</div>
     </div>
   </div>
-
-  <div class="slide">
-    <img src="img2.jpg">
-    <div class="caption">In this noisy world, you are my calm.</div>
-  </div>
-
-  <div class="slide">
-    <img src="img3.jpg">
-    <div class="caption">Moments pass, feelings stay — especially with you.</div>
-  </div>
-
-  <div class="slide">
-    <img src="img4.jpg">
-    <div class="caption">I didn’t plan this love, it just happened naturally.</div>
-  </div>
-
-  <div class="slide">
-    <img src="img5.jpg">
-    <div class="caption long">
-      Another year will pass, just like all the others.<br>
-      But my feelings for you will stay untouched by time.<br>
-      Through distance, silence, and chaos,<br>
-      my heart still finds its way back to you.<br>
-      If every year asks me what I want,<br>
-      my answer will always be you.
-    </div>
-  </div>
-
-</div>
-
-<div class="scroll-text">
-Love came into my life without any announcement, slowly becoming a part of my everyday thoughts, changing the way I looked at myself and the way I faced my struggles, because before this, I believed love had to be loud and perfect, but now I understand that real love is quiet, patient, and deeply grounding. There were times when life felt uncertain and heavy, when I questioned my worth and worried about my future, and during those moments love did not promise instant happiness, but it gave me the strength to continue even when I felt exhausted. I learned that love is not about constant joy, but about understanding, about choosing each other even on difficult days, and about staying when things feel unclear. With love, I no longer feel the need to hide my fears or pretend to be strong all the time, because acceptance feels more powerful than perfection. It taught me that growth takes time and that becoming better is a slow and honest journey, not something that happens overnight. Love exists in small moments, in quiet conversations, in shared silence, and in the comfort of knowing that someone truly sees you. It does not remove problems from life, but it changes how we face them, making challenges feel less lonely and more manageable. Even when the future feels uncertain, love gives me the courage to imagine it with hope, not because everything is planned, but because togetherness makes uncertainty easier to handle.
-<span class="signature">— by kannnukuniyal 💜</span>
 </div>
 
 <script>
-/* Slideshow */
-let slides = document.querySelectorAll(".slide");
-let index = 0;
+function goNext() {
+  const ring = document.getElementById("ring");
+  ring.style.animation = "fillCircle 2.5s linear forwards";
 
-function showSlides() {
-  slides.forEach(s => s.style.display = "none");
-  slides[index].style.display = "block";
-  index = (index + 1) % slides.length;
+  setTimeout(() => {
+    window.location.href = "page3.html"; // scratch + golden ticket
+  }, 2500);
 }
-setInterval(showSlides, 6000);
-showSlides();
-
-/* Music autoplay */
-const songs = ["song1.mp3", "song2.mp3", "song3.mp3"];
-let songIndex = 0;
-const music = document.getElementById("music");
-music.src = songs[songIndex];
-
-window.addEventListener("load", () => {
-  music.play().catch(()=>{});
-});
-
-music.addEventListener("ended", () => {
-  songIndex = (songIndex + 1) % songs.length;
-  music.src = songs[songIndex];
-  music.play();
-});
-
-document.addEventListener("click", () => {
-  if (music.paused) music.play();
-}, { once: true });
 </script>
 
 </body>
