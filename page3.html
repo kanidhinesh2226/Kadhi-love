@@ -12,17 +12,18 @@ body{
   margin:0;
   background:black;
   color:white;
-  font-family:Arial,sans-serif;
   text-align:center;
+  font-family:Arial,sans-serif;
   overflow-x:hidden;
 }
 
-/* hearts */
+/* ❤️ floating hearts */
 .heart{
   position:fixed;
   top:-10%;
   color:red;
-  animation:fall 8s linear infinite;
+  opacity:.7;
+  animation:fall linear infinite;
 }
 @keyframes fall{
   to{transform:translateY(120vh)}
@@ -34,7 +35,7 @@ body{
   grid-template-columns:repeat(2,1fr);
   gap:15px;
   padding:20px;
-  max-width:350px;
+  max-width:360px;
   margin:auto;
 }
 .card{
@@ -59,7 +60,7 @@ body{
   border-radius:20px;
 }
 
-/* final */
+/* final section */
 #final{
   display:none;
   padding:20px;
@@ -67,7 +68,18 @@ body{
 #final img{
   width:100%;
   border-radius:15px;
-  margin-bottom:10px;
+}
+.caption{
+  margin-top:10px;
+  font-family:'Yesteryear',cursive;
+  font-size:22px;
+  color:#ff4d4d;
+}
+.end{
+  margin-top:25px;
+  font-family:'Yesteryear',cursive;
+  font-size:24px;
+  color:#ff4d4d;
 }
 </style>
 </head>
@@ -76,20 +88,21 @@ body{
 
 <h2 style="color:#ff4d4d;font-family:Yesteryear">Scratch with Love ❤️</h2>
 
-<!-- hearts -->
+<!-- ❤️ hearts -->
 <script>
-for(let i=0;i<20;i++){
-  let h=document.createElement("div");
+for(let i=0;i<25;i++){
+  const h=document.createElement("div");
   h.className="heart";
   h.innerText="❤️";
   h.style.left=Math.random()*100+"vw";
   h.style.fontSize=(12+Math.random()*18)+"px";
+  h.style.animationDuration=(6+Math.random()*6)+"s";
   document.body.appendChild(h);
 }
 </script>
 
-<!-- song -->
-<audio id="song" src="song3.mp3" autoplay loop></audio>
+<!-- 🎵 SONG + SOUNDS -->
+<audio id="song" src="song3.mp3" loop></audio>
 <audio id="scratchSound" src="scratch.mp3"></audio>
 <audio id="dingSound" src="ding.mp3"></audio>
 
@@ -103,19 +116,28 @@ for(let i=0;i<20;i++){
 
 <div id="final">
   <img id="img" src="img1.jpg">
-  <p style="font-family:Yesteryear;font-size:22px;color:#ff4d4d">
-    If life gives me a thousand paths,  
-    I will still choose the one with you 💖
-  </p>
-  <p style="font-family:Yesteryear;font-size:22px">
-    This new year and every year, I choose you ❤️
-  </p>
-  <p style="font-family:Yesteryear;font-size:24px;color:#ff4d4d">
-    — by kannnukuniyal 💜
-  </p>
+  <div class="caption" id="caption"></div>
+
+  <div class="end">
+    Some beautiful words written with love 💕<br>
+    by kannnukuniyal 💜
+  </div>
 </div>
 
 <script>
+/* 🎵 RESUME SONG (SAFE WAY) */
+const song=document.getElementById("song");
+song.volume=0.35;
+
+const savedTime=localStorage.getItem("songTime");
+if(savedTime){
+  song.currentTime=parseFloat(savedTime);
+}
+
+/* start song on FIRST SCRATCH (browser rule safe) */
+let songStarted=false;
+
+/* scratch cards */
 const messages=[
  "Heartbeat ❤️","Forever 💑","My Person 💖","Always 💍","Promises ✨",
  "My Calm 🌙","Endless ♾️","Love 💕","Still You ❤️","Final 💛"
@@ -132,20 +154,37 @@ messages.forEach(text=>{
   c.onclick=()=>{
     if(c.classList.contains("done")) return;
     c.classList.add("done");
-    document.getElementById("scratchSound").play();
+
+    /* start song here */
+    if(!songStarted){
+      song.play().catch(()=>{});
+      songStarted=true;
+    }
+
+    scratchSound.play();
+    song.volume=0.15;
+
     c.innerText=text;
     c.style.background="#444";
     count++;
 
     if(count===10){
-      document.getElementById("dingSound").play();
+      dingSound.play();
+      song.volume=0.35;
       document.getElementById("ticket").style.display="block";
     }
   };
   grid.appendChild(c);
 });
 
-const images=["img1.jpg","img2.jpg","img3.jpg","img4.jpg","img5.jpg"];
+/* images + captions */
+const images=[
+ {src:"img1.jpg",cap:"With you, love feels calm ❤️"},
+ {src:"img2.jpg",cap:"Forever starts with us 💑"},
+ {src:"img3.jpg",cap:"Red hearts, real love ❤️"},
+ {src:"img4.jpg",cap:"Still choosing you ✨"},
+ {src:"img5.jpg",cap:"Endless love ♾️"}
+];
 let i=0;
 
 function showFinal(){
@@ -153,9 +192,14 @@ function showFinal(){
   document.getElementById("ticket").style.display="none";
   document.getElementById("final").style.display="block";
 
+  const img=document.getElementById("img");
+  const cap=document.getElementById("caption");
+  cap.innerText=images[0].cap;
+
   setInterval(()=>{
     i=(i+1)%images.length;
-    document.getElementById("img").src=images[i];
+    img.src=images[i].src;
+    cap.innerText=images[i].cap;
   },3000);
 }
 </script>
