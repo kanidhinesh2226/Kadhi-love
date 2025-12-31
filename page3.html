@@ -8,46 +8,63 @@ content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 
 <title>Endless Love</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Yesenia+Script&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Yesenia+Script&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-/* 🔒 STABILITY FIX */
+/* ===== GLOBAL FIX ===== */
 html, body{
   margin:0;
   padding:0;
   width:100%;
   height:100%;
-  overflow-x:hidden;
+  overflow:hidden;
   -webkit-text-size-adjust:100%;
   font-family:'Poppins',sans-serif;
 }
 
-/* BACKGROUND – LIVE LOVE THEME */
+/* ===== BLACK BACKGROUND ===== */
 body{
   min-height:100svh;
-  background:linear-gradient(180deg,#fff1f6,#ffd6e8,#fff1f6);
+  background:#000;
   display:flex;
-  justify-content:center;
   align-items:center;
-  color:#333;
+  justify-content:center;
+  color:#fff;
 }
 
-/* MAIN WRAP */
+/* ===== RED HEART FLOW ===== */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:18px;
+  color:red;
+  opacity:0.6;
+  pointer-events:none;
+  animation:floatUp linear infinite;
+}
+
+@keyframes floatUp{
+  from{transform:translateY(0);}
+  to{transform:translateY(-120svh);}
+}
+
+/* ===== MAIN WRAP ===== */
 .wrap{
   width:94%;
   max-width:380px;
   text-align:center;
+  z-index:2;
 }
 
-/* TITLE */
+/* ===== TITLE ===== */
 h2{
-  font-family:'Pacifico',cursive;
-  font-size:28px;
-  color:#ff4d88;
+  font-family:'Yesenia Script',cursive;
+  font-size:30px;
+  color:#ff4d4d;
   margin-bottom:20px;
 }
 
-/* SCRATCH GRID */
+/* ===== SCRATCH GRID ===== */
 .grid{
   display:grid;
   grid-template-columns:repeat(5,1fr);
@@ -57,7 +74,7 @@ h2{
 .card{
   position:relative;
   height:60px;
-  background:#f0f0f0;
+  background:#222;
   border-radius:14px;
   overflow:hidden;
 }
@@ -71,51 +88,52 @@ h2{
   justify-content:center;
   font-family:'Yesenia Script',cursive;
   font-size:16px;
-  color:#ff4d88;
+  color:#ff4d4d;
 }
 
 /* scratch layer */
 .scratch{
   position:absolute;
   inset:0;
-  background:linear-gradient(135deg,#ccc,#999);
+  background:linear-gradient(135deg,#555,#333);
   border-radius:14px;
 }
 
-/* GOLDEN TICKET */
+/* ===== GOLDEN TICKET ===== */
 .ticket{
   display:none;
   margin-top:30px;
   padding:22px;
-  background:linear-gradient(135deg,#e6c87a,#fff3b0,#d4af37);
+  background:linear-gradient(135deg,#d4af37,#fff2a8,#b8962e);
   border-radius:22px;
-  box-shadow:0 15px 30px rgba(212,175,55,.5);
-  border:2px solid rgba(255,255,255,.7);
+  box-shadow:0 0 30px rgba(212,175,55,.8);
+  border:2px solid rgba(255,255,255,.6);
+  color:#3b2b00;
 }
 
 .ticket h1{
   font-family:'Yesenia Script',cursive;
   font-size:32px;
   margin:0;
-  color:#5a4100;
 }
+
 .ticket p{
-  margin:6px 0 16px;
   font-size:13px;
   letter-spacing:1px;
+  margin:6px 0 16px;
 }
 
 .use-btn{
   padding:10px 26px;
   border:none;
   border-radius:22px;
-  background:#5a4100;
-  color:#fff3b0;
+  background:#3b2b00;
+  color:#fff2a8;
   font-size:14px;
   cursor:pointer;
 }
 
-/* FINAL EXPERIENCE */
+/* ===== FINAL AREA ===== */
 .final{
   display:none;
 }
@@ -124,7 +142,7 @@ h2{
   width:100%;
   max-width:320px;
   border-radius:18px;
-  box-shadow:0 15px 30px rgba(255,0,120,.3);
+  box-shadow:0 0 30px rgba(255,0,0,.4);
   transition:opacity 1s ease;
 }
 
@@ -132,26 +150,38 @@ h2{
   margin-top:14px;
   font-family:'Yesenia Script',cursive;
   font-size:22px;
-  color:#ff4d88;
+  color:#ff4d4d;
 }
 
 .end{
   margin-top:30px;
   font-family:'Yesenia Script',cursive;
   font-size:24px;
-  color:#444;
+  color:#fff;
 }
 </style>
 </head>
 
 <body>
 
+<!-- ❤️ FLOATING HEARTS -->
+<script>
+for(let i=0;i<18;i++){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(6+Math.random()*6)+"s";
+  h.style.animationDelay=Math.random()*5+"s";
+  document.body.appendChild(h);
+}
+</script>
+
 <div class="wrap">
 
   <!-- SCRATCH SECTION -->
   <div id="scratchArea">
-    <h2>Scratch & Feel the Love 💗</h2>
-
+    <h2>Scratch with Love ❤️</h2>
     <div class="grid" id="grid"></div>
   </div>
 
@@ -185,16 +215,16 @@ h2{
 <script>
 /* SCRATCH MESSAGES */
 const messages=[
-  "You are my calm 💗",
-  "Always my favorite ✨",
-  "Love feels safe here",
-  "My happy place",
-  "Forever with you",
-  "Soft hearts, strong love",
-  "Everyday magic",
+  "You are my heartbeat ❤️",
+  "Forever us",
+  "Love feels safe",
+  "My favorite person",
+  "Always you",
+  "Red hearts & promises",
   "Still choosing you",
-  "Quietly in love",
-  "One last surprise 💛"
+  "My calm",
+  "Endless love",
+  "Final surprise 💛"
 ];
 
 const grid=document.getElementById("grid");
@@ -202,7 +232,7 @@ let cleared=0;
 const scratchSound=document.getElementById("scratchSound");
 const ding=document.getElementById("dingSound");
 
-/* CREATE 10 CARDS */
+/* CREATE SCRATCH CARDS */
 messages.forEach(text=>{
   const card=document.createElement("div");
   card.className="card";
@@ -213,9 +243,6 @@ messages.forEach(text=>{
 
   const layer=document.createElement("div");
   layer.className="scratch";
-
-  layer.addEventListener("touchstart",reveal,{once:true});
-  layer.addEventListener("mousedown",reveal,{once:true});
 
   function reveal(){
     layer.style.opacity="0";
@@ -229,6 +256,9 @@ messages.forEach(text=>{
     }
   }
 
+  layer.addEventListener("touchstart",reveal,{once:true});
+  layer.addEventListener("mousedown",reveal,{once:true});
+
   card.appendChild(msg);
   card.appendChild(layer);
   grid.appendChild(card);
@@ -238,8 +268,7 @@ messages.forEach(text=>{
 function useTicket(){
   document.getElementById("scratchArea").style.display="none";
   document.getElementById("ticket").style.display="none";
-  const final=document.getElementById("final");
-  final.style.display="block";
+  document.getElementById("final").style.display="block";
 
   const music=document.getElementById("music");
   music.volume=0.35;
@@ -249,11 +278,11 @@ function useTicket(){
 
 /* PHOTOS */
 const photos=[
-  {src:"img1.jpg",cap:"You are my calm in every chaos"},
-  {src:"img2.jpg",cap:"Love feels safe with you"},
-  {src:"img3.jpg",cap:"Soft hearts, deep love"},
-  {src:"img4.jpg",cap:"Still choosing you"},
-  {src:"img5.jpg",cap:"Forever starts here"}
+  {src:"img1.jpg",cap:"You are my calm ❤️"},
+  {src:"img2.jpg",cap:"Forever with you"},
+  {src:"img3.jpg",cap:"Red hearts, real love"},
+  {src:"img4.jpg",cap:"Still choosing us"},
+  {src:"img5.jpg",cap:"Endless love"}
 ];
 
 let i=0,interval;
@@ -277,5 +306,3 @@ img.addEventListener("click",()=>clearInterval(interval));
 
 </body>
 </html>
-
-
