@@ -9,26 +9,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Yesenia+Script&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
+*{box-sizing:border-box}
 html,body{
-  margin:0;
-  padding:0;
-  background:#000;
-  color:#fff;
+  margin:0; padding:0;
+  background:#000; color:#fff;
   font-family:'Poppins',sans-serif;
   overflow-x:hidden;
 }
 
-/* ❤️ HEART FLOAT */
+/* ❤️ MANY FLOATING HEARTS */
 .heart{
   position:fixed;
   top:-10%;
   font-size:18px;
   color:#ff2b2b;
   opacity:.7;
-  animation:fall 8s linear infinite;
+  animation:fall linear infinite;
 }
 @keyframes fall{
-  to{transform:translateY(120vh)}
+  to{ transform:translateY(120vh); }
 }
 
 /* LAYOUT */
@@ -46,7 +45,6 @@ html,body{
   grid-template-columns:repeat(2,1fr);
   gap:14px;
 }
-
 .card{
   position:relative;
   height:130px;
@@ -54,26 +52,14 @@ html,body{
   border-radius:16px;
   overflow:hidden;
 }
-
 .msg{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
   font-family:'Yesenia Script',cursive;
-  font-size:18px;
-  color:#ff4d4d;
-  text-align:center;
-  padding:8px;
-  z-index:1;
+  font-size:18px; color:#ff4d4d;
+  padding:8px; z-index:1;
 }
-
-canvas{
-  position:absolute;
-  inset:0;
-  z-index:2;
-}
+canvas{ position:absolute; inset:0; z-index:2; }
 
 /* GOLDEN TICKET */
 .ticket{
@@ -88,68 +74,58 @@ canvas{
 .ticket button{
   margin-top:16px;
   padding:10px 26px;
-  border:none;
-  border-radius:20px;
-  background:#3b2b00;
-  color:#fff2a8;
+  border:none; border-radius:20px;
+  background:#3b2b00; color:#fff2a8;
 }
 
-/* FINAL SECTION */
+/* FINAL (PHOTOS + WORDINGS) */
 .final{
   display:none;
   margin-top:30px;
-  animation:fadeIn 1.5s ease forwards;
+  animation:fadeIn 1.2s ease forwards;
 }
 @keyframes fadeIn{
   from{opacity:0; transform:translateY(20px)}
   to{opacity:1; transform:translateY(0)}
 }
-
-/* IMAGE SLIDER */
 .slider img{
-  width:100%;
-  border-radius:18px;
+  width:100%; border-radius:18px;
   box-shadow:0 0 30px rgba(255,0,0,.4);
 }
 .caption{
   margin-top:12px;
   font-family:'Yesenia Script',cursive;
-  font-size:22px;
-  color:#ff4d4d;
+  font-size:22px; color:#ff4d4d;
 }
-
-/* WORDINGS */
 .final p{
   font-family:'Yesenia Script',cursive;
-  font-size:22px;
-  line-height:1.8;
+  font-size:22px; line-height:1.8;
   margin:18px 0;
 }
-
 .signature{
   margin-top:14px;
   font-family:'Yesenia Script',cursive;
-  font-size:24px;
-  color:#ff4d4d;
+  font-size:24px; color:#ff4d4d;
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEARTS -->
+<!-- ❤️ HEARTS (NERAYA, CONTINUOUS) -->
 <script>
-for(let i=0;i<30;i++){
+for(let i=0;i<35;i++){
   const h=document.createElement("div");
   h.className="heart";
   h.innerHTML="❤";
   h.style.left=Math.random()*100+"vw";
   h.style.animationDuration=(6+Math.random()*6)+"s";
+  h.style.animationDelay=Math.random()*5+"s";
   document.body.appendChild(h);
 }
 </script>
 
-<!-- SOUNDS + SONG -->
+<!-- 🎵 SONG + SOUNDS -->
 <audio id="bgMusic" src="song3.mp3" loop></audio>
 <audio id="scratchSound" src="scratch.mp3"></audio>
 <audio id="dingSound" src="ding.mp3"></audio>
@@ -170,55 +146,32 @@ Scratch with Love ❤️
 
 <!-- FINAL CONTENT -->
 <div class="final" id="final">
-
   <div class="slider">
     <img id="slideImg" src="img1.jpg">
     <div class="caption" id="caption"></div>
   </div>
 
-  <p>
-    💖 If life gives me a thousand paths,  
-    I will still choose the one with you.
-  </p>
+  <p>💖 If life gives me a thousand paths, I will still choose the one with you.</p>
+  <p>🌍 No matter how the world changes, my heart will always find its way back to you.</p>
+  <p>🎆 This new year, and every year, I choose you. I love you 💜</p>
 
-  <p>
-    🌍 No matter how the world changes,  
-    my heart will always find its way back to you.
-  </p>
-
-  <p>
-    🎆 This new year, and every year,  
-    I choose you. I love you 💜
-  </p>
-
-  <div class="signature">
-    — by kannnukuniyal 💜
-  </div>
-
+  <div class="signature">— by kannnukuniyal 💜</div>
 </div>
 
 </div>
 
 <script>
-/* 🎵 RESUME SONG */
+/* 🎵 RESUME SONG FROM PAGE 2 */
 const bgMusic=document.getElementById("bgMusic");
 bgMusic.volume=0.35;
 const savedTime=localStorage.getItem("songTime");
-if(savedTime){ bgMusic.currentTime=parseFloat(savedTime); }
+if(savedTime) bgMusic.currentTime=parseFloat(savedTime);
 document.addEventListener("touchstart",()=>bgMusic.play().catch(()=>{}),{once:true});
 
-/* SCRATCH MESSAGES */
+/* SCRATCH MESSAGES (10) */
 const messages=[
- "You are my heartbeat ❤️",
- "Forever us 💑",
- "Safe love 🫶",
- "My person 💖",
- "Always you 💍",
- "Promises ✨",
- "My calm 🌙",
- "Endless ♾️",
- "Still choosing ❤️",
- "Final 💛"
+ "You are my heartbeat ❤️","Forever us 💑","Safe love 🫶","My person 💖","Always you 💍",
+ "Promises ✨","My calm 🌙","Endless ♾️","Still choosing ❤️","Final 💛"
 ];
 
 const grid=document.getElementById("grid");
@@ -229,53 +182,45 @@ messages.forEach(text=>{
   card.className="card";
 
   const msg=document.createElement("div");
-  msg.className="msg";
-  msg.innerText=text;
+  msg.className="msg"; msg.innerText=text;
 
   const canvas=document.createElement("canvas");
   const ctx=canvas.getContext("2d");
 
-  canvas.width=card.clientWidth;
-  canvas.height=card.clientHeight;
-  ctx.fillStyle="#666";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
+  // size after append
+  card.appendChild(msg); card.appendChild(canvas); grid.appendChild(card);
+  canvas.width=card.clientWidth; canvas.height=card.clientHeight;
+  ctx.fillStyle="#666"; ctx.fillRect(0,0,canvas.width,canvas.height);
 
   let done=false;
 
   function scratch(x,y){
     ctx.globalCompositeOperation="destination-out";
-    ctx.beginPath();
-    ctx.arc(x,y,18,0,Math.PI*2);
-    ctx.fill();
+    ctx.beginPath(); ctx.arc(x,y,18,0,Math.PI*2); ctx.fill();
   }
 
   canvas.addEventListener("touchmove",(e)=>{
     e.preventDefault();
-    const rect=canvas.getBoundingClientRect();
+    const r=canvas.getBoundingClientRect();
     const t=e.touches[0];
-    scratch(t.clientX-rect.left,t.clientY-rect.top);
+    scratch(t.clientX-r.left, t.clientY-r.top);
   });
 
   canvas.addEventListener("touchend",()=>{
     if(done) return;
     done=true;
-    scratchSound.play();
+    scratchSound.currentTime=0; scratchSound.play().catch(()=>{});
     bgMusic.volume=0.15;
     completed++;
-
     if(completed===10){
-      dingSound.play();
+      dingSound.play().catch(()=>{});
       bgMusic.volume=0.35;
       document.getElementById("ticket").style.display="block";
     }
   });
-
-  card.appendChild(msg);
-  card.appendChild(canvas);
-  grid.appendChild(card);
 });
 
-/* SHOW FINAL */
+/* SHOW FINAL (PHOTOS + WORDINGS) */
 function showFinal(){
   document.getElementById("grid").style.display="none";
   document.getElementById("ticket").style.display="none";
@@ -283,7 +228,7 @@ function showFinal(){
   startSlider();
 }
 
-/* IMAGE SLIDER */
+/* AUTO IMAGE SLIDER (5) */
 const images=[
  {src:"img1.jpg",cap:"With you, love feels calm ❤️"},
  {src:"img2.jpg",cap:"Forever starts with us 💑"},
@@ -291,13 +236,11 @@ const images=[
  {src:"img4.jpg",cap:"Still choosing you ✨"},
  {src:"img5.jpg",cap:"Endless love ♾️"}
 ];
-
 let i=0;
 function startSlider(){
   const img=document.getElementById("slideImg");
   const cap=document.getElementById("caption");
   cap.innerText=images[0].cap;
-
   setInterval(()=>{
     i=(i+1)%images.length;
     img.src=images[i].src;
