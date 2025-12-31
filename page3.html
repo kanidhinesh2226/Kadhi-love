@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Endless Love</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Yesenia+Script&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #000;
+  color: white;
+  overflow-x: hidden;
+  text-align: center;
+}
+
+/* ---------- SCRATCH AREA ---------- */
+#scratchArea {
+  padding: 60px 20px;
+}
+
+.scratch-card {
+  width: 120px;
+  height: 80px;
+  background: silver;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: transparent;
+}
+
+.scratch-card.revealed {
+  background: #222;
+  color: #ff8fc7;
+}
+
+/* ---------- GOLDEN TICKET ---------- */
+#ticket {
+  display: none;
+  margin: 50px auto;
+  padding: 40px 20px;
+  max-width: 320px;
+  background: linear-gradient(135deg, #d4af37, #ffd700, #b8860b);
+  color: #3b2b00;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(255,215,0,0.6);
+}
+
+#ticket h1 {
+  font-family: 'Yesenia Script', cursive;
+  font-size: 36px;
+}
+
+#useBtn {
+  margin-top: 20px;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  background: #3b2b00;
+  color: gold;
+}
+
+/* ---------- FINAL LOVE EXPERIENCE ---------- */
+#finalArea {
+  display: none;
+  padding: 40px 20px;
+}
+
+#photo {
+  width: 80%;
+  max-width: 320px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(255,0,150,0.4);
+}
+
+#caption {
+  margin-top: 20px;
+  font-family: 'Yesenia Script', cursive;
+  font-size: 24px;
+  color: #f6b3c6;
+  display: none;
+}
+
+.endText {
+  margin-top: 40px;
+  font-family: 'Yesenia Script', cursive;
+  font-size: 26px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎟️ SCRATCH SECTION -->
+<div id="scratchArea">
+  <h2>Scratch and Find Your Surprise 💜</h2>
+
+  <div id="cards"></div>
+</div>
+
+<!-- 🎫 GOLDEN TICKET -->
+<div id="ticket">
+  <h1>ENDLESS LOVE</h1>
+  <p>GOLDEN TICKET</p>
+  <button id="useBtn">USE ME 💛</button>
+</div>
+
+<!-- 💖 FINAL EXPERIENCE -->
+<div id="finalArea">
+  <audio id="music" src="song1.mp3"></audio>
+
+  <img id="photo" src="img1.jpg">
+  <div id="caption"></div>
+
+  <div class="endText">
+    Happy New Year 💜<br>
+    Endless Love, This Year and Always<br><br>
+    — by kannnukuniyal
+  </div>
+</div>
+
+<script>
+/* ---------- SCRATCH LOGIC ---------- */
+const cardContainer = document.getElementById("cards");
+let revealCount = 0;
+
+for (let i = 0; i < 8; i++) {
+  const card = document.createElement("div");
+  card.className = "scratch-card";
+  card.innerText = i === 7 ? "🎫" : "💜";
+  card.onclick = () => {
+    if (!card.classList.contains("revealed")) {
+      card.classList.add("revealed");
+      revealCount++;
+      if (i === 7) {
+        document.getElementById("ticket").style.display = "block";
+      }
+    }
+  };
+  cardContainer.appendChild(card);
+}
+
+/* ---------- USE ME ---------- */
+document.getElementById("useBtn").onclick = () => {
+  document.getElementById("scratchArea").style.display = "none";
+  document.getElementById("ticket").style.display = "none";
+  document.getElementById("finalArea").style.display = "block";
+
+  document.getElementById("music").play();
+  startPhotos();
+};
+
+/* ---------- FINAL PHOTOS ---------- */
+const photos = [
+  {src:"img1.jpg", text:"You are my calm in every chaos."},
+  {src:"img2.jpg", text:"With you, time feels gentle."},
+  {src:"img3.jpg", text:"Love feels safe here."},
+  {src:"img4.jpg", text:"You are my always."},
+  {src:"img5.jpg", text:"This year, and forever."}
+];
+
+let index = 0;
+let interval;
+const img = document.getElementById("photo");
+const cap = document.getElementById("caption");
+
+function startPhotos() {
+  interval = setInterval(() => {
+    img.src = photos[index].src;
+    cap.innerText = "";
+    cap.style.display = "none";
+    index = (index + 1) % photos.length;
+  }, 4000);
+}
+
+img.onclick = () => {
+  clearInterval(interval);
+  cap.innerText = photos[index === 0 ? photos.length - 1 : index - 1].text;
+  cap.style.display = "block";
+};
+</script>
+
+</body>
+</html>
