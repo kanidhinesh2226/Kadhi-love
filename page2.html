@@ -6,7 +6,7 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-<title>Happy New Year My Love</title>
+<title>Love Letter</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Yesenia+Script&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
@@ -22,26 +22,31 @@ html, body{
   font-family:'Poppins',sans-serif;
 }
 
-/* ===== BACKGROUND ===== */
+/* ===== BABY BLUE BACKGROUND ===== */
 body{
   min-height:100svh;
-  background:linear-gradient(180deg,#fff1f6,#ffd6e8,#fff1f6);
+  background:linear-gradient(180deg,#eaf6ff,#d9f0ff,#eaf6ff);
   display:flex;
   align-items:center;
   justify-content:center;
 }
 
-/* ===== FLOATING DOODLES ===== */
+/* ===== FLOATING DOODLES (HEARTS + STARS) ===== */
 .doodle{
   position:fixed;
+  bottom:-20px;
   font-size:18px;
-  opacity:0.28;
+  opacity:0.35;
   pointer-events:none;
-  animation:float 10s linear infinite;
+  animation:floatUp linear infinite;
 }
-@keyframes float{
-  from{transform:translateY(110svh);}
-  to{transform:translateY(-130svh);}
+
+.heart-blue{ color:#6bbcff; }
+.star-blue{ color:#9ad6ff; }
+
+@keyframes floatUp{
+  from{ transform:translateY(0); }
+  to{ transform:translateY(-120svh); }
 }
 
 /* ===== CARD ===== */
@@ -49,10 +54,10 @@ body{
   width:94%;
   max-width:360px;
   height:580px;
-  background:#fff;
+  background:#ffffff;
   border-radius:30px;
   padding:26px 24px;
-  box-shadow:0 28px 50px rgba(255,105,160,0.28);
+  box-shadow:0 28px 50px rgba(80,160,255,0.25);
   display:flex;
   flex-direction:column;
   animation:fadeUp 1.2s ease;
@@ -62,23 +67,23 @@ body{
   to{opacity:1;transform:translateY(0);}
 }
 
-/* ===== TITLE WITH SOFT GLOW ===== */
+/* ===== TITLE ===== */
 .glow-title{
   font-family:'Pacifico',cursive;
   font-size:34px;
-  color:#ff4d88;
+  color:#4aa8ff;
   text-align:center;
   margin-bottom:6px;
   text-shadow:
-    0 0 4px rgba(255,77,136,0.5),
-    0 0 8px rgba(255,77,136,0.35);
+    0 0 4px rgba(74,168,255,0.5),
+    0 0 8px rgba(74,168,255,0.35);
 }
 
 .sub{
   text-align:center;
   font-size:13px;
   font-weight:300;
-  color:#888;
+  color:#7aaedb;
   margin-bottom:14px;
 }
 
@@ -87,7 +92,7 @@ body{
   font-family:'Yesenia Script',cursive;
   font-size:18px;
   line-height:2;
-  color:#444;
+  color:#3d5f7a;
   overflow-y:auto;
   flex:1;
   padding-right:6px;
@@ -96,7 +101,7 @@ body{
   margin-bottom:18px;
 }
 
-/* ===== CONTINUE BUTTON ===== */
+/* ===== CONTINUE BUTTON (SAME AS PAGE 1 STYLE) ===== */
 .continue-area{
   margin-top:18px;
   display:flex;
@@ -107,7 +112,7 @@ body{
   width:92px;
   height:92px;
   border-radius:50%;
-  border:3px solid #ff5fa2;
+  border:3px solid #6bbcff;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -125,7 +130,7 @@ body{
 
 .heart{
   font-size:28px;
-  color:#ff5fa2;
+  color:#6bbcff;
   animation:pulse 1.2s infinite;
 }
 @keyframes pulse{
@@ -140,7 +145,7 @@ body{
   height:92px;
   border-radius:50%;
   border:3px solid transparent;
-  border-top:3px solid #ff5fa2;
+  border-top:3px solid #6bbcff;
   display:none;
   animation:spin 2s linear forwards;
 }
@@ -152,27 +157,28 @@ body{
 
 <body>
 
-<!-- DOODLES -->
-<span class="doodle" style="left:6%;animation-delay:0s">♡</span>
-<span class="doodle" style="left:14%;animation-delay:3s">✿</span>
-<span class="doodle" style="left:22%;animation-delay:6s">★</span>
-<span class="doodle" style="left:30%;animation-delay:1s">♡</span>
-<span class="doodle" style="left:38%;animation-delay:4s">✿</span>
-<span class="doodle" style="left:46%;animation-delay:7s">♡</span>
-<span class="doodle" style="left:54%;animation-delay:2s">★</span>
-<span class="doodle" style="left:62%;animation-delay:5s">✿</span>
-<span class="doodle" style="left:70%;animation-delay:8s">♡</span>
-<span class="doodle" style="left:78%;animation-delay:3s">★</span>
-<span class="doodle" style="left:86%;animation-delay:6s">✿</span>
+<!-- FLOATING BLUE HEARTS + STARS -->
+<script>
+const icons = ["💙","⭐"];
+for(let i=0;i<20;i++){
+  const d=document.createElement("div");
+  d.className="doodle";
+  d.innerHTML = icons[Math.floor(Math.random()*icons.length)];
+  d.style.left=Math.random()*100+"vw";
+  d.style.animationDuration=(7+Math.random()*6)+"s";
+  d.style.animationDelay=Math.random()*5+"s";
+  document.body.appendChild(d);
+}
+</script>
 
 <div class="card">
 
-  <h1 class="glow-title">Happy New Year, My Love 💜</h1>
-  <div class="sub">a little letter from my heart</div>
+  <h1 class="glow-title">Happy New Year, My Love 💙</h1>
+  <div class="sub">written under a sky full of stars</div>
 
   <div class="letter">
     <p>
-      💜 My love, as the clock strikes midnight 🕰️ and a new year unfolds 🎉,
+      💙 My love, as the clock strikes midnight 🕰️ and a new year unfolds 🎉,
       my heart beats only for you ❤️. Every moment with you is a gift 🎁,
       every memory a treasure 💎.
     </p>
@@ -197,23 +203,6 @@ body{
     </p>
 
     <p>
-      I love how we laugh 😂, dream big 🌟, and live life 💃.
-      You’re my person 🧑‍🤝‍🧑, my forever love 💖.
-    </p>
-
-    <p>
-      Here’s to chasing sunsets 🌅, making memories 📚,
-      and growing old together 👵👴.
-      I’m so grateful for you 🙏.
-    </p>
-
-    <p>
-      In this new year, I promise to hold you tight 🫂,
-      kiss you often 😘, and love you harder 💪.
-      You’re the best thing that’s ever happened to me 🌟.
-    </p>
-
-    <p>
       Cheers to more love, more fun 🎉,
       and more of us 💕… forever and always 💖.
     </p>
@@ -222,14 +211,14 @@ body{
   <div class="continue-area">
     <div class="circle-btn" id="btn" onclick="goNext()">
       <div class="progress" id="progress"></div>
-      <div class="heart">❤️</div>
+      <div class="heart">💙</div>
     </div>
   </div>
 
 </div>
 
 <script>
-/* ENABLE CONTINUE AFTER FULL SCROLL */
+/* ENABLE CONTINUE AFTER SCROLL */
 const letter = document.querySelector(".letter");
 const btn = document.getElementById("btn");
 
@@ -239,6 +228,7 @@ letter.addEventListener("scroll",()=>{
   }
 });
 
+/* NEXT PAGE */
 function goNext(){
   if(!btn.classList.contains("active")) return;
   document.getElementById("progress").style.display="block";
