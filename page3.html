@@ -18,7 +18,7 @@ html,body{
   overflow-x:hidden;
 }
 
-/* ❤️ FLOATING HEARTS */
+/* ❤️ HEART FLOAT */
 .heart{
   position:fixed;
   top:-10%;
@@ -40,25 +40,42 @@ html,body{
   padding:20px 0 40px;
 }
 
-/* SCRATCH */
+/* SCRATCH GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:15px;
+  gap:14px;
 }
+
 .card{
-  height:110px;
+  position:relative;
+  height:130px;
   background:#222;
   border-radius:16px;
+  overflow:hidden;
+}
+
+.msg{
+  position:absolute;
+  inset:0;
   display:flex;
   align-items:center;
   justify-content:center;
   font-family:'Yesenia Script',cursive;
   font-size:18px;
-  cursor:pointer;
+  color:#ff4d4d;
+  text-align:center;
+  padding:8px;
+  z-index:1;
 }
 
-/* TICKET */
+canvas{
+  position:absolute;
+  inset:0;
+  z-index:2;
+}
+
+/* GOLDEN TICKET */
 .ticket{
   display:none;
   margin-top:30px;
@@ -122,7 +139,7 @@ html,body{
 
 <!-- HEARTS -->
 <script>
-for(let i=0;i<25;i++){
+for(let i=0;i<30;i++){
   const h=document.createElement("div");
   h.className="heart";
   h.innerHTML="❤";
@@ -132,7 +149,8 @@ for(let i=0;i<25;i++){
 }
 </script>
 
-<!-- SOUNDS -->
+<!-- SOUNDS + SONG -->
+<audio id="bgMusic" src="song3.mp3" loop></audio>
 <audio id="scratchSound" src="scratch.mp3"></audio>
 <audio id="dingSound" src="ding.mp3"></audio>
 
@@ -182,7 +200,14 @@ Scratch with Love ❤️
 </div>
 
 <script>
-/* SCRATCH LOGIC */
+/* 🎵 RESUME SONG */
+const bgMusic=document.getElementById("bgMusic");
+bgMusic.volume=0.35;
+const savedTime=localStorage.getItem("songTime");
+if(savedTime){ bgMusic.currentTime=parseFloat(savedTime); }
+document.addEventListener("touchstart",()=>bgMusic.play().catch(()=>{}),{once:true});
+
+/* SCRATCH MESSAGES */
 const messages=[
  "You are my heartbeat ❤️",
  "Forever us 💑",
@@ -197,28 +222,57 @@ const messages=[
 ];
 
 const grid=document.getElementById("grid");
-let count=0;
+let completed=0;
 
 messages.forEach(text=>{
-  const c=document.createElement("div");
-  c.className="card";
-  c.innerText="Scratch Me 💌";
+  const card=document.createElement("div");
+  card.className="card";
 
-  c.addEventListener("click",()=>{
-    if(c.classList.contains("done")) return;
-    c.classList.add("done");
-    document.getElementById("scratchSound").play();
-    c.innerText=text;
-    c.style.background="#333";
-    count++;
+  const msg=document.createElement("div");
+  msg.className="msg";
+  msg.innerText=text;
 
-    if(count===10){
-      document.getElementById("dingSound").play();
+  const canvas=document.createElement("canvas");
+  const ctx=canvas.getContext("2d");
+
+  canvas.width=card.clientWidth;
+  canvas.height=card.clientHeight;
+  ctx.fillStyle="#666";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  let done=false;
+
+  function scratch(x,y){
+    ctx.globalCompositeOperation="destination-out";
+    ctx.beginPath();
+    ctx.arc(x,y,18,0,Math.PI*2);
+    ctx.fill();
+  }
+
+  canvas.addEventListener("touchmove",(e)=>{
+    e.preventDefault();
+    const rect=canvas.getBoundingClientRect();
+    const t=e.touches[0];
+    scratch(t.clientX-rect.left,t.clientY-rect.top);
+  });
+
+  canvas.addEventListener("touchend",()=>{
+    if(done) return;
+    done=true;
+    scratchSound.play();
+    bgMusic.volume=0.15;
+    completed++;
+
+    if(completed===10){
+      dingSound.play();
+      bgMusic.volume=0.35;
       document.getElementById("ticket").style.display="block";
     }
   });
 
-  grid.appendChild(c);
+  card.appendChild(msg);
+  card.appendChild(canvas);
+  grid.appendChild(card);
 });
 
 /* SHOW FINAL */
@@ -229,7 +283,7 @@ function showFinal(){
   startSlider();
 }
 
-/* IMAGE SLIDER (5 IMAGES) */
+/* IMAGE SLIDER */
 const images=[
  {src:"img1.jpg",cap:"With you, love feels calm ❤️"},
  {src:"img2.jpg",cap:"Forever starts with us 💑"},
@@ -242,7 +296,6 @@ let i=0;
 function startSlider(){
   const img=document.getElementById("slideImg");
   const cap=document.getElementById("caption");
-
   cap.innerText=images[0].cap;
 
   setInterval(()=>{
@@ -255,4 +308,3 @@ function startSlider(){
 
 </body>
 </html>
-
