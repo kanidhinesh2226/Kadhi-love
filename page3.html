@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Endless Love</title>
 
@@ -18,13 +17,11 @@ html,body{
   font-family:'Poppins',sans-serif;
 }
 
-/* heart flow */
+/* hearts */
 .heart{
   position:fixed;
   bottom:-20px;
-  font-size:18px;
-  color:#ff2b2b;
-  opacity:.6;
+  color:red;
   animation:float 8s linear infinite;
 }
 @keyframes float{to{transform:translateY(-120vh);}}
@@ -68,14 +65,15 @@ html,body{
 /* ticket */
 .ticket{
   display:none;
-  margin:24px auto;
+  margin:20px auto;
   padding:20px;
-  background:linear-gradient(135deg,#d4af37,#fff2a8,#b8962e);
-  border-radius:22px;
-  color:#3b2b00;
+  background:gold;
+  border-radius:20px;
+  color:#333;
 }
 
 /* slider */
+.final{ display:none; }
 .slider img{
   width:100%;
   border-radius:16px;
@@ -84,7 +82,6 @@ html,body{
   font-family:'Yesenia Script',cursive;
   font-size:22px;
   color:#ff4d4d;
-  margin:10px 0;
 }
 </style>
 </head>
@@ -101,25 +98,22 @@ for(let i=0;i<15;i++){
 }
 </script>
 
-<!-- SONG 3 RESUME -->
 <audio id="bgMusic" src="song3.mp3" loop></audio>
 <audio id="scratchSound" src="scratch.mp3"></audio>
 <audio id="dingSound" src="ding.mp3"></audio>
 
 <div class="wrap">
 
-<h2 style="font-family:'Yesenia Script',cursive;color:#ff4d4d">
-Scratch with Love ❤️
-</h2>
+<h2 style="font-family:'Yesenia Script',cursive;color:#ff4d4d">Scratch with Love ❤️</h2>
 
-<div class="grid" id="grid"></div>
+<div id="scratchArea" class="grid"></div>
 
 <div class="ticket" id="ticket">
   <h1>ENDLESS LOVE</h1>
   <button onclick="openFinal()">USE ME 💛</button>
 </div>
 
-<div id="final" style="display:none">
+<div class="final" id="final">
   <div class="slider">
     <img id="slideImg" src="img1.jpg">
     <div class="caption" id="caption"></div>
@@ -135,23 +129,20 @@ const saved=localStorage.getItem("songTime");
 if(saved) bgMusic.currentTime=parseFloat(saved);
 bgMusic.play();
 
-const scratchSound=document.getElementById("scratchSound");
-const dingSound=document.getElementById("dingSound");
-
 const words=[
- "You are my heartbeat ❤️","Forever us 💑","Safe love 🫶","My person 💖","Always you 💍",
+ "Heartbeat ❤️","Forever 💑","Safe love 🫶","My person 💖","Always 💍",
  "Promises ✨","My calm 🌙","Endless ♾️","Still choosing ❤️","Final 💛"
 ];
 
-const grid=document.getElementById("grid");
+const scratchArea=document.getElementById("scratchArea");
 let count=0;
 
-words.forEach(t=>{
+words.forEach(text=>{
   const c=document.createElement("div");
   c.className="card";
   const m=document.createElement("div");
   m.className="msg";
-  m.innerText=t;
+  m.innerText=text;
   const s=document.createElement("div");
   s.className="scratch";
 
@@ -159,27 +150,21 @@ words.forEach(t=>{
   s.addEventListener("pointerdown",()=>{
     if(done) return;
     done=true;
-    bgMusic.volume=0.15;           // lower during scratch
-    scratchSound.play();
+    bgMusic.volume=0.15;
+    document.getElementById("scratchSound").play();
     s.style.opacity=0;
     count++;
     if(count===10){
-      dingSound.play();
-      bgMusic.volume=0.35;         // back to normal
+      document.getElementById("dingSound").play();
+      bgMusic.volume=0.35;
       document.getElementById("ticket").style.display="block";
     }
   });
 
   c.appendChild(m);
   c.appendChild(s);
-  grid.appendChild(c);
+  scratchArea.appendChild(c);
 });
-
-function openFinal(){
-  document.getElementById("ticket").style.display="none";
-  document.getElementById("final").style.display="block";
-  startSlider();
-}
 
 const images=[
  {src:"img1.jpg",cap:"With you, love feels calm ❤️"},
@@ -188,17 +173,22 @@ const images=[
  {src:"img4.jpg",cap:"Still choosing you ✨"},
  {src:"img5.jpg",cap:"Endless love ♾️"}
 ];
-
 let i=0;
-function startSlider(){
+
+function openFinal(){
+  document.getElementById("scratchArea").style.display="none";
+  document.getElementById("ticket").style.display="none";
+  document.getElementById("final").style.display="block";
+
   const img=document.getElementById("slideImg");
   const cap=document.getElementById("caption");
   cap.innerText=images[0].cap;
+
   setInterval(()=>{
     i=(i+1)%images.length;
     img.src=images[i].src;
     cap.innerText=images[i].cap;
-  },3500);
+  },3000);
 }
 </script>
 
