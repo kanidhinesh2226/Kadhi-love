@@ -8,93 +8,110 @@
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box;}
 
 body{
   margin:0;
   min-height:100vh;
   font-family:'Poppins',sans-serif;
-  background:linear-gradient(180deg,#ffdde9,#ffc1d9,#ffdde9);
+  background:linear-gradient(180deg,#fff1f6,#ffd6e8,#fff1f6);
   display:flex;
   justify-content:center;
   align-items:center;
-  overflow-x:hidden;
+  overflow:hidden;
 }
 
-/* Floating doodle hearts */
+/* doodles */
 .doodle{
   position:fixed;
-  font-size:20px;
-  opacity:0.3;
-  animation:float 8s linear infinite;
+  font-size:18px;
+  opacity:0.25;
+  animation:float 9s linear infinite;
 }
 @keyframes float{
-  from{transform:translateY(100vh);}
+  from{transform:translateY(110vh);}
   to{transform:translateY(-120vh);}
 }
 
-/* Card */
+/* card */
 .card{
-  width:90%;
+  width:92%;
   max-width:360px;
   background:white;
-  border-radius:24px;
-  padding:26px 22px 30px;
-  box-shadow:0 20px 40px rgba(255,0,120,0.2);
+  border-radius:28px;
+  padding:28px 22px 34px;
+  box-shadow:0 25px 45px rgba(255,105,160,0.25);
   animation:fadeUp 1.2s ease;
 }
-
 @keyframes fadeUp{
   from{opacity:0;transform:translateY(40px);}
   to{opacity:1;transform:translateY(0);}
 }
 
-/* Heading */
 .card h1{
   font-family:'Pacifico',cursive;
-  font-size:32px;
+  font-size:34px;
   color:#ff4d88;
   text-align:center;
-  margin-bottom:8px;
+  margin-bottom:6px;
 }
-
 .card h2{
   text-align:center;
-  font-size:14px;
+  font-size:13px;
   font-weight:300;
-  color:#777;
-  margin-bottom:20px;
+  color:#888;
+  margin-bottom:18px;
 }
 
-/* Love letter text */
+/* letter */
 .letter{
-  font-size:15px;
+  font-size:14.5px;
   line-height:1.9;
   color:#444;
 }
 
-/* Cute continue button */
-.continue-wrap{
-  margin-top:28px;
+/* circle continue button */
+.continue-area{
+  margin-top:30px;
   display:flex;
   justify-content:center;
 }
 
-.continue-btn{
-  padding:12px 36px;
-  border-radius:30px;
-  border:none;
-  background:linear-gradient(45deg,#ff5fa2,#ff85b6);
-  color:white;
-  font-size:15px;
+.circle-btn{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  border:3px solid #ff5fa2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
   cursor:pointer;
-  box-shadow:0 10px 20px rgba(255,95,162,0.4);
-  transition:transform .2s ease;
 }
-.continue-btn:active{
-  transform:scale(0.95);
+
+.heart{
+  font-size:28px;
+  color:#ff5fa2;
+  animation:pulse 1.2s infinite;
+}
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.15);}
+  100%{transform:scale(1);}
+}
+
+.progress{
+  position:absolute;
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  border:3px solid transparent;
+  border-top:3px solid #ff5fa2;
+  display:none;
+  animation:spin 2s linear forwards;
+}
+@keyframes spin{
+  to{transform:rotate(360deg);}
 }
 </style>
 </head>
@@ -102,42 +119,46 @@ body{
 <body>
 
 <!-- doodles -->
-<span class="doodle" style="left:10%;animation-delay:0s">♡</span>
-<span class="doodle" style="left:30%;animation-delay:2s">✿</span>
-<span class="doodle" style="left:60%;animation-delay:4s">♡</span>
-<span class="doodle" style="left:80%;animation-delay:1s">✿</span>
+<span class="doodle" style="left:12%;animation-delay:0s">♡</span>
+<span class="doodle" style="left:28%;animation-delay:2s">✿</span>
+<span class="doodle" style="left:52%;animation-delay:4s">♡</span>
+<span class="doodle" style="left:72%;animation-delay:1s">✿</span>
+<span class="doodle" style="left:88%;animation-delay:3s">♡</span>
 
 <div class="card">
   <h1>My Love 💗</h1>
-  <h2>A little letter, just for you</h2>
+  <h2>a little love note for you</h2>
 
   <div class="letter">
-    Another year quietly found its way to us,  
-    carrying soft hopes and unspoken dreams.  
-    Somewhere between ordinary days and silent moments,  
-    love slowly grew — gentle, patient, and real.  
+    Another year arrived softly,  
+    without noise or warning,  
+    bringing with it small hopes and quiet dreams.  
 
-    I don’t wish for grand promises or perfect days.  
-    I only wish for a love that feels safe,  
-    one that stays even when words fall short,  
-    and understands without being asked.  
+    Somewhere between simple days and unspoken moments,  
+    love found its place —  
+    not loud, not perfect, but real.  
 
-    If this year gives us nothing else,  
-    I hope it gives us calm hearts,  
-    shared smiles, and moments that feel like home.
+    I don’t wish for forever written in promises,  
+    I wish for a love that feels safe,  
+    one that stays, understands,  
+    and feels like home even in silence.
   </div>
 
-  <div class="continue-wrap">
-    <button class="continue-btn" onclick="nextPage()">Continue 💜</button>
+  <div class="continue-area">
+    <div class="circle-btn" onclick="goNext()">
+      <div class="progress" id="progress"></div>
+      <div class="heart">❤️</div>
+    </div>
   </div>
 </div>
 
 <script>
-function nextPage(){
-  window.location.href="page3.html";
+function goNext(){
+  const p=document.getElementById("progress");
+  p.style.display="block";
+  setTimeout(()=>{window.location.href="page3.html";},2000);
 }
 </script>
 
 </body>
 </html>
-
