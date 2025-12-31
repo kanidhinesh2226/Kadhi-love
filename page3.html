@@ -7,114 +7,142 @@
 <link href="https://fonts.googleapis.com/css2?family=Yesenia+Script&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-body {
-  margin: 0;
-  background: black;
-  color: white;
-  font-family: 'Poppins', sans-serif;
-  text-align: center;
+body{
+  margin:0;
+  background:black;
+  color:white;
+  font-family:'Poppins',sans-serif;
+  text-align:center;
 }
 
-/* ---------- SCRATCH SECTION ---------- */
-#scratchSection {
-  padding: 40px 20px;
+/* ---------- SCRATCH ---------- */
+#scratchSection{padding:40px 20px;}
+h2{
+  font-family:'Yesenia Script',cursive;
+  font-size:38px;
 }
 
-h2 {
-  font-family: 'Yesenia Script', cursive;
-  font-size: 38px;
-  margin-bottom: 20px;
-}
-
-/* Golden ticket container */
-#ticketWrapper {
-  position: relative;
-  width: 320px;
-  height: 180px;
-  margin: 30px auto;
-  border-radius: 20px;
-  overflow: hidden;
+/* Ticket wrapper */
+#ticketWrapper{
+  position:relative;
+  width:320px;
+  height:180px;
+  margin:30px auto;
+  border-radius:20px;
+  overflow:hidden;
 }
 
 /* Golden ticket */
-#ticket {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #d4af37, #ffd700, #b8860b);
-  border-radius: 20px;
-  box-shadow: 0 0 35px rgba(255,215,0,0.7);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #3b2b00;
+#ticket{
+  width:100%;height:100%;
+  background:linear-gradient(135deg,#d4af37,#ffd700,#b8860b);
+  background-size:200% 200%;
+  border-radius:20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  color:#3b2b00;
+  animation:goldShine 3s linear infinite,sparkle 2.5s ease-in-out infinite;
+}
+#ticket h1{
+  font-family:'Yesenia Script',cursive;
+  font-size:36px;margin:0;
+}
+#ticket p{font-size:14px;letter-spacing:2px;}
+
+@keyframes goldShine{
+  0%{background-position:0% 50%;}
+  100%{background-position:200% 50%;}
+}
+@keyframes sparkle{
+  0%{box-shadow:0 0 20px rgba(255,215,0,.6);}
+  50%{box-shadow:0 0 45px rgba(255,255,255,.9);}
+  100%{box-shadow:0 0 20px rgba(255,215,0,.6);}
 }
 
-#ticket h1 {
-  font-family: 'Yesenia Script', cursive;
-  font-size: 36px;
-  margin: 0;
+canvas{position:absolute;top:0;left:0;}
+
+/* USE ME */
+#useBtn{
+  display:none;
+  margin-top:25px;
+  padding:12px 32px;
+  border-radius:30px;
+  border:none;
+  background:#3b2b00;
+  color:gold;
+  cursor:pointer;
 }
 
-#ticket p {
-  font-size: 14px;
-  letter-spacing: 2px;
+/* Sparkle particles */
+.sparkle{
+  position:absolute;
+  width:6px;height:6px;
+  background:gold;
+  border-radius:50%;
+  animation:fly 1.5s linear forwards;
 }
-
-/* Scratch canvas */
-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-/* USE ME button */
-#useBtn {
-  margin-top: 25px;
-  padding: 12px 32px;
-  border-radius: 30px;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  background: #3b2b00;
-  color: gold;
-  display: none;
+@keyframes fly{
+  from{opacity:1;transform:translateY(0) scale(1);}
+  to{opacity:0;transform:translateY(-80px) scale(0);}
 }
 
 /* ---------- FINAL EXPERIENCE ---------- */
-#finalArea {
-  display: none;
-  padding: 40px 20px;
+#finalArea{display:none;padding:40px 20px;}
+#photo{
+  width:80%;
+  max-width:340px;
+  border-radius:20px;
+  box-shadow:0 0 30px rgba(255,0,150,.4);
+  transition:opacity 1.2s ease-in-out;
+}
+#caption{
+  display:none;
+  margin-top:20px;
+  font-family:'Yesenia Script',cursive;
+  font-size:26px;
+  color:#f6b3c6;
 }
 
-#photo {
-  width: 80%;
-  max-width: 340px;
-  border-radius: 20px;
-  box-shadow: 0 0 30px rgba(255,0,150,0.4);
+/* Ending text */
+.endText{
+  margin-top:40px;
+  font-family:'Yesenia Script',cursive;
+  font-size:26px;
+  opacity:0;
+  animation:fadeInUp 2s ease forwards;
+  animation-delay:1s;
+}
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(30px);}
+  to{opacity:1;transform:translateY(0);}
 }
 
-#caption {
-  margin-top: 20px;
-  font-family: 'Yesenia Script', cursive;
-  font-size: 26px;
-  color: #f6b3c6;
-  display: none;
+/* QR section */
+.qr{
+  margin-top:30px;
 }
-
-.endText {
-  margin-top: 40px;
-  font-family: 'Yesenia Script', cursive;
-  font-size: 26px;
+.qr img{
+  width:160px;
+  border-radius:12px;
+}
+.qr p{
+  font-size:14px;
+  opacity:.7;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🎟️ SCRATCH SECTION -->
+<!-- 🔊 Sounds -->
+<audio id="scratchSound" src="scratch.mp3"></audio>
+<audio id="dingSound" src="ding.mp3"></audio>
+
+<!-- 🎟️ SCRATCH -->
 <div id="scratchSection">
-  <h2>Scratch to Reveal Your Surprise 💜</h2>
+  <h2>Scratch to Reveal 💜</h2>
 
   <div id="ticketWrapper">
     <div id="ticket">
@@ -127,9 +155,9 @@ canvas {
   <button id="useBtn">USE ME 💛</button>
 </div>
 
-<!-- 💖 FINAL EXPERIENCE -->
+<!-- 💖 FINAL -->
 <div id="finalArea">
-  <audio id="music" src="song1.mp3"></audio>
+  <audio id="music" src="song3.mp3" loop></audio>
 
   <img id="photo" src="img1.jpg">
   <div id="caption"></div>
@@ -139,104 +167,120 @@ canvas {
     Endless Love, This Year and Always<br><br>
     — by kannnukuniyal
   </div>
+
+  <!-- 📱 QR CODE -->
+  <div class="qr">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=YOUR_GITHUB_PAGES_URL">
+    <p>Scan to relive this moment 💜</p>
+  </div>
 </div>
 
 <script>
-/* ---------- CANVAS SCRATCH ---------- */
-const canvas = document.getElementById("scratchCanvas");
-const ctx = canvas.getContext("2d");
-const wrapper = document.getElementById("ticketWrapper");
-canvas.width = wrapper.offsetWidth;
-canvas.height = wrapper.offsetHeight;
+/* ---------- SCRATCH LOGIC ---------- */
+const canvas=document.getElementById("scratchCanvas");
+const ctx=canvas.getContext("2d");
+const wrap=document.getElementById("ticketWrapper");
+canvas.width=wrap.offsetWidth;
+canvas.height=wrap.offsetHeight;
 
-/* Draw scratch layer */
-ctx.fillStyle = "#b5b5b5";
-ctx.fillRect(0, 0, canvas.width, canvas.height);
-ctx.globalCompositeOperation = "destination-out";
+ctx.fillStyle="#b5b5b5";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+ctx.globalCompositeOperation="destination-out";
 
-let scratching = false;
+let scratching=false,started=false;
+const scratchSound=document.getElementById("scratchSound");
+const ding=document.getElementById("dingSound");
 
-function getPos(e) {
-  const rect = canvas.getBoundingClientRect();
-  if (e.touches) {
-    return {
-      x: e.touches[0].clientX - rect.left,
-      y: e.touches[0].clientY - rect.top
-    };
-  }
-  return {
-    x: e.clientX - rect.left,
-    y: e.clientY - rect.top
-  };
+function pos(e){
+  const r=canvas.getBoundingClientRect();
+  return e.touches?
+  {x:e.touches[0].clientX-r.left,y:e.touches[0].clientY-r.top}:
+  {x:e.clientX-r.left,y:e.clientY-r.top};
 }
 
-function scratch(e) {
-  if (!scratching) return;
-  const pos = getPos(e);
+function scratch(e){
+  if(!scratching) return;
+  if(!started){
+    started=true;
+    scratchSound.volume=.25;
+    scratchSound.play().catch(()=>{});
+    if(navigator.vibrate) navigator.vibrate(40);
+  }
+  const p=pos(e);
   ctx.beginPath();
-  ctx.arc(pos.x, pos.y, 18, 0, Math.PI * 2);
+  ctx.arc(p.x,p.y,18,0,Math.PI*2);
   ctx.fill();
-  checkScratchPercent();
+  check();
 }
 
-canvas.addEventListener("mousedown", () => scratching = true);
-canvas.addEventListener("mouseup", () => scratching = false);
-canvas.addEventListener("mousemove", scratch);
+canvas.onmousedown=()=>scratching=true;
+canvas.onmouseup=()=>scratching=false;
+canvas.onmousemove=scratch;
+canvas.ontouchstart=()=>scratching=true;
+canvas.ontouchend=()=>scratching=false;
+canvas.ontouchmove=scratch;
 
-canvas.addEventListener("touchstart", () => scratching = true);
-canvas.addEventListener("touchend", () => scratching = false);
-canvas.addEventListener("touchmove", scratch);
-
-/* Check scratch completion */
-function checkScratchPercent() {
-  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-  let cleared = 0;
-  for (let i = 3; i < imageData.length; i += 4) {
-    if (imageData[i] === 0) cleared++;
-  }
-  const percent = (cleared / (canvas.width * canvas.height)) * 100;
-  if (percent > 80) {
-    canvas.style.display = "none";
-    document.getElementById("useBtn").style.display = "inline-block";
+function check(){
+  const d=ctx.getImageData(0,0,canvas.width,canvas.height).data;
+  let c=0;
+  for(let i=3;i<d.length;i+=4) if(d[i]===0) c++;
+  if(c/(canvas.width*canvas.height)*100>80){
+    canvas.style.display="none";
+    document.getElementById("useBtn").style.display="inline-block";
+    ding.play().catch(()=>{});
+    sparkles();
   }
 }
 
-/* ---------- USE ME ---------- */
-document.getElementById("useBtn").onclick = () => {
-  document.getElementById("scratchSection").style.display = "none";
-  document.getElementById("finalArea").style.display = "block";
+function sparkles(){
+  for(let i=0;i<20;i++){
+    const s=document.createElement("div");
+    s.className="sparkle";
+    s.style.left="50%";
+    s.style.top="50%";
+    s.style.transform=`translate(${Math.random()*100-50}px,${Math.random()*50}px)`;
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),1500);
+  }
+}
 
-  const music = document.getElementById("music");
-  music.play().catch(()=>{});
+/* ---------- FINAL EXPERIENCE ---------- */
+document.getElementById("useBtn").onclick=()=>{
+  document.getElementById("scratchSection").style.display="none";
+  document.getElementById("finalArea").style.display="block";
+  const m=document.getElementById("music");
+  m.volume=.35;
+  m.play().catch(()=>{});
   startPhotos();
 };
 
-/* ---------- FINAL PHOTO EXPERIENCE ---------- */
-const photos = [
-  {src:"img1.jpg", text:"You are my calm in every chaos."},
-  {src:"img2.jpg", text:"With you, time feels gentle."},
-  {src:"img3.jpg", text:"Love feels safe here."},
-  {src:"img4.jpg", text:"You are my always."},
-  {src:"img5.jpg", text:"This year, and forever."}
+const photos=[
+  {src:"img1.jpg",text:"You are my calm in every chaos."},
+  {src:"img2.jpg",text:"With you, time feels gentle."},
+  {src:"img3.jpg",text:"Love feels safe here."},
+  {src:"img4.jpg",text:"You are my always."},
+  {src:"img5.jpg",text:"This year, and forever."}
 ];
+let i=0,intv;
+const img=document.getElementById("photo");
+const cap=document.getElementById("caption");
 
-let index = 0;
-let interval;
-const img = document.getElementById("photo");
-const cap = document.getElementById("caption");
-
-function startPhotos() {
-  interval = setInterval(() => {
-    img.src = photos[index].src;
-    cap.style.display = "none";
-    index = (index + 1) % photos.length;
-  }, 4000);
+function startPhotos(){
+  intv=setInterval(()=>{
+    img.style.opacity=0;
+    setTimeout(()=>{
+      img.src=photos[i].src;
+      img.style.opacity=1;
+      cap.style.display="none";
+      i=(i+1)%photos.length;
+    },600);
+  },4000);
 }
 
-img.onclick = () => {
-  clearInterval(interval);
-  cap.innerText = photos[index === 0 ? photos.length - 1 : index - 1].text;
-  cap.style.display = "block";
+img.onclick=()=>{
+  clearInterval(intv);
+  cap.innerText=photos[i===0?photos.length-1:i-1].text;
+  cap.style.display="block";
 };
 </script>
 
