@@ -33,11 +33,11 @@ body{
 }
 
 /* ===== RED HEART FLOW ===== */
-.heart{
+.flow-heart{
   position:fixed;
   bottom:-20px;
   font-size:18px;
-  color:red;
+  color:#ff2b2b;
   opacity:0.6;
   pointer-events:none;
   animation:floatUp linear infinite;
@@ -151,24 +151,34 @@ h2{
   font-family:'Yesenia Script',cursive;
   font-size:22px;
   color:#ff4d4d;
+  line-height:1.6;
 }
 
-.end{
-  margin-top:30px;
+/* ===== END WORDINGS ===== */
+.end-words{
+  margin-top:28px;
+  font-family:'Yesenia Script',cursive;
+  font-size:22px;
+  color:#fff;
+  line-height:1.8;
+}
+
+.signature{
+  margin-top:14px;
   font-family:'Yesenia Script',cursive;
   font-size:24px;
-  color:#fff;
+  color:#ff4d4d;
 }
 </style>
 </head>
 
 <body>
 
-<!-- ❤️ FLOATING HEARTS -->
+<!-- ❤️ RED HEART FLOW -->
 <script>
 for(let i=0;i<18;i++){
   const h=document.createElement("div");
-  h.className="heart";
+  h.className="flow-heart";
   h.innerHTML="❤";
   h.style.left=Math.random()*100+"vw";
   h.style.animationDuration=(6+Math.random()*6)+"s";
@@ -199,14 +209,19 @@ for(let i=0;i<18;i++){
     <img id="photo" src="img1.jpg">
     <div class="caption" id="caption"></div>
 
-    <div class="end">
-      Happy New Year 💜<br>
-      If life gives me a thousand paths, 
-      I will still choose the one with you 💕 
-      No matter how the world changes 
-      my heart will always find its way back to you ❤️ 
-      This New Year and every year 
-      I choose you 🌹.<br><br>
+    <div class="end-words">
+      If life gives me a thousand paths,<br>
+      I will still choose the one with you.<br><br>
+
+      No matter how the world changes,<br>
+      my heart will always find its way back to you.<br><br>
+
+      This new year, and every year,<br>
+      I choose you.<br>
+      I love you 💜
+    </div>
+
+    <div class="signature">
       — by kannnukuniyal
     </div>
   </div>
@@ -281,15 +296,13 @@ function useTicket(){
   startPhotos();
 }
 
-/* PHOTOS */
+/* PHOTOS + CAPTIONS */
 const photos=[
-  {src:"img1.jpg",cap:"In your smile, I found my peace ✨
-      In your eyes, I found my home 💜
-      No matter how loud the world becomes
-      my heart feels calm when I see you ❤️
-      You are not just my love
-      you are my forever ❤️"},
-  {src:"img2.jpg",cap:"Forever with you"},
+  {
+    src:"img1.jpg",
+    cap:"With you, love feels calm, safe, and endless. You are my first thought in the morning and my last prayer at night."
+  },
+  {src:"img2.jpg",cap:"Forever starts with you"},
   {src:"img3.jpg",cap:"Red hearts, real love"},
   {src:"img4.jpg",cap:"Still choosing us"},
   {src:"img5.jpg",cap:"Endless love"}
