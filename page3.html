@@ -1,22 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<title>Endless Love</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Yesenia+Script&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+html,body{
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#000;
+  font-family:'Poppins',sans-serif;
+  color:#fff;
+}
+
+/* ❤️ HEART FLOW */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:18px;
+  color:#ff2b2b;
+  opacity:0.6;
+  pointer-events:none;
+  animation:float 8s linear infinite;
+}
+@keyframes float{
+  from{transform:translateY(0);}
+  to{transform:translateY(-120vh);}
+}
+
+/* MAIN */
+.wrap{
+  width:94%;
+  max-width:380px;
+  margin:auto;
+  text-align:center;
+}
+
+/* TITLE */
+h2{
+  font-family:'Yesenia Script',cursive;
+  font-size:30px;
+  color:#ff4d4d;
+  margin:20px 0;
+}
+
+/* SCRATCH GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+}
+
+.card{
+  position:relative;
+  height:60px;
+  background:#222;
+  border-radius:14px;
+  overflow:hidden;
+}
+
+.msg{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Yesenia Script',cursive;
+  font-size:15px;
+  color:#ff4d4d;
+}
+
+.scratch{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,#666,#333);
+}
+
+/* GOLDEN TICKET */
+.ticket{
+  display:none;
+  margin-top:30px;
+  padding:20px;
+  background:linear-gradient(135deg,#d4af37,#fff2a8,#b8962e);
+  border-radius:20px;
+  color:#3b2b00;
+}
+.ticket h1{
+  font-family:'Yesenia Script',cursive;
+  font-size:30px;
+  margin:0;
+}
+.use-btn{
+  margin-top:14px;
+  padding:10px 24px;
+  border:none;
+  border-radius:20px;
+  background:#3b2b00;
+  color:#fff2a8;
+}
+
+/* FINAL */
+.final{
+  display:none;
+}
+#photo{
+  width:100%;
+  max-width:320px;
+  border-radius:18px;
+  margin-top:20px;
+}
+.caption{
+  font-family:'Yesenia Script',cursive;
+  font-size:22px;
+  color:#ff4d4d;
+  margin-top:14px;
+}
+
+/* SCROLL WORDS */
+.end-box{
+  margin-top:20px;
+  max-height:180px;
+  overflow-y:auto;
+  padding:14px;
+  border:1px solid rgba(255,77,77,.4);
+  border-radius:14px;
+}
+.end-box p{
+  font-family:'Yesenia Script',cursive;
+  font-size:20px;
+  line-height:1.8;
+}
+.signature{
+  margin-top:14px;
+  font-family:'Yesenia Script',cursive;
+  font-size:24px;
+  color:#ff4d4d;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEARTS -->
 <script>
-/* SCRATCH MESSAGES – 10 CARDS */
+for(let i=0;i<15;i++){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(6+Math.random()*6)+"s";
+  document.body.appendChild(h);
+}
+</script>
+
+<div class="wrap">
+
+  <div id="scratchArea">
+    <h2>Scratch with Love ❤️</h2>
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <div class="ticket" id="ticket">
+    <h1>ENDLESS LOVE</h1>
+    <button class="use-btn" onclick="useTicket()">USE ME 💛</button>
+  </div>
+
+  <div class="final" id="final">
+    <audio id="music" src="song3.mp3" loop></audio>
+
+    <img id="photo" src="img1.jpg">
+    <div class="caption" id="caption"></div>
+
+    <div class="end-box">
+      <p>💖 If life gives me a thousand paths, I will still choose the one with you 🛤️</p>
+      <p>🌍 No matter how the world changes, my heart finds you ❤️</p>
+      <p>🎆 This year and every year, I choose you 💍</p>
+      <p>🥰 I love you always 💞</p>
+    </div>
+
+    <div class="signature">— by kannnukuniyal 💜</div>
+  </div>
+
+</div>
+
+<script>
 const messages=[
-  "You are my heartbeat ❤️",
-  "Forever us 💑",
-  "Love feels safe 🫶",
-  "My favorite person 💖",
-  "Always you 💍",
-  "Red hearts & promises ❤️",
-  "Still choosing you ✨",
-  "My calm 🌙",
-  "Endless love ♾️",
-  "Final surprise 💛"
+ "Heartbeat ❤️","Forever 💑","Safe love 🫶","My person 💖","Always 💍",
+ "Promises ❤️","Still you ✨","My calm 🌙","Endless ♾️","Final 💛"
 ];
 
 const grid=document.getElementById("grid");
 let cleared=0;
-const scratchSound=document.getElementById("scratchSound");
-const ding=document.getElementById("dingSound");
 
 messages.forEach(text=>{
   const card=document.createElement("div");
@@ -29,30 +211,46 @@ messages.forEach(text=>{
   const layer=document.createElement("div");
   layer.className="scratch";
 
-  let revealed = false;   // 🔒 IMPORTANT FLAG
-
-  function reveal(){
-    if(revealed) return;  // prevent double count
-    revealed = true;
-
-    layer.style.opacity="0";
-    scratchSound.currentTime=0;
-    scratchSound.volume=0.3;
-    scratchSound.play().catch(()=>{});
-
+  let done=false;
+  layer.addEventListener("pointerdown",()=>{
+    if(done) return;
+    done=true;
+    layer.style.opacity=0;
     cleared++;
-
-    if(cleared === messages.length){
-      ding.play().catch(()=>{});
+    if(cleared===messages.length){
       document.getElementById("ticket").style.display="block";
     }
-  }
-
-  /* ✅ USE POINTER EVENTS (BEST FOR MOBILE) */
-  layer.addEventListener("pointerdown", reveal);
+  });
 
   card.appendChild(msg);
   card.appendChild(layer);
   grid.appendChild(card);
 });
+
+function useTicket(){
+  document.getElementById("scratchArea").style.display="none";
+  document.getElementById("ticket").style.display="none";
+  document.getElementById("final").style.display="block";
+
+  const music=document.getElementById("music");
+  music.volume=0.35;
+  music.play();
+
+  const photos=[
+    {src:"img1.jpg",cap:"You are my calm ❤️"},
+    {src:"img2.jpg",cap:"Forever us 💑"},
+    {src:"img3.jpg",cap:"Endless love ♾️"}
+  ];
+
+  let i=0;
+  setInterval(()=>{
+    document.getElementById("photo").src=photos[i].src;
+    document.getElementById("caption").innerText=photos[i].cap;
+    i=(i+1)%photos.length;
+  },3500);
+}
 </script>
+
+</body>
+</html>
+
