@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Happy New Year My Love</title>
 
@@ -13,13 +12,11 @@ content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 html,body{
   margin:0;
   padding:0;
-  width:100%;
   height:100%;
-  overflow:hidden;
   font-family:'Poppins',sans-serif;
 }
 
-/* Baby blue background */
+/* background */
 body{
   background:linear-gradient(180deg,#eaf6ff,#d9f0ff,#eaf6ff);
   display:flex;
@@ -27,51 +24,44 @@ body{
   justify-content:center;
 }
 
-/* Floating doodles */
-.doodle{
-  position:fixed;
-  bottom:-20px;
-  font-size:18px;
-  opacity:0.35;
-  animation:floatUp linear infinite;
-}
-@keyframes floatUp{
-  to{transform:translateY(-120vh);}
-}
-
-/* Card */
+/* card */
 .card{
   width:94%;
   max-width:360px;
-  height:560px;
+  height:600px;
   background:#fff;
   border-radius:30px;
-  padding:26px 24px;
-  box-shadow:0 28px 50px rgba(80,160,255,.25);
+  padding:24px;
+  box-shadow:0 25px 45px rgba(80,160,255,.25);
   display:flex;
   flex-direction:column;
 }
 
+/* title */
 h1{
   font-family:'Pacifico',cursive;
-  font-size:34px;
+  font-size:32px;
   color:#4aa8ff;
   text-align:center;
+  margin-bottom:10px;
 }
 
+/* letter */
 .letter{
+  flex:1;
+  overflow-y:auto;
   font-family:'Yesenia Script',cursive;
   font-size:18px;
   line-height:2;
   color:#3d5f7a;
-  overflow-y:auto;
-  flex:1;
+  padding-right:6px;
 }
+.letter p{ margin-bottom:18px; }
 
-/* Continue button */
+/* continue button */
 .circle-btn{
-  width:92px;
-  height:92px;
+  width:90px;
+  height:90px;
   border-radius:50%;
   border:3px solid #6bbcff;
   margin:16px auto 0;
@@ -98,19 +88,6 @@ h1{
 
 <body>
 
-<!-- doodles -->
-<script>
-["💙","⭐"].forEach(()=>{});
-for(let i=0;i<20;i++){
-  const d=document.createElement("div");
-  d.className="doodle";
-  d.innerHTML=Math.random()>0.5?"💙":"⭐";
-  d.style.left=Math.random()*100+"vw";
-  d.style.animationDuration=(7+Math.random()*6)+"s";
-  document.body.appendChild(d);
-}
-</script>
-
 <!-- SONG 3 -->
 <audio id="bgMusic" src="song3.mp3" autoplay loop></audio>
 
@@ -118,19 +95,21 @@ for(let i=0;i<20;i++){
   <h1>Happy New Year, My Love 💙</h1>
 
   <div class="letter" id="letter">
-    💜 My love, as the clock strikes midnight 🕰️ and a new year unfolds 🎉,
-    my heart beats only for you ❤️. Every moment with you is a gift 🎁,
-    every memory a treasure 💎.<br><br>
+    <p>💜 My love, as the clock strikes midnight 🕰️ and a brand new year unfolds 🎉, my heart pauses for a moment — only to realize it beats for you ❤️.</p>
 
-    You’re my partner 👫, best friend 🤩, and soulmate ✨.
-    Here’s to new adventures 🚀, lazy mornings ☕, crazy nights 🌃,
-    and endless love 💖.<br><br>
+    <p>Every second with you feels special, every memory with you feels priceless 🎁💎. You walked into my life quietly, but you changed everything loudly.</p>
 
-    You make my world spin 🌎, and I promise to love you more
-    with each passing day 📆.<br><br>
+    <p>You are not just my partner 👫, you are my best friend 🤍, my comfort, my safe place, and my soulmate ✨.</p>
 
-    Cheers to more love, more fun 🎉,
-    and more of us 💕… forever and always 💖.
+    <p>Here’s to new adventures 🚀 we haven’t planned yet, lazy mornings ☕ where silence feels warm, crazy nights 🌃 filled with laughter, and an endless kind of love 💖 that grows stronger every day.</p>
+
+    <p>You make my world spin 🌎 in the most beautiful way, and I promise to love you a little more with each passing day 📆 — even on the hard days.</p>
+
+    <p>I love how we laugh 😂, dream big 🌈, support each other 🤝, and grow together. With you, love feels easy, natural, and real.</p>
+
+    <p>In this new year, I promise to hold you tighter 🫂, care for you deeper, and choose you — again and again 💍.</p>
+
+    <p>Cheers to us 🥂, to our dreams, to our forever 💫. Happy New Year, my love 🥰😘💞</p>
   </div>
 
   <div class="circle-btn" id="btn" onclick="goNext()">
@@ -147,11 +126,12 @@ setInterval(()=>{
   localStorage.setItem("songTime",music.currentTime);
 },500);
 
-// unlock button after scroll
+// enable button after full scroll
 const letter=document.getElementById("letter");
 const btn=document.getElementById("btn");
+
 letter.addEventListener("scroll",()=>{
-  if(letter.scrollTop+letter.clientHeight>=letter.scrollHeight-5){
+  if(letter.scrollTop + letter.clientHeight >= letter.scrollHeight - 5){
     btn.classList.add("active");
   }
 });
