@@ -9,66 +9,79 @@
 <style>
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: #000;
+  background: black;
   color: white;
-  overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
   text-align: center;
 }
 
-/* ---------- SCRATCH AREA ---------- */
-#scratchArea {
-  padding: 60px 20px;
+/* ---------- SCRATCH SECTION ---------- */
+#scratchSection {
+  padding: 40px 20px;
 }
 
-.scratch-card {
-  width: 120px;
-  height: 80px;
-  background: silver;
-  display: inline-flex;
+h2 {
+  font-family: 'Yesenia Script', cursive;
+  font-size: 38px;
+  margin-bottom: 20px;
+}
+
+/* Golden ticket container */
+#ticketWrapper {
+  position: relative;
+  width: 320px;
+  height: 180px;
+  margin: 30px auto;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* Golden ticket */
+#ticket {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #d4af37, #ffd700, #b8860b);
+  border-radius: 20px;
+  box-shadow: 0 0 35px rgba(255,215,0,0.7);
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 14px;
-  color: transparent;
-}
-
-.scratch-card.revealed {
-  background: #222;
-  color: #ff8fc7;
-}
-
-/* ---------- GOLDEN TICKET ---------- */
-#ticket {
-  display: none;
-  margin: 50px auto;
-  padding: 40px 20px;
-  max-width: 320px;
-  background: linear-gradient(135deg, #d4af37, #ffd700, #b8860b);
   color: #3b2b00;
-  border-radius: 20px;
-  box-shadow: 0 0 30px rgba(255,215,0,0.6);
 }
 
 #ticket h1 {
   font-family: 'Yesenia Script', cursive;
   font-size: 36px;
+  margin: 0;
 }
 
+#ticket p {
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+/* Scratch canvas */
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* USE ME button */
 #useBtn {
-  margin-top: 20px;
-  padding: 12px 30px;
+  margin-top: 25px;
+  padding: 12px 32px;
+  border-radius: 30px;
   border: none;
-  border-radius: 25px;
-  font-size: 16px;
   cursor: pointer;
+  font-size: 16px;
   background: #3b2b00;
   color: gold;
+  display: none;
 }
 
-/* ---------- FINAL LOVE EXPERIENCE ---------- */
+/* ---------- FINAL EXPERIENCE ---------- */
 #finalArea {
   display: none;
   padding: 40px 20px;
@@ -76,15 +89,15 @@ body {
 
 #photo {
   width: 80%;
-  max-width: 320px;
+  max-width: 340px;
   border-radius: 20px;
-  box-shadow: 0 0 25px rgba(255,0,150,0.4);
+  box-shadow: 0 0 30px rgba(255,0,150,0.4);
 }
 
 #caption {
   margin-top: 20px;
   font-family: 'Yesenia Script', cursive;
-  font-size: 24px;
+  font-size: 26px;
   color: #f6b3c6;
   display: none;
 }
@@ -100,16 +113,17 @@ body {
 <body>
 
 <!-- 🎟️ SCRATCH SECTION -->
-<div id="scratchArea">
-  <h2>Scratch and Find Your Surprise 💜</h2>
+<div id="scratchSection">
+  <h2>Scratch to Reveal Your Surprise 💜</h2>
 
-  <div id="cards"></div>
-</div>
+  <div id="ticketWrapper">
+    <div id="ticket">
+      <h1>ENDLESS LOVE</h1>
+      <p>GOLDEN TICKET</p>
+    </div>
+    <canvas id="scratchCanvas"></canvas>
+  </div>
 
-<!-- 🎫 GOLDEN TICKET -->
-<div id="ticket">
-  <h1>ENDLESS LOVE</h1>
-  <p>GOLDEN TICKET</p>
   <button id="useBtn">USE ME 💛</button>
 </div>
 
@@ -128,37 +142,76 @@ body {
 </div>
 
 <script>
-/* ---------- SCRATCH LOGIC ---------- */
-const cardContainer = document.getElementById("cards");
-let revealCount = 0;
+/* ---------- CANVAS SCRATCH ---------- */
+const canvas = document.getElementById("scratchCanvas");
+const ctx = canvas.getContext("2d");
+const wrapper = document.getElementById("ticketWrapper");
+canvas.width = wrapper.offsetWidth;
+canvas.height = wrapper.offsetHeight;
 
-for (let i = 0; i < 8; i++) {
-  const card = document.createElement("div");
-  card.className = "scratch-card";
-  card.innerText = i === 7 ? "🎫" : "💜";
-  card.onclick = () => {
-    if (!card.classList.contains("revealed")) {
-      card.classList.add("revealed");
-      revealCount++;
-      if (i === 7) {
-        document.getElementById("ticket").style.display = "block";
-      }
-    }
+/* Draw scratch layer */
+ctx.fillStyle = "#b5b5b5";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+ctx.globalCompositeOperation = "destination-out";
+
+let scratching = false;
+
+function getPos(e) {
+  const rect = canvas.getBoundingClientRect();
+  if (e.touches) {
+    return {
+      x: e.touches[0].clientX - rect.left,
+      y: e.touches[0].clientY - rect.top
+    };
+  }
+  return {
+    x: e.clientX - rect.left,
+    y: e.clientY - rect.top
   };
-  cardContainer.appendChild(card);
+}
+
+function scratch(e) {
+  if (!scratching) return;
+  const pos = getPos(e);
+  ctx.beginPath();
+  ctx.arc(pos.x, pos.y, 18, 0, Math.PI * 2);
+  ctx.fill();
+  checkScratchPercent();
+}
+
+canvas.addEventListener("mousedown", () => scratching = true);
+canvas.addEventListener("mouseup", () => scratching = false);
+canvas.addEventListener("mousemove", scratch);
+
+canvas.addEventListener("touchstart", () => scratching = true);
+canvas.addEventListener("touchend", () => scratching = false);
+canvas.addEventListener("touchmove", scratch);
+
+/* Check scratch completion */
+function checkScratchPercent() {
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+  let cleared = 0;
+  for (let i = 3; i < imageData.length; i += 4) {
+    if (imageData[i] === 0) cleared++;
+  }
+  const percent = (cleared / (canvas.width * canvas.height)) * 100;
+  if (percent > 80) {
+    canvas.style.display = "none";
+    document.getElementById("useBtn").style.display = "inline-block";
+  }
 }
 
 /* ---------- USE ME ---------- */
 document.getElementById("useBtn").onclick = () => {
-  document.getElementById("scratchArea").style.display = "none";
-  document.getElementById("ticket").style.display = "none";
+  document.getElementById("scratchSection").style.display = "none";
   document.getElementById("finalArea").style.display = "block";
 
-  document.getElementById("music").play();
+  const music = document.getElementById("music");
+  music.play().catch(()=>{});
   startPhotos();
 };
 
-/* ---------- FINAL PHOTOS ---------- */
+/* ---------- FINAL PHOTO EXPERIENCE ---------- */
 const photos = [
   {src:"img1.jpg", text:"You are my calm in every chaos."},
   {src:"img2.jpg", text:"With you, time feels gentle."},
@@ -175,7 +228,6 @@ const cap = document.getElementById("caption");
 function startPhotos() {
   interval = setInterval(() => {
     img.src = photos[index].src;
-    cap.innerText = "";
     cap.style.display = "none";
     index = (index + 1) % photos.length;
   }, 4000);
