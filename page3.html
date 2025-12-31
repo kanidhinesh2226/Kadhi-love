@@ -15,16 +15,23 @@ html,body{
   background:#000;
   color:#fff;
   font-family:'Poppins',sans-serif;
+  overflow-x:hidden;
 }
 
-/* hearts */
+/* ❤️❤️ HEAVY HEART FLOAT */
 .heart{
   position:fixed;
-  bottom:-20px;
-  color:red;
-  animation:float 8s linear infinite;
+  bottom:-30px;
+  font-size:20px;
+  color:#ff2b2b;
+  opacity:.7;
+  animation:float linear infinite;
+  pointer-events:none;
 }
-@keyframes float{to{transform:translateY(-120vh);}}
+@keyframes float{
+  from{transform:translateY(0) scale(.8);}
+  to{transform:translateY(-130vh) scale(1.2);}
+}
 
 /* layout */
 .wrap{
@@ -32,7 +39,7 @@ html,body{
   max-width:380px;
   margin:auto;
   text-align:center;
-  padding-bottom:40px;
+  padding-bottom:50px;
 }
 
 /* scratch */
@@ -46,6 +53,7 @@ html,body{
   background:#222;
   border-radius:14px;
   position:relative;
+  overflow:hidden;
 }
 .msg{
   position:absolute;
@@ -55,64 +63,95 @@ html,body{
   justify-content:center;
   font-family:'Yesenia Script',cursive;
   color:#ff4d4d;
+  font-size:14px;
+  text-align:center;
+  padding:4px;
 }
 .scratch{
   position:absolute;
   inset:0;
-  background:linear-gradient(135deg,#666,#333);
+  background:linear-gradient(135deg,#777,#333);
 }
 
-/* ticket */
+/* golden ticket */
 .ticket{
   display:none;
-  margin:20px auto;
-  padding:20px;
-  background:gold;
-  border-radius:20px;
-  color:#333;
+  margin:26px auto;
+  padding:24px;
+  background:linear-gradient(135deg,#d4af37,#fff2a8,#b8962e);
+  border-radius:24px;
+  color:#3b2b00;
+  box-shadow:0 0 40px rgba(212,175,55,.9);
+}
+.ticket h1{
+  font-family:'Yesenia Script',cursive;
+  font-size:32px;
+}
+.use-btn{
+  margin-top:16px;
+  padding:12px 30px;
+  border:none;
+  border-radius:24px;
+  background:#3b2b00;
+  color:#fff2a8;
+  font-size:15px;
 }
 
-/* slider */
-.final{ display:none; }
+/* final slider */
+.final{
+  display:none;
+}
 .slider img{
   width:100%;
-  border-radius:16px;
+  border-radius:18px;
+  margin-top:20px;
 }
 .caption{
   font-family:'Yesenia Script',cursive;
   font-size:22px;
   color:#ff4d4d;
+  margin-top:10px;
 }
 </style>
 </head>
 
 <body>
 
+<!-- ❤️ MASSIVE HEART FLOAT -->
 <script>
-for(let i=0;i<15;i++){
+for(let i=0;i<40;i++){
   const h=document.createElement("div");
   h.className="heart";
   h.innerHTML="❤";
   h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(14+Math.random()*16)+"px";
+  h.style.animationDuration=(5+Math.random()*7)+"s";
+  h.style.opacity=(0.4+Math.random()*0.6);
   document.body.appendChild(h);
 }
 </script>
 
+<!-- AUDIO -->
 <audio id="bgMusic" src="song3.mp3" loop></audio>
 <audio id="scratchSound" src="scratch.mp3"></audio>
 <audio id="dingSound" src="ding.mp3"></audio>
 
 <div class="wrap">
 
-<h2 style="font-family:'Yesenia Script',cursive;color:#ff4d4d">Scratch with Love ❤️</h2>
+<h2 style="font-family:'Yesenia Script',cursive;color:#ff4d4d">
+Scratch with Love ❤️
+</h2>
 
+<!-- SCRATCH AREA -->
 <div id="scratchArea" class="grid"></div>
 
+<!-- GOLDEN TICKET -->
 <div class="ticket" id="ticket">
   <h1>ENDLESS LOVE</h1>
-  <button onclick="openFinal()">USE ME 💛</button>
+  <button class="use-btn" onclick="showFinal()">USE ME 💛</button>
 </div>
 
+<!-- FINAL PICS -->
 <div class="final" id="final">
   <div class="slider">
     <img id="slideImg" src="img1.jpg">
@@ -123,26 +162,33 @@ for(let i=0;i<15;i++){
 </div>
 
 <script>
+/* resume song */
 const bgMusic=document.getElementById("bgMusic");
 bgMusic.volume=0.35;
 const saved=localStorage.getItem("songTime");
 if(saved) bgMusic.currentTime=parseFloat(saved);
-bgMusic.play();
+bgMusic.play().catch(()=>{});
 
-const words=[
- "Heartbeat ❤️","Forever 💑","Safe love 🫶","My person 💖","Always 💍",
+const scratchSound=document.getElementById("scratchSound");
+const dingSound=document.getElementById("dingSound");
+
+/* scratch messages */
+const texts=[
+ "You are my heartbeat ❤️","Forever us 💑","Safe love 🫶","My person 💖","Always you 💍",
  "Promises ✨","My calm 🌙","Endless ♾️","Still choosing ❤️","Final 💛"
 ];
 
-const scratchArea=document.getElementById("scratchArea");
+const area=document.getElementById("scratchArea");
 let count=0;
 
-words.forEach(text=>{
+texts.forEach(t=>{
   const c=document.createElement("div");
   c.className="card";
+
   const m=document.createElement("div");
   m.className="msg";
-  m.innerText=text;
+  m.innerText=t;
+
   const s=document.createElement("div");
   s.className="scratch";
 
@@ -150,12 +196,16 @@ words.forEach(text=>{
   s.addEventListener("pointerdown",()=>{
     if(done) return;
     done=true;
+
     bgMusic.volume=0.15;
-    document.getElementById("scratchSound").play();
+    scratchSound.currentTime=0;
+    scratchSound.play().catch(()=>{});
+
     s.style.opacity=0;
     count++;
+
     if(count===10){
-      document.getElementById("dingSound").play();
+      dingSound.play().catch(()=>{});
       bgMusic.volume=0.35;
       document.getElementById("ticket").style.display="block";
     }
@@ -163,9 +213,10 @@ words.forEach(text=>{
 
   c.appendChild(m);
   c.appendChild(s);
-  scratchArea.appendChild(c);
+  area.appendChild(c);
 });
 
+/* FINAL SHOW */
 const images=[
  {src:"img1.jpg",cap:"With you, love feels calm ❤️"},
  {src:"img2.jpg",cap:"Forever starts with us 💑"},
@@ -175,11 +226,14 @@ const images=[
 ];
 let i=0;
 
-function openFinal(){
+function showFinal(){
   document.getElementById("scratchArea").style.display="none";
   document.getElementById("ticket").style.display="none";
   document.getElementById("final").style.display="block";
+  startSlider();
+}
 
+function startSlider(){
   const img=document.getElementById("slideImg");
   const cap=document.getElementById("caption");
   cap.innerText=images[0].cap;
@@ -188,7 +242,7 @@ function openFinal(){
     i=(i+1)%images.length;
     img.src=images[i].src;
     cap.innerText=images[i].cap;
-  },3000);
+  },3200);
 }
 </script>
 
