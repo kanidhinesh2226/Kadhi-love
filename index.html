@@ -11,137 +11,137 @@ content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-/* 🔒 HARD MOBILE FIX */
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  -webkit-text-size-adjust: 100%;
-  touch-action: manipulation;
-  font-family: 'Poppins', sans-serif;
+/* ===== STABILITY FIX ===== */
+html, body{
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  -webkit-text-size-adjust:100%;
+  font-family:'Poppins',sans-serif;
 }
 
-/* USE STABLE VIEWPORT HEIGHT */
-body {
-  min-height: 100svh;
-  background: radial-gradient(circle at top, #ff4d88, #7a003c);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
+/* ===== BLACK BACKGROUND ===== */
+body{
+  min-height:100svh;
+  background:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
 }
 
-/* CENTER CONTENT */
-.container {
-  text-align: center;
-  padding: 16px;
+/* ===== RED HEART FLOW ===== */
+.flow-heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:18px;
+  color:#ff2b2b;
+  opacity:0.6;
+  pointer-events:none;
+  animation:floatUp linear infinite;
 }
 
-/* TITLE */
-h1 {
-  font-family: 'Pacifico', cursive;
-  font-size: 40px;
-  margin: 0 0 10px;
+@keyframes floatUp{
+  from{transform:translateY(0);}
+  to{transform:translateY(-120svh);}
 }
 
-.subtitle {
-  font-size: 14px;
-  opacity: 0.9;
-  margin-bottom: 32px;
+/* ===== CENTER CONTENT ===== */
+.container{
+  text-align:center;
+  z-index:2;
+  padding:16px;
 }
 
-/* ❤️ CIRCLE BUTTON */
-.circle-btn {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  border: 3px solid rgba(255,255,255,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  position: relative;
-  cursor: pointer;
+/* ===== TITLE ===== */
+h1{
+  font-family:'Pacifico',cursive;
+  font-size:40px;
+  margin-bottom:10px;
+  color:#ff4d4d;
 }
 
-.heart {
-  font-size: 32px;
-  animation: pulse 1.3s infinite;
+.sub{
+  font-size:14px;
+  opacity:0.85;
+  margin-bottom:32px;
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.12); }
-  100% { transform: scale(1); }
+/* ===== CIRCLE HEART BUTTON ===== */
+.circle-btn{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  border:3px solid rgba(255,77,77,0.7);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:auto;
+  position:relative;
+  cursor:pointer;
 }
 
-/* PROGRESS RING */
-.progress {
-  position: absolute;
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  border: 3px solid transparent;
-  border-top: 3px solid #fff;
-  display: none;
-  animation: spin 2s linear forwards;
+.heart{
+  font-size:34px;
+  animation:pulse 1.3s infinite;
+}
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.15);}
+  100%{transform:scale(1);}
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
+/* ===== PROGRESS RING ===== */
+.progress{
+  position:absolute;
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  border:3px solid transparent;
+  border-top:3px solid #ff4d4d;
+  display:none;
+  animation:spin 2.2s linear forwards;
 }
-
-/* FLOATING HEARTS – DOES NOT AFFECT LAYOUT */
-.float {
-  position: fixed;
-  bottom: -20px;
-  font-size: 18px;
-  opacity: 0.55;
-  pointer-events: none;
-  animation: floatUp linear infinite;
-}
-
-@keyframes floatUp {
-  from { transform: translateY(0); }
-  to { transform: translateY(-120svh); }
+@keyframes spin{
+  to{transform:rotate(360deg);}
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-  <h1>Wishes My Love 💜</h1>
-  <div class="subtitle">tap the heart</div>
+<!-- ❤️ RED HEART FLOW -->
+<script>
+for(let i=0;i<18;i++){
+  const h=document.createElement("div");
+  h.className="flow-heart";
+  h.innerHTML="❤";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(6+Math.random()*6)+"s";
+  h.style.animationDelay=Math.random()*5+"s";
+  document.body.appendChild(h);
+}
+</script>
 
-  <div class="circle-btn" onclick="openLove()">
+<div class="container">
+  <h1>Wishes My Love ❤️</h1>
+  <div class="sub">tap the heart</div>
+
+  <div class="circle-btn" onclick="openNext()">
     <div class="progress" id="progress"></div>
     <div class="heart">❤️</div>
   </div>
 </div>
 
 <script>
-/* FLOATING HEARTS – SAFE */
-for (let i = 0; i < 14; i++) {
-  const h = document.createElement("div");
-  h.className = "float";
-  h.innerHTML = "❤";
-  h.style.left = Math.random() * 100 + "vw";
-  h.style.animationDuration = (7 + Math.random() * 6) + "s";
-  h.style.animationDelay = Math.random() * 4 + "s";
-  document.body.appendChild(h);
-}
-
-/* OPEN */
-function openLove() {
-  const p = document.getElementById("progress");
-  p.style.display = "block";
-
-  setTimeout(() => {
-    window.location.href = "page2.html";
-  }, 2000);
+function openNext(){
+  const p=document.getElementById("progress");
+  p.style.display="block";
+  setTimeout(()=>{
+    window.location.href="page2.html";
+  },2200);
 }
 </script>
 
