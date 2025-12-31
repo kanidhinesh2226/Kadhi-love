@@ -10,15 +10,15 @@ content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 <link href="https://fonts.googleapis.com/css2?family=Yesenia+Script&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
+/* ===== GLOBAL ===== */
 html,body{
   margin:0;
   padding:0;
   width:100%;
   height:100%;
-  overflow:hidden;
   background:#000;
-  font-family:'Poppins',sans-serif;
   color:#fff;
+  font-family:'Poppins',sans-serif;
 }
 
 /* ❤️ HEART FLOW */
@@ -27,7 +27,7 @@ html,body{
   bottom:-20px;
   font-size:18px;
   color:#ff2b2b;
-  opacity:0.6;
+  opacity:.6;
   pointer-events:none;
   animation:float 8s linear infinite;
 }
@@ -36,12 +36,15 @@ html,body{
   to{transform:translateY(-120vh);}
 }
 
-/* MAIN */
+/* MAIN WRAP */
 .wrap{
   width:94%;
   max-width:380px;
-  margin:auto;
+  margin:0 auto;
   text-align:center;
+  position:relative;
+  z-index:2;
+  padding-bottom:40px;
 }
 
 /* TITLE */
@@ -87,11 +90,12 @@ h2{
 /* GOLDEN TICKET */
 .ticket{
   display:none;
-  margin-top:30px;
+  margin:24px auto 0;
   padding:20px;
   background:linear-gradient(135deg,#d4af37,#fff2a8,#b8962e);
-  border-radius:20px;
+  border-radius:22px;
   color:#3b2b00;
+  width:90%;
 }
 .ticket h1{
   font-family:'Yesenia Script',cursive;
@@ -100,46 +104,50 @@ h2{
 }
 .use-btn{
   margin-top:14px;
-  padding:10px 24px;
+  padding:10px 26px;
   border:none;
   border-radius:20px;
   background:#3b2b00;
   color:#fff2a8;
+  font-size:14px;
 }
 
-/* FINAL */
+/* FINAL PAGE (SCROLL ENABLED) */
 .final{
   display:none;
-}
-#photo{
-  width:100%;
-  max-width:320px;
-  border-radius:18px;
   margin-top:20px;
 }
+
+/* IMAGE + CAPTION */
+.photo{
+  width:100%;
+  border-radius:16px;
+  margin-top:20px;
+}
+
 .caption{
   font-family:'Yesenia Script',cursive;
   font-size:22px;
   color:#ff4d4d;
-  margin-top:14px;
+  margin:10px 0 6px;
 }
 
-/* SCROLL WORDS */
-.end-box{
-  margin-top:20px;
-  max-height:180px;
-  overflow-y:auto;
-  padding:14px;
+/* WORDINGS */
+.words{
+  padding:16px;
   border:1px solid rgba(255,77,77,.4);
   border-radius:14px;
+  margin-top:20px;
 }
-.end-box p{
+.words p{
   font-family:'Yesenia Script',cursive;
   font-size:20px;
   line-height:1.8;
+  margin-bottom:14px;
 }
+
 .signature{
-  margin-top:14px;
+  margin-top:18px;
   font-family:'Yesenia Script',cursive;
   font-size:24px;
   color:#ff4d4d;
@@ -149,7 +157,7 @@ h2{
 
 <body>
 
-<!-- HEARTS -->
+<!-- HEART FLOW -->
 <script>
 for(let i=0;i<15;i++){
   const h=document.createElement("div");
@@ -163,71 +171,83 @@ for(let i=0;i<15;i++){
 
 <div class="wrap">
 
-  <div id="scratchArea">
-    <h2>Scratch with Love ❤️</h2>
-    <div class="grid" id="grid"></div>
+<!-- SCRATCH AREA -->
+<div id="scratchArea">
+  <h2>Scratch with Love ❤️</h2>
+  <div class="grid" id="grid"></div>
+</div>
+
+<!-- GOLDEN TICKET -->
+<div class="ticket" id="ticket">
+  <h1>ENDLESS LOVE</h1>
+  <button class="use-btn" onclick="openFinal()">USE ME 💛</button>
+</div>
+
+<!-- FINAL SCROLL PAGE -->
+<div class="final" id="final">
+  <audio id="music" src="song3.mp3" loop></audio>
+
+  <img src="img1.jpg" class="photo">
+  <div class="caption">With you, love feels calm and safe ❤️</div>
+
+  <img src="img2.jpg" class="photo">
+  <div class="caption">Forever starts with us 💑</div>
+
+  <img src="img3.jpg" class="photo">
+  <div class="caption">Red hearts, real love ❤️</div>
+
+  <img src="img4.jpg" class="photo">
+  <div class="caption">Still choosing you every day ✨</div>
+
+  <img src="img5.jpg" class="photo">
+  <div class="caption">Endless love, always ♾️</div>
+
+  <div class="words">
+    <p>💖 If life gives me a thousand paths, I will still choose the one with you.</p>
+    <p>🌍 No matter how the world changes, my heart will always find its way back to you.</p>
+    <p>🎆 This new year and every year, I choose you.</p>
+    <p>🥰 I love you, forever and always 💞</p>
   </div>
 
-  <div class="ticket" id="ticket">
-    <h1>ENDLESS LOVE</h1>
-    <button class="use-btn" onclick="useTicket()">USE ME 💛</button>
-  </div>
-
-  <div class="final" id="final">
-    <audio id="music" src="song3.mp3" loop></audio>
-
-    <img id="photo" src="img1.jpg">
-    <div class="caption" id="caption"></div>
-
-    <div class="end-box">
-      <p>💖 If life gives me a thousand paths, I will still choose the one with you 🛤️</p>
-      <p>🌍 No matter how the world changes, my heart finds you ❤️</p>
-      <p>🎆 This year and every year, I choose you 💍</p>
-      <p>🥰 I love you always 💞</p>
-    </div>
-
-    <div class="signature">— by kannnukuniyal 💜</div>
-  </div>
+  <div class="signature">— by kannnukuniyal 💜</div>
+</div>
 
 </div>
 
 <script>
-const messages=[
- "Heartbeat ❤️","Forever 💑","Safe love 🫶","My person 💖","Always 💍",
- "Promises ❤️","Still you ✨","My calm 🌙","Endless ♾️","Final 💛"
-];
-
+/* SCRATCH LOGIC – EXACT 10 */
 const grid=document.getElementById("grid");
-let cleared=0;
+let count=0;
 
-messages.forEach(text=>{
-  const card=document.createElement("div");
-  card.className="card";
+for(let i=0;i<10;i++){
+  const c=document.createElement("div");
+  c.className="card";
 
-  const msg=document.createElement("div");
-  msg.className="msg";
-  msg.innerText=text;
+  const m=document.createElement("div");
+  m.className="msg";
+  m.innerText="💖";
 
-  const layer=document.createElement("div");
-  layer.className="scratch";
+  const s=document.createElement("div");
+  s.className="scratch";
 
   let done=false;
-  layer.addEventListener("pointerdown",()=>{
+  s.addEventListener("pointerdown",()=>{
     if(done) return;
     done=true;
-    layer.style.opacity=0;
-    cleared++;
-    if(cleared===messages.length){
+    s.style.opacity=0;
+    count++;
+    if(count===10){
       document.getElementById("ticket").style.display="block";
     }
   });
 
-  card.appendChild(msg);
-  card.appendChild(layer);
-  grid.appendChild(card);
-});
+  c.appendChild(m);
+  c.appendChild(s);
+  grid.appendChild(c);
+}
 
-function useTicket(){
+/* OPEN FINAL */
+function openFinal(){
   document.getElementById("scratchArea").style.display="none";
   document.getElementById("ticket").style.display="none";
   document.getElementById("final").style.display="block";
@@ -235,22 +255,8 @@ function useTicket(){
   const music=document.getElementById("music");
   music.volume=0.35;
   music.play();
-
-  const photos=[
-    {src:"img1.jpg",cap:"You are my calm ❤️"},
-    {src:"img2.jpg",cap:"Forever us 💑"},
-    {src:"img3.jpg",cap:"Endless love ♾️"}
-  ];
-
-  let i=0;
-  setInterval(()=>{
-    document.getElementById("photo").src=photos[i].src;
-    document.getElementById("caption").innerText=photos[i].cap;
-    i=(i+1)%photos.length;
-  },3500);
 }
 </script>
 
 </body>
 </html>
-
