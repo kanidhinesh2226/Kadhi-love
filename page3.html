@@ -2,15 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <title>Endless Love</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Yesenia+Script&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-/* ===== GLOBAL ===== */
 html,body{
   margin:0;
   padding:0;
@@ -32,18 +30,15 @@ html,body{
   animation:float 8s linear infinite;
 }
 @keyframes float{
-  from{transform:translateY(0);}
   to{transform:translateY(-120vh);}
 }
 
-/* MAIN WRAP */
+/* MAIN */
 .wrap{
   width:94%;
   max-width:380px;
-  margin:0 auto;
+  margin:auto;
   text-align:center;
-  position:relative;
-  z-index:2;
   padding-bottom:40px;
 }
 
@@ -77,8 +72,10 @@ h2{
   align-items:center;
   justify-content:center;
   font-family:'Yesenia Script',cursive;
-  font-size:15px;
+  font-size:14px;
   color:#ff4d4d;
+  text-align:center;
+  padding:4px;
 }
 
 .scratch{
@@ -90,54 +87,51 @@ h2{
 /* GOLDEN TICKET */
 .ticket{
   display:none;
-  margin:24px auto 0;
+  margin:24px auto;
   padding:20px;
   background:linear-gradient(135deg,#d4af37,#fff2a8,#b8962e);
   border-radius:22px;
   color:#3b2b00;
-  width:90%;
 }
 .ticket h1{
   font-family:'Yesenia Script',cursive;
   font-size:30px;
-  margin:0;
 }
 .use-btn{
-  margin-top:14px;
+  margin-top:12px;
   padding:10px 26px;
   border:none;
   border-radius:20px;
   background:#3b2b00;
   color:#fff2a8;
-  font-size:14px;
 }
 
-/* FINAL PAGE (SCROLL ENABLED) */
+/* FINAL SECTION */
 .final{
   display:none;
-  margin-top:20px;
 }
 
-/* IMAGE + CAPTION */
-.photo{
+/* IMAGE SLIDER */
+.slider{
+  margin-top:20px;
+}
+.slider img{
   width:100%;
   border-radius:16px;
-  margin-top:20px;
 }
-
 .caption{
   font-family:'Yesenia Script',cursive;
   font-size:22px;
   color:#ff4d4d;
-  margin:10px 0 6px;
+  margin-top:10px;
 }
 
-/* WORDINGS */
+/* WORDS */
 .words{
+  margin-top:20px;
   padding:16px;
   border:1px solid rgba(255,77,77,.4);
   border-radius:14px;
-  margin-top:20px;
 }
 .words p{
   font-family:'Yesenia Script',cursive;
@@ -171,42 +165,32 @@ for(let i=0;i<15;i++){
 
 <div class="wrap">
 
-<!-- SCRATCH AREA -->
+<!-- SCRATCH -->
 <div id="scratchArea">
   <h2>Scratch with Love ❤️</h2>
   <div class="grid" id="grid"></div>
 </div>
 
-<!-- GOLDEN TICKET -->
+<!-- TICKET -->
 <div class="ticket" id="ticket">
   <h1>ENDLESS LOVE</h1>
   <button class="use-btn" onclick="openFinal()">USE ME 💛</button>
 </div>
 
-<!-- FINAL SCROLL PAGE -->
+<!-- FINAL -->
 <div class="final" id="final">
   <audio id="music" src="song3.mp3" loop></audio>
 
-  <img src="img1.jpg" class="photo">
-  <div class="caption">With you, love feels calm and safe ❤️</div>
-
-  <img src="img2.jpg" class="photo">
-  <div class="caption">Forever starts with us 💑</div>
-
-  <img src="img3.jpg" class="photo">
-  <div class="caption">Red hearts, real love ❤️</div>
-
-  <img src="img4.jpg" class="photo">
-  <div class="caption">Still choosing you every day ✨</div>
-
-  <img src="img5.jpg" class="photo">
-  <div class="caption">Endless love, always ♾️</div>
+  <div class="slider">
+    <img id="slideImg" src="img1.jpg">
+    <div class="caption" id="caption"></div>
+  </div>
 
   <div class="words">
     <p>💖 If life gives me a thousand paths, I will still choose the one with you.</p>
     <p>🌍 No matter how the world changes, my heart will always find its way back to you.</p>
     <p>🎆 This new year and every year, I choose you.</p>
-    <p>🥰 I love you, forever and always 💞</p>
+    <p>🥰 I love you forever 💞</p>
   </div>
 
   <div class="signature">— by kannnukuniyal 💜</div>
@@ -215,17 +199,30 @@ for(let i=0;i<15;i++){
 </div>
 
 <script>
-/* SCRATCH LOGIC – EXACT 10 */
+/* SCRATCH WORDINGS (10) */
+const scratchTexts=[
+ "You are my heartbeat ❤️",
+ "Forever with you 💑",
+ "Love feels safe 🫶",
+ "My favorite person 💖",
+ "Always you 💍",
+ "Promises of love ✨",
+ "My calm 🌙",
+ "Endless love ♾️",
+ "Still choosing you ❤️",
+ "Final surprise 💛"
+];
+
 const grid=document.getElementById("grid");
 let count=0;
 
-for(let i=0;i<10;i++){
+scratchTexts.forEach(text=>{
   const c=document.createElement("div");
   c.className="card";
 
   const m=document.createElement("div");
   m.className="msg";
-  m.innerText="💖";
+  m.innerText=text;
 
   const s=document.createElement("div");
   s.className="scratch";
@@ -244,7 +241,7 @@ for(let i=0;i<10;i++){
   c.appendChild(m);
   c.appendChild(s);
   grid.appendChild(c);
-}
+});
 
 /* OPEN FINAL */
 function openFinal(){
@@ -252,9 +249,33 @@ function openFinal(){
   document.getElementById("ticket").style.display="none";
   document.getElementById("final").style.display="block";
 
-  const music=document.getElementById("music");
-  music.volume=0.35;
-  music.play();
+  document.getElementById("music").volume=0.35;
+  document.getElementById("music").play();
+
+  startSlider();
+}
+
+/* AUTO IMAGE SLIDER (5 IMAGES) */
+const images=[
+ {src:"img1.jpg",cap:"With you, love feels calm ❤️"},
+ {src:"img2.jpg",cap:"Forever starts with us 💑"},
+ {src:"img3.jpg",cap:"Red hearts, real love ❤️"},
+ {src:"img4.jpg",cap:"Still choosing you ✨"},
+ {src:"img5.jpg",cap:"Endless love ♾️"}
+];
+
+let idx=0;
+function startSlider(){
+  const img=document.getElementById("slideImg");
+  const cap=document.getElementById("caption");
+
+  cap.innerText=images[0].cap;
+
+  setInterval(()=>{
+    idx=(idx+1)%images.length;
+    img.src=images[idx].src;
+    cap.innerText=images[idx].cap;
+  },3500);
 }
 </script>
 
