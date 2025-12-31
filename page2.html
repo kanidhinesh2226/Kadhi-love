@@ -4,144 +4,130 @@
 <meta charset="UTF-8">
 <title>New Year Wishes</title>
 
-<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Yesenia+Script&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: linear-gradient(180deg, #000000, #0b0014);
-  color: white;
-  font-family: 'Poppins', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow-x: hidden;
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(135deg,#1a001f,#3a003d);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:'Poppins',sans-serif;
+  overflow:hidden;
 }
 
-/* Greeting card */
-.card {
-  max-width: 700px;
-  padding: 50px 30px 60px;
-  background: rgba(255,255,255,0.05);
-  border-radius: 20px;
-  box-shadow: 0 0 40px rgba(255, 0, 120, 0.2);
-  text-align: center;
+/* Card container */
+.book{
+  width:320px;
+  height:420px;
+  perspective:1200px;
 }
 
-/* Heading */
-.card h1 {
-  font-family: 'Yesenia Script', cursive;
-  font-size: 56px;
-  margin-bottom: 10px;
+/* Cover */
+.cover{
+  width:100%;
+  height:100%;
+  background:linear-gradient(135deg,#ff5fa2,#b4006d);
+  border-radius:16px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  font-family:'Yesenia Script',cursive;
+  font-size:42px;
+  cursor:pointer;
+  transform-origin:left;
+  transition:transform 1.2s ease;
+  position:absolute;
+  z-index:2;
 }
 
-.card h2 {
-  font-size: 16px;
-  font-weight: 300;
-  color: #ccc;
-  margin-bottom: 40px;
+/* Inside page */
+.page{
+  width:100%;
+  height:100%;
+  background:#fff;
+  border-radius:16px;
+  padding:25px;
+  box-sizing:border-box;
+  color:#333;
+  font-family:'Yesenia Script',cursive;
+  font-size:20px;
+  line-height:1.8;
+  position:absolute;
+  z-index:1;
 }
 
-/* Main paragraph */
-.card p {
-  font-family: 'Yesenia Script', cursive;
-  font-size: 22px;
-  line-height: 2;
-  color: #f5f5f5;
+/* Continue button */
+.continue{
+  margin-top:20px;
+  text-align:center;
 }
-
-/* Continue section */
-.continue-area {
-  margin-top: 50px;
-  display: flex;
-  justify-content: center;
+.circle{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  border:3px solid #ff5fa2;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  position:relative;
 }
-
-/* Circle button */
-.circle-btn {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 4px solid rgba(255,255,255,0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  position: relative;
+.ring{
+  position:absolute;
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  border:3px solid transparent;
+  border-top:3px solid #ff5fa2;
+  display:none;
+  animation:spin 2s linear forwards;
 }
-
-/* Progress ring */
-.progress-ring {
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 4px solid transparent;
-  border-top: 4px solid #ff5fa2;
-  animation: none;
-}
-
-/* Heart */
-.heart {
-  font-size: 32px;
-  color: #ff5fa2;
-  animation: pulse 1.2s infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.15); }
-  100% { transform: scale(1); }
-}
-
-/* Circle fill animation */
-@keyframes fillCircle {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+@keyframes spin{
+  to{transform:rotate(360deg);}
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
-  <h1>New Year Wishes 💜</h1>
-  <h2>Just something from my heart to yours</h2>
+<div class="book">
+  <div class="cover" onclick="openCard()">New Year Wishes 💜</div>
 
-  <p>
-    A new year begins quietly, without asking us what we are ready for,
-    yet it arrives carrying hope, change, and unseen possibilities.
-    As time turns another page, I find myself grateful for the moments
-    that shaped me, the lessons that humbled me, and the love that
-    taught me how to stay soft in a hard world. This year is not about
-    perfection or promises made in haste, but about choosing patience,
-    understanding, and growth even on days that feel uncertain.
-    May this new year bring peace to restless hearts, courage to silent
-    dreams, and warmth to every soul that seeks comfort. Some feelings
-    are not meant to be spoken loudly; they are meant to be felt deeply,
-    carried gently, and lived sincerely. As this year unfolds, I hope
-    it holds space for kindness, for healing, and for love that feels
-    calm, steady, and real.
-  </p>
+  <div class="page">
+    A new year doesn’t arrive with answers,
+    it arrives with quiet hope.
+    Somewhere between what we were
+    and what we are becoming,
+    love finds its place gently.
 
-  <div class="continue-area">
-    <div class="circle-btn" onclick="goNext()">
-      <div class="progress-ring" id="ring"></div>
-      <div class="heart">❤️</div>
+    I don’t wish for perfection,
+    I wish for peace,
+    for moments that feel safe,
+    and for love that stays even
+    when words fall silent.
+
+    <div class="continue">
+      <div class="circle" onclick="goNext()">
+        ❤️
+        <div class="ring" id="ring"></div>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
-function goNext() {
-  const ring = document.getElementById("ring");
-  ring.style.animation = "fillCircle 2.5s linear forwards";
+function openCard(){
+  document.querySelector(".cover").style.transform="rotateY(-160deg)";
+}
 
-  setTimeout(() => {
-    window.location.href = "page3.html"; // scratch + golden ticket
-  }, 2500);
+function goNext(){
+  const r=document.getElementById("ring");
+  r.style.display="block";
+  setTimeout(()=>location.href="page3.html",2000);
 }
 </script>
 
