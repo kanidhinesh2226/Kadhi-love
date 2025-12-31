@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Love Letter</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Yesenia+Script&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 *{box-sizing:border-box;}
@@ -13,34 +13,34 @@
 body{
   margin:0;
   min-height:100vh;
-  font-family:'Poppins',sans-serif;
   background:linear-gradient(180deg,#fff1f6,#ffd6e8,#fff1f6);
   display:flex;
   justify-content:center;
   align-items:center;
+  font-family:'Poppins',sans-serif;
   overflow:hidden;
 }
 
-/* doodles */
+/* MANY DOODLES */
 .doodle{
   position:fixed;
   font-size:18px;
-  opacity:0.25;
-  animation:float 9s linear infinite;
+  opacity:0.28;
+  animation:float 10s linear infinite;
 }
 @keyframes float{
   from{transform:translateY(110vh);}
-  to{transform:translateY(-120vh);}
+  to{transform:translateY(-130vh);}
 }
 
-/* card */
+/* CARD */
 .card{
-  width:92%;
+  width:94%;
   max-width:360px;
   background:white;
-  border-radius:28px;
-  padding:28px 22px 34px;
-  box-shadow:0 25px 45px rgba(255,105,160,0.25);
+  border-radius:30px;
+  padding:30px 24px 36px;
+  box-shadow:0 28px 50px rgba(255,105,160,0.28);
   animation:fadeUp 1.2s ease;
 }
 @keyframes fadeUp{
@@ -48,6 +48,7 @@ body{
   to{opacity:1;transform:translateY(0);}
 }
 
+/* HEADINGS */
 .card h1{
   font-family:'Pacifico',cursive;
   font-size:34px;
@@ -60,26 +61,26 @@ body{
   font-size:13px;
   font-weight:300;
   color:#888;
-  margin-bottom:18px;
+  margin-bottom:20px;
 }
 
-/* letter */
+/* LETTER – YESSY FONT */
 .letter{
-  font-size:14.5px;
-  line-height:1.9;
+  font-family:'Yesenia Script',cursive;
+  font-size:18px;
+  line-height:2;
   color:#444;
 }
 
-/* circle continue button */
+/* CONTINUE CIRCLE (FIRST PAGE STYLE) */
 .continue-area{
-  margin-top:30px;
+  margin-top:32px;
   display:flex;
   justify-content:center;
 }
-
 .circle-btn{
-  width:90px;
-  height:90px;
+  width:92px;
+  height:92px;
   border-radius:50%;
   border:3px solid #ff5fa2;
   display:flex;
@@ -88,7 +89,6 @@ body{
   position:relative;
   cursor:pointer;
 }
-
 .heart{
   font-size:28px;
   color:#ff5fa2;
@@ -99,11 +99,10 @@ body{
   50%{transform:scale(1.15);}
   100%{transform:scale(1);}
 }
-
 .progress{
   position:absolute;
-  width:90px;
-  height:90px;
+  width:92px;
+  height:92px;
   border-radius:50%;
   border:3px solid transparent;
   border-top:3px solid #ff5fa2;
@@ -118,30 +117,43 @@ body{
 
 <body>
 
-<!-- doodles -->
-<span class="doodle" style="left:12%;animation-delay:0s">♡</span>
-<span class="doodle" style="left:28%;animation-delay:2s">✿</span>
-<span class="doodle" style="left:52%;animation-delay:4s">♡</span>
-<span class="doodle" style="left:72%;animation-delay:1s">✿</span>
-<span class="doodle" style="left:88%;animation-delay:3s">♡</span>
+<!-- EXTRA DOODLES -->
+<span class="doodle" style="left:6%;animation-delay:0s">♡</span>
+<span class="doodle" style="left:14%;animation-delay:3s">✿</span>
+<span class="doodle" style="left:22%;animation-delay:6s">★</span>
+<span class="doodle" style="left:30%;animation-delay:1s">♡</span>
+<span class="doodle" style="left:38%;animation-delay:4s">✿</span>
+<span class="doodle" style="left:46%;animation-delay:7s">♡</span>
+<span class="doodle" style="left:54%;animation-delay:2s">★</span>
+<span class="doodle" style="left:62%;animation-delay:5s">✿</span>
+<span class="doodle" style="left:70%;animation-delay:8s">♡</span>
+<span class="doodle" style="left:78%;animation-delay:3s">★</span>
+<span class="doodle" style="left:86%;animation-delay:6s">✿</span>
+<span class="doodle" style="left:94%;animation-delay:1s">♡</span>
 
 <div class="card">
   <h1>My Love 💗</h1>
-  <h2>a little love note for you</h2>
+  <h2>a little love note, just for you</h2>
 
   <div class="letter">
-    Another year arrived softly,  
-    without noise or warning,  
-    bringing with it small hopes and quiet dreams.  
+    Another year arrived quietly,  
+    carrying small hopes and gentle beginnings.  
 
-    Somewhere between simple days and unspoken moments,  
-    love found its place —  
-    not loud, not perfect, but real.  
+    Somewhere between ordinary days  
+    and moments we never planned,  
+    love found its way —  
+    soft, patient, and honest.  
 
-    I don’t wish for forever written in promises,  
-    I wish for a love that feels safe,  
-    one that stays, understands,  
-    and feels like home even in silence.
+    I don’t wish for loud promises  
+    or perfect stories.  
+    I only wish for a love that feels safe,  
+    one that understands without asking,  
+    and stays even when words fall silent.  
+
+    If this year gives us nothing else,  
+    let it give us calm hearts,  
+    shared smiles,  
+    and a love that feels like home.
   </div>
 
   <div class="continue-area">
