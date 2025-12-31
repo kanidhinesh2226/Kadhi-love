@@ -69,14 +69,18 @@ body{
   width:100%;
   border-radius:15px;
 }
+
+/* image caption (WHITE) */
 .caption{
   margin-top:10px;
   font-family:'Yesteryear',cursive;
   font-size:22px;
-  color:#ff4d4d;
+  color:white; /* 👈 white as requested */
 }
+
+/* stable ending */
 .end{
-  margin-top:25px;
+  margin-top:30px;
   font-family:'Yesteryear',cursive;
   font-size:24px;
   color:#ff4d4d;
@@ -90,7 +94,7 @@ body{
 
 <!-- ❤️ hearts -->
 <script>
-for(let i=0;i<25;i++){
+for(let i=0;i<30;i++){
   const h=document.createElement("div");
   h.className="heart";
   h.innerText="❤️";
@@ -101,7 +105,7 @@ for(let i=0;i<25;i++){
 }
 </script>
 
-<!-- 🎵 SONG + SOUNDS -->
+<!-- 🎵 song + sounds -->
 <audio id="song" src="song3.mp3" loop></audio>
 <audio id="scratchSound" src="scratch.mp3"></audio>
 <audio id="dingSound" src="ding.mp3"></audio>
@@ -118,6 +122,7 @@ for(let i=0;i<25;i++){
   <img id="img" src="img1.jpg">
   <div class="caption" id="caption"></div>
 
+  <!-- 👇 THIS STAYS FIXED -->
   <div class="end">
     Some beautiful words written with love 💕<br>
     by kannnukuniyal 💜
@@ -125,16 +130,13 @@ for(let i=0;i<25;i++){
 </div>
 
 <script>
-/* 🎵 RESUME SONG (SAFE WAY) */
+/* 🎵 resume song from page 2 */
 const song=document.getElementById("song");
 song.volume=0.35;
-
 const savedTime=localStorage.getItem("songTime");
 if(savedTime){
   song.currentTime=parseFloat(savedTime);
 }
-
-/* start song on FIRST SCRATCH (browser rule safe) */
 let songStarted=false;
 
 /* scratch cards */
@@ -155,7 +157,6 @@ messages.forEach(text=>{
     if(c.classList.contains("done")) return;
     c.classList.add("done");
 
-    /* start song here */
     if(!songStarted){
       song.play().catch(()=>{});
       songStarted=true;
@@ -177,13 +178,13 @@ messages.forEach(text=>{
   grid.appendChild(c);
 });
 
-/* images + captions */
-const images=[
- {src:"img1.jpg",cap:"With you, love feels calm ❤️"},
- {src:"img2.jpg",cap:"Forever starts with us 💑"},
- {src:"img3.jpg",cap:"Red hearts, real love ❤️"},
- {src:"img4.jpg",cap:"Still choosing you ✨"},
- {src:"img5.jpg",cap:"Endless love ♾️"}
+/* image + caption SLIDE TOGETHER */
+const slides=[
+ {img:"img1.jpg", text:"With you, love feels calm ❤️"},
+ {img:"img2.jpg", text:"Forever starts with us 💑"},
+ {img:"img3.jpg", text:"Red hearts, real love ❤️"},
+ {img:"img4.jpg", text:"Still choosing you ✨"},
+ {img:"img5.jpg", text:"Endless love ♾️"}
 ];
 let i=0;
 
@@ -194,12 +195,13 @@ function showFinal(){
 
   const img=document.getElementById("img");
   const cap=document.getElementById("caption");
-  cap.innerText=images[0].cap;
+
+  cap.innerText=slides[0].text;
 
   setInterval(()=>{
-    i=(i+1)%images.length;
-    img.src=images[i].src;
-    cap.innerText=images[i].cap;
+    i=(i+1)%slides.length;
+    img.src=slides[i].img;
+    cap.innerText=slides[i].text;
   },3000);
 }
 </script>
