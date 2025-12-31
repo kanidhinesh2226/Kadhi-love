@@ -2,92 +2,63 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
 <meta name="viewport"
 content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-<title>Love Letter</title>
+<title>Happy New Year My Love</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Yesenia+Script&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-/* ===== GLOBAL STABILITY ===== */
-html, body{
+html,body{
   margin:0;
   padding:0;
   width:100%;
   height:100%;
   overflow:hidden;
-  -webkit-text-size-adjust:100%;
   font-family:'Poppins',sans-serif;
 }
 
-/* ===== BABY BLUE BACKGROUND ===== */
+/* Baby blue background */
 body{
-  min-height:100svh;
   background:linear-gradient(180deg,#eaf6ff,#d9f0ff,#eaf6ff);
   display:flex;
   align-items:center;
   justify-content:center;
 }
 
-/* ===== FLOATING DOODLES (HEARTS + STARS) ===== */
+/* Floating doodles */
 .doodle{
   position:fixed;
   bottom:-20px;
   font-size:18px;
   opacity:0.35;
-  pointer-events:none;
   animation:floatUp linear infinite;
 }
-
-.heart-blue{ color:#6bbcff; }
-.star-blue{ color:#9ad6ff; }
-
 @keyframes floatUp{
-  from{ transform:translateY(0); }
-  to{ transform:translateY(-120svh); }
+  to{transform:translateY(-120vh);}
 }
 
-/* ===== CARD ===== */
+/* Card */
 .card{
   width:94%;
   max-width:360px;
-  height:580px;
-  background:#ffffff;
+  height:560px;
+  background:#fff;
   border-radius:30px;
   padding:26px 24px;
-  box-shadow:0 28px 50px rgba(80,160,255,0.25);
+  box-shadow:0 28px 50px rgba(80,160,255,.25);
   display:flex;
   flex-direction:column;
-  animation:fadeUp 1.2s ease;
-}
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(40px);}
-  to{opacity:1;transform:translateY(0);}
 }
 
-/* ===== TITLE ===== */
-.glow-title{
+h1{
   font-family:'Pacifico',cursive;
   font-size:34px;
   color:#4aa8ff;
   text-align:center;
-  margin-bottom:6px;
-  text-shadow:
-    0 0 4px rgba(74,168,255,0.5),
-    0 0 8px rgba(74,168,255,0.35);
 }
 
-.sub{
-  text-align:center;
-  font-size:13px;
-  font-weight:300;
-  color:#7aaedb;
-  margin-bottom:14px;
-}
-
-/* ===== LETTER ===== */
 .letter{
   font-family:'Yesenia Script',cursive;
   font-size:18px;
@@ -95,144 +66,98 @@ body{
   color:#3d5f7a;
   overflow-y:auto;
   flex:1;
-  padding-right:6px;
-}
-.letter p{
-  margin-bottom:18px;
 }
 
-/* ===== CONTINUE BUTTON (SAME AS PAGE 1 STYLE) ===== */
-.continue-area{
-  margin-top:18px;
-  display:flex;
-  justify-content:center;
-}
-
+/* Continue button */
 .circle-btn{
   width:92px;
   height:92px;
   border-radius:50%;
   border:3px solid #6bbcff;
+  margin:16px auto 0;
   display:flex;
   align-items:center;
   justify-content:center;
-  position:relative;
-  opacity:0.4;
-  cursor:not-allowed;
+  opacity:.4;
   pointer-events:none;
 }
-
 .circle-btn.active{
   opacity:1;
-  cursor:pointer;
   pointer-events:auto;
 }
-
 .heart{
   font-size:28px;
   color:#6bbcff;
   animation:pulse 1.2s infinite;
 }
 @keyframes pulse{
-  0%{transform:scale(1);}
   50%{transform:scale(1.15);}
-  100%{transform:scale(1);}
-}
-
-.progress{
-  position:absolute;
-  width:92px;
-  height:92px;
-  border-radius:50%;
-  border:3px solid transparent;
-  border-top:3px solid #6bbcff;
-  display:none;
-  animation:spin 2s linear forwards;
-}
-@keyframes spin{
-  to{transform:rotate(360deg);}
 }
 </style>
 </head>
 
 <body>
 
-<!-- FLOATING BLUE HEARTS + STARS -->
+<!-- doodles -->
 <script>
-const icons = ["💙","⭐"];
+["💙","⭐"].forEach(()=>{});
 for(let i=0;i<20;i++){
   const d=document.createElement("div");
   d.className="doodle";
-  d.innerHTML = icons[Math.floor(Math.random()*icons.length)];
+  d.innerHTML=Math.random()>0.5?"💙":"⭐";
   d.style.left=Math.random()*100+"vw";
   d.style.animationDuration=(7+Math.random()*6)+"s";
-  d.style.animationDelay=Math.random()*5+"s";
   document.body.appendChild(d);
 }
 </script>
 
+<!-- SONG 3 -->
+<audio id="bgMusic" src="song3.mp3" autoplay loop></audio>
+
 <div class="card">
+  <h1>Happy New Year, My Love 💙</h1>
 
-  <h1 class="glow-title">Happy New Year, Yennangaa 💙</h1>
-  <div class="sub">written under a sky full of stars</div>
+  <div class="letter" id="letter">
+    💜 My love, as the clock strikes midnight 🕰️ and a new year unfolds 🎉,
+    my heart beats only for you ❤️. Every moment with you is a gift 🎁,
+    every memory a treasure 💎.<br><br>
 
-  <div class="letter">
-    <p>
-      💙 My love, as the clock strikes midnight 🕰️ and a new year unfolds 🎉,
-      my heart beats only for you ❤️. Every moment with you is a gift 🎁,
-      every memory a treasure 💎.
-    </p>
+    You’re my partner 👫, best friend 🤩, and soulmate ✨.
+    Here’s to new adventures 🚀, lazy mornings ☕, crazy nights 🌃,
+    and endless love 💖.<br><br>
 
-    <p>
-      You’re my partner 👫, best friend 🤩, and soulmate ✨.
-      Here’s to new adventures 🚀, lazy mornings ☕,
-      crazy nights 🌃, and endless love 💖.
-    </p>
+    You make my world spin 🌎, and I promise to love you more
+    with each passing day 📆.<br><br>
 
-    <p>
-      You make my world spin 🌎, and I promise to love you more
-      with each passing day 📆.
-      Cheers to us 🥂, to dreams 🌈, and to forever 💫.
-    </p>
-
-    <p>
-      You’re the melody in my song 🎶, the calm in my storm 🌊,
-      the spark in my night 🔥.
-      With you, every day is special 🌟,
-      every hug is home 🏠.
-    </p>
-
-    <p>
-      Cheers to more love, more fun 🎉,
-      and more of us 💕… forever and always 💖.
-    </p>
+    Cheers to more love, more fun 🎉,
+    and more of us 💕… forever and always 💖.
   </div>
 
-  <div class="continue-area">
-    <div class="circle-btn" id="btn" onclick="goNext()">
-      <div class="progress" id="progress"></div>
-      <div class="heart">💙</div>
-    </div>
+  <div class="circle-btn" id="btn" onclick="goNext()">
+    <div class="heart">💙</div>
   </div>
-
 </div>
 
 <script>
-/* ENABLE CONTINUE AFTER SCROLL */
-const letter = document.querySelector(".letter");
-const btn = document.getElementById("btn");
+const music=document.getElementById("bgMusic");
+music.volume=0.35;
 
+// save song time
+setInterval(()=>{
+  localStorage.setItem("songTime",music.currentTime);
+},500);
+
+// unlock button after scroll
+const letter=document.getElementById("letter");
+const btn=document.getElementById("btn");
 letter.addEventListener("scroll",()=>{
-  if(letter.scrollTop + letter.clientHeight >= letter.scrollHeight - 5){
+  if(letter.scrollTop+letter.clientHeight>=letter.scrollHeight-5){
     btn.classList.add("active");
   }
 });
 
-/* NEXT PAGE */
 function goNext(){
-  if(!btn.classList.contains("active")) return;
-  document.getElementById("progress").style.display="block";
-  setTimeout(()=>{window.location.href="page3.html";},2000);
+  window.location.href="page3.html";
 }
 </script>
 
