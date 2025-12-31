@@ -2,156 +2,280 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
 <title>Endless Love</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Yesenia+Script&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Yesenia+Script&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-body{
+/* 🔒 STABILITY FIX */
+html, body{
   margin:0;
-  background:linear-gradient(180deg,#000014,#1a0022);
-  color:white;
+  padding:0;
+  width:100%;
+  height:100%;
+  overflow-x:hidden;
+  -webkit-text-size-adjust:100%;
   font-family:'Poppins',sans-serif;
+}
+
+/* BACKGROUND – LIVE LOVE THEME */
+body{
+  min-height:100svh;
+  background:linear-gradient(180deg,#fff1f6,#ffd6e8,#fff1f6);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:#333;
+}
+
+/* MAIN WRAP */
+.wrap{
+  width:94%;
+  max-width:380px;
   text-align:center;
 }
 
-/* SCRATCH GRID */
-#scratchArea{
-  padding:30px;
+/* TITLE */
+h2{
+  font-family:'Pacifico',cursive;
+  font-size:28px;
+  color:#ff4d88;
+  margin-bottom:20px;
 }
+
+/* SCRATCH GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(5,1fr);
   gap:10px;
-  max-width:320px;
-  margin:auto;
 }
+
 .card{
-  background:#aaa;
+  position:relative;
   height:60px;
-  border-radius:8px;
-  cursor:pointer;
+  background:#f0f0f0;
+  border-radius:14px;
+  overflow:hidden;
 }
-.card.done{
-  background:#222;
+
+/* hidden message */
+.msg{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Yesenia Script',cursive;
+  font-size:16px;
+  color:#ff4d88;
+}
+
+/* scratch layer */
+.scratch{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,#ccc,#999);
+  border-radius:14px;
 }
 
 /* GOLDEN TICKET */
-#ticket{
+.ticket{
   display:none;
-  margin:30px auto;
-  padding:25px;
-  width:300px;
-  background:linear-gradient(135deg,#d4af37,#ffd700,#b8860b);
-  border-radius:18px;
-  color:#3b2b00;
-  font-family:'Yesenia Script',cursive;
-  font-size:28px;
-  box-shadow:0 0 30px gold;
+  margin-top:30px;
+  padding:22px;
+  background:linear-gradient(135deg,#e6c87a,#fff3b0,#d4af37);
+  border-radius:22px;
+  box-shadow:0 15px 30px rgba(212,175,55,.5);
+  border:2px solid rgba(255,255,255,.7);
 }
 
-/* FINAL AREA */
-#final{
+.ticket h1{
+  font-family:'Yesenia Script',cursive;
+  font-size:32px;
+  margin:0;
+  color:#5a4100;
+}
+.ticket p{
+  margin:6px 0 16px;
+  font-size:13px;
+  letter-spacing:1px;
+}
+
+.use-btn{
+  padding:10px 26px;
+  border:none;
+  border-radius:22px;
+  background:#5a4100;
+  color:#fff3b0;
+  font-size:14px;
+  cursor:pointer;
+}
+
+/* FINAL EXPERIENCE */
+.final{
   display:none;
-  padding:30px;
 }
+
 #photo{
-  width:80%;
+  width:100%;
   max-width:320px;
-  border-radius:16px;
+  border-radius:18px;
+  box-shadow:0 15px 30px rgba(255,0,120,.3);
+  transition:opacity 1s ease;
 }
-#caption{
+
+.caption{
+  margin-top:14px;
+  font-family:'Yesenia Script',cursive;
+  font-size:22px;
+  color:#ff4d88;
+}
+
+.end{
+  margin-top:30px;
   font-family:'Yesenia Script',cursive;
   font-size:24px;
-  color:#f6b3c6;
-  margin-top:15px;
-}
-.end{
-  margin-top:40px;
-  font-family:'Yesenia Script',cursive;
-  font-size:26px;
+  color:#444;
 }
 </style>
 </head>
 
 <body>
 
-<div id="scratchArea">
-  <h2>Scratch all to reveal 💜</h2>
-  <div class="grid" id="grid"></div>
-</div>
+<div class="wrap">
 
-<div id="ticket">
-  ENDLESS LOVE 💛<br>
-  GOLDEN TICKET<br><br>
-  <button onclick="useMe()">USE ME</button>
-</div>
+  <!-- SCRATCH SECTION -->
+  <div id="scratchArea">
+    <h2>Scratch & Feel the Love 💗</h2>
 
-<div id="final">
-  <audio id="music" src="song3.mp3" loop></audio>
-  <img id="photo" src="img1.jpg">
-  <div id="caption"></div>
-
-  <div class="end">
-    Another year begins with quiet promises.<br>
-    If love is meant to feel safe,<br>
-    then you are where my heart belongs.<br><br>
-    Happy New Year 💜<br>
-    Endless love, this year and always.<br><br>
-    — by kannnukuniyal
+    <div class="grid" id="grid"></div>
   </div>
+
+  <!-- GOLDEN TICKET -->
+  <div class="ticket" id="ticket">
+    <h1>ENDLESS LOVE</h1>
+    <p>GOLDEN TICKET</p>
+    <button class="use-btn" onclick="useTicket()">USE ME 💛</button>
+  </div>
+
+  <!-- FINAL -->
+  <div class="final" id="final">
+    <audio id="music" src="song3.mp3" loop></audio>
+
+    <img id="photo" src="img1.jpg">
+    <div class="caption" id="caption"></div>
+
+    <div class="end">
+      Happy New Year 💜<br>
+      Endless love, this year and always.<br><br>
+      — by kannnukuniyal
+    </div>
+  </div>
+
 </div>
+
+<!-- SOUNDS -->
+<audio id="scratchSound" src="scratch.mp3" preload="auto"></audio>
+<audio id="dingSound" src="ding.mp3" preload="auto"></audio>
 
 <script>
-const grid=document.getElementById("grid");
-let count=0;
-
-for(let i=0;i<10;i++){
-  const c=document.createElement("div");
-  c.className="card";
-  c.onclick=()=>{
-    if(!c.classList.contains("done")){
-      c.classList.add("done");
-      count++;
-      if(count===10){
-        document.getElementById("ticket").style.display="block";
-      }
-    }
-  };
-  grid.appendChild(c);
-}
-
-const photos=[
-  {src:"img1.jpg",txt:"You are my calm."},
-  {src:"img2.jpg",txt:"Love feels safe here."},
-  {src:"img3.jpg",txt:"With you, always."},
-  {src:"img4.jpg",txt:"Time slows down."},
-  {src:"img5.jpg",txt:"Forever starts now."}
+/* SCRATCH MESSAGES */
+const messages=[
+  "You are my calm 💗",
+  "Always my favorite ✨",
+  "Love feels safe here",
+  "My happy place",
+  "Forever with you",
+  "Soft hearts, strong love",
+  "Everyday magic",
+  "Still choosing you",
+  "Quietly in love",
+  "One last surprise 💛"
 ];
-let i=0,interval;
 
-function useMe(){
+const grid=document.getElementById("grid");
+let cleared=0;
+const scratchSound=document.getElementById("scratchSound");
+const ding=document.getElementById("dingSound");
+
+/* CREATE 10 CARDS */
+messages.forEach(text=>{
+  const card=document.createElement("div");
+  card.className="card";
+
+  const msg=document.createElement("div");
+  msg.className="msg";
+  msg.innerText=text;
+
+  const layer=document.createElement("div");
+  layer.className="scratch";
+
+  layer.addEventListener("touchstart",reveal,{once:true});
+  layer.addEventListener("mousedown",reveal,{once:true});
+
+  function reveal(){
+    layer.style.opacity="0";
+    scratchSound.currentTime=0;
+    scratchSound.volume=0.3;
+    scratchSound.play().catch(()=>{});
+    cleared++;
+    if(cleared===10){
+      ding.play().catch(()=>{});
+      document.getElementById("ticket").style.display="block";
+    }
+  }
+
+  card.appendChild(msg);
+  card.appendChild(layer);
+  grid.appendChild(card);
+});
+
+/* USE TICKET */
+function useTicket(){
   document.getElementById("scratchArea").style.display="none";
   document.getElementById("ticket").style.display="none";
-  document.getElementById("final").style.display="block";
-  const m=document.getElementById("music");
-  m.volume=0.35;
-  m.play();
-  interval=setInterval(nextPic,4000);
+  const final=document.getElementById("final");
+  final.style.display="block";
+
+  const music=document.getElementById("music");
+  music.volume=0.35;
+  music.play().catch(()=>{});
+  startPhotos();
 }
 
-function nextPic(){
-  const img=document.getElementById("photo");
-  const cap=document.getElementById("caption");
-  img.src=photos[i].src;
-  cap.innerText=photos[i].txt;
-  i=(i+1)%photos.length;
+/* PHOTOS */
+const photos=[
+  {src:"img1.jpg",cap:"You are my calm in every chaos"},
+  {src:"img2.jpg",cap:"Love feels safe with you"},
+  {src:"img3.jpg",cap:"Soft hearts, deep love"},
+  {src:"img4.jpg",cap:"Still choosing you"},
+  {src:"img5.jpg",cap:"Forever starts here"}
+];
+
+let i=0,interval;
+const img=document.getElementById("photo");
+const cap=document.getElementById("caption");
+
+function startPhotos(){
+  interval=setInterval(()=>{
+    img.style.opacity=0;
+    setTimeout(()=>{
+      img.src=photos[i].src;
+      cap.innerText=photos[i].cap;
+      img.style.opacity=1;
+      i=(i+1)%photos.length;
+    },600);
+  },3500);
 }
 
-document.getElementById("photo").onclick=()=>{
-  clearInterval(interval);
-};
+img.addEventListener("click",()=>clearInterval(interval));
 </script>
 
 </body>
 </html>
+
+
